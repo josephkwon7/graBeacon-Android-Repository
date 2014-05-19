@@ -25,6 +25,6 @@ public class MainActivity extends Activity {
 	}
 
 //1
-	//ÆíÁý
-
+	//ï¿½ï¿½ï¿½ï¿½
+//3333
 }
