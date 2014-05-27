@@ -38,6 +38,7 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/btn_login" 
             android:layout_marginBottom="30dp" 
+            android:visibility="gone"
             android:text="connect" 
             android:textColor="#FFD700" />
 
@@ -146,35 +147,37 @@
                     android:visibility="invisible" />
 
                 <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/asdfd"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/asdfd" />
+
                   <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/piza1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:layout_below="@+id/imageView1"
+                    android:layout_below="@+id/asdfd"
                     android:src="@drawable/piza1" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/asdfds"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
-                    android:layout_below="@+id/imageView2"
+                    android:layout_below="@+id/piza1"
                     android:src="@drawable/asdfds" />
 
                 <LinearLayout
                     android:id="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" 
-                     android:layout_below="@+id/imageView3"
+                     android:layout_below="@+id/asdfds"
                      
                     >
 
@@ -191,62 +194,123 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/abx"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
                     android:adjustViewBounds="true"
                      android:layout_below="@+id/textView1"
                     android:src="@drawable/abx" />
+                
+		
+<LinearLayout
+android:id="@+id/table1"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_below="@+id/abx">
 
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" 
-                    android:layout_below="@+id/imageView4"
-                   >
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
 
-                    <TableRow
-                        android:id="@+id/tableRow1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         >
-                         <TextView android:text="상호명" android:textSize="40px" android:padding="10dp"/>
-                   		 <TextView android:text="미스터피자(강남점)" android:textSize="40px" android:padding="10dp"/>
-                   		
-                 </TableRow>
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
-                    <TableRow
-                        android:id="@+id/tableRow2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
-                   		 
-                          <TextView android:text="주소" android:textSize="30px" android:padding="10dp"/>
-                   		 <TextView android:text="서울특별시 서초구 서초4동  1316-29" android:textSize="30px" android:padding="10dp"/>
-                   		
-                    </TableRow>
-                    
-                       <TableRow
-                        android:id="@+id/tableRow3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
-                   		 
-                          <TextView android:text="업주이름" android:textSize="30px" android:padding="10dp"/>
-                   		 <TextView android:text="미스터김" android:textSize="30px" android:padding="10dp"/>
-                   		
-                    </TableRow>
-                       <TableRow
-                        android:id="@+id/tableRow3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
-                   		 
-                          <TextView android:text="전화번호" android:textSize="30px" android:padding="10dp"/>
-                   		 <TextView android:text="02-2220-9292" android:textSize="30px" android:padding="10dp"/>
-                   		
-                    </TableRow>
+    <ImageButton
+             android:id="@+id/fileminis"
+             android:layout_width="40dp"
+             android:layout_height="40dp"
+             android:background="#ffffff"
+             android:scaleType="centerInside"
+             android:src="@drawable/fileminis" />
+        <TextView
+            android:padding="10dp"
+            android:text="미스터피자(강남점)"
+            android:textSize="40px" />
+    </TableRow>
 
-              
-                </TableLayout>
+  
 
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+         <ImageButton
+             android:id="@+id/imadges"
+             android:layout_width="40dp"
+             android:layout_height="40dp"
+             android:background="#ffffff"
+             android:scaleType="centerInside"
+             android:src="@drawable/imadges" />
+
+        <TextView
+            android:padding="10dp"
+            android:text="미스터김"
+            android:textSize="30px" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+            <ImageButton
+        android:id="@+id/call_us"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="centerInside"
+        android:background="#ffffff"
+        android:src="@drawable/call_us" />
+
+            
+            
+       <TextView
+            android:id="@+id/txtAutoWeb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+       		android:autoLink="phone"
+            android:padding="10dp"
+            android:text="010-9130-0112"
+            android:background="#ffffff"
+            android:textSize="30px" />
+
+ </TableRow>
+ 
+      <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/map"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="#ffffff"
+                android:scaleType="centerInside"
+                android:src="@drawable/map" />
+            
+       <TextView
+            android:id="@+id/txtAutoWeb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+       		android:autoLink="map"
+            android:padding="10dp"
+            android:text="서울특별시 서초구 서초4동 1316-29 미스터피자  강남역점"
+            android:background="#ffffff"
+            android:textSize="30px" />
+
+ </TableRow>
+
+    
+
+</TableLayout>
+
+</LinearLayout>
+				
             </RelativeLayout>
 
             <RelativeLayout
@@ -486,22 +550,21 @@
       
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/menu4"
+        android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        
+        android:scaleType="centerCrop"
+        android:src="@drawable/menu4" />
+
+    <ImageButton
+        android:id="@+id/share"
         android:layout_width="65dp"
         android:layout_height="match_parent"
         android:layout_weight="0"
         android:scaleType="centerCrop"
-        android:src="@drawable/menu4" />
-
-
-           <ImageButton
-           android:id="@+id/imageButton2"
-            android:layout_width="65dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:scaleType="centerCrop"
-            android:src="@drawable/share" />
-  
+        android:src="@drawable/share" />
 
 </LinearLayout>
             
