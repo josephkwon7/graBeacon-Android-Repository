@@ -12,19 +12,19 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	/*
 	 
-	 activity_main.xml°ú ¿¬°áµÅÀÖÀ½.
-	 onCreate() -> onClick()ÀÌ ¹ÝÀÀÇÏ¸é WizTurnBeaconList.java·Î ÀÌµ¿.
+	 activity_main.xmlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+	 onCreate() -> onClick()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ WizTurnBeaconList.javaï¿½ï¿½ ï¿½Ìµï¿½.
 	  
 	 */
 	
 	//add the explane
 	
-	
-	//onCreate()¸Þ¼Òµå
+	//dkdkfjlfdlkjlfkjldkj
+	//onCreate()ï¿½Þ¼Òµï¿½
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//res - layout -activity_main.xmlÀÇ view¸¦ MainActivity¿¡¼­ ½ÇÇàÇÒ ¼ö ÀÖ°Ô ºÒ·¯¿È.
+		//res - layout -activity_main.xmlï¿½ï¿½ viewï¿½ï¿½ MainActivityï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½.
  		setContentView(R.layout.activity_main);
  		
  		startActivity(new Intent(this, Start_Activity.class));
@@ -38,20 +38,20 @@ public class MainActivity extends Activity implements OnClickListener{
  		}
 		
 			
-		//activity_main.xmlÀÇ main_start ¹öÆ°ÀÌ ´­·ÁÁö¸é ¹ÝÀÀÇÏµµ·Ï ÇÔ.
+		//activity_main.xmlï¿½ï¿½ main_start ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½.
 		findViewById(R.id.main_start).setOnClickListener(this);
 
 	}
 
 
-	//main_start ¹öÆ°ÀÌ Å¬¸¯µÇ´Â ÀÌº¥Æ® ¹ß»ý ½Ã ½ÇÇàµÇ´Â ¸Þ¼Òµå
+	//main_start ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ìºï¿½Æ® ï¿½ß»ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Þ¼Òµï¿½
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		
-		//MainActivityÀÇ ContextÁ¤º¸¸¦ WizTurnBeaconList.java·Î ³Ñ±è.
+		//MainActivityï¿½ï¿½ Contextï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ WizTurnBeaconList.javaï¿½ï¿½ ï¿½Ñ±ï¿½.
 		Intent intent = new Intent(MainActivity.this , WizTurnBeaconList.class);
-		//WizTurnBeaconList.java·Î Navigation.
+		//WizTurnBeaconList.javaï¿½ï¿½ Navigation.
 		startActivity(intent);
 	}
 }
