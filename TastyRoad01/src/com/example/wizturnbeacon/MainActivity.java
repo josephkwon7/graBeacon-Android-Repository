@@ -17,7 +17,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	  
 	 */
 	
-	
+	//add the explane
 	
 	
 	//onCreate()¸Þ¼Òµå
