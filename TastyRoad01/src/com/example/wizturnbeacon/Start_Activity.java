@@ -13,7 +13,7 @@ public class Start_Activity extends Activity {
 	    super.onCreate(savedInstanceState);
 	
 	    setContentView(R.layout.start_activity);
-	    
+	    //comment
 	    Handler handler = new Handler(){
 
 			@Override
