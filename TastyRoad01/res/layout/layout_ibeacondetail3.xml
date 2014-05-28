@@ -147,37 +147,37 @@
                     android:visibility="invisible" />
 
                 <ImageView
-                    android:id="@+id/afdsf"
+                    android:id="@+id/food3_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/afdsf" />
+                    android:src="@drawable/food3_2" />
 
                   <ImageView
-                      android:id="@+id/youn"
+                      android:id="@+id/food3_3"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:layout_below="@+id/afdsf"
+                      android:layout_below="@+id/food3_2"
                       android:adjustViewBounds="true"
-                      android:src="@drawable/youn" />
+                      android:src="@drawable/food3_3" />
 
                 <ImageView
-                    android:id="@+id/asfasdfsd"
+                    android:id="@+id/food3_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@+id/youn"
+                    android:layout_below="@+id/food3_3"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/asfasdfsd" />
+                    android:src="@drawable/food3_4" />
 
                 <LinearLayout
                     android:id="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" 
-                     android:layout_below="@+id/asfasdfsd"
+                     android:layout_below="@+id/food3_4"
                      
                     >
 
@@ -194,20 +194,20 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/chamchimenu"
+                    android:id="@+id/menupan3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView1"
                     android:adjustViewBounds="true"
                     android:scaleType="centerInside"
-                    android:src="@drawable/chamchimenu" />
+                    android:src="@drawable/menupan3" />
 		
 <LinearLayout
 android:id="@+id/table1"
 android:orientation="vertical"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:layout_below="@+id/chamchimenu">
+android:layout_below="@+id/menupan3">
 
 <TableLayout
     android:layout_width="match_parent"
@@ -219,12 +219,12 @@ android:layout_below="@+id/chamchimenu">
         android:layout_height="wrap_content" >
 
     <ImageButton
-        android:id="@+id/chachilogo"
+        android:id="@+id/trademark1"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="#ffffff"
         android:scaleType="centerInside"
-        android:src="@drawable/chachilogo" />
+        android:src="@drawable/trademark1" />
 
         <TextView
             android:padding="10dp"
@@ -240,12 +240,12 @@ android:layout_below="@+id/chamchimenu">
         android:layout_height="wrap_content" >
 
          <ImageButton
-             android:id="@+id/imadges"
+             android:id="@+id/host_icon1"
              android:layout_width="40dp"
              android:layout_height="40dp"
              android:background="#ffffff"
              android:scaleType="centerInside"
-             android:src="@drawable/imadges" />
+             android:src="@drawable/host_icon1" />
 
         <TextView
             android:padding="10dp"
@@ -259,14 +259,12 @@ android:layout_below="@+id/chamchimenu">
         android:layout_height="wrap_content" >
 
             <ImageButton
-        android:id="@+id/call_us"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:scaleType="centerInside"
-        android:background="#ffffff"
-        android:src="@drawable/call_us" />
-
-            
+                android:id="@+id/call_icon1_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="#ffffff"
+                android:scaleType="centerInside"
+                android:src="@drawable/call_icon1_1" />
             
        <TextView
             android:id="@+id/txtAutoWeb"
@@ -286,12 +284,12 @@ android:layout_below="@+id/chamchimenu">
         android:layout_height="wrap_content" >
 
             <ImageButton
-                android:id="@+id/map"
+                android:id="@+id/map_icon1_1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="#ffffff"
                 android:scaleType="centerInside"
-                android:src="@drawable/map" />
+                android:src="@drawable/map_icon1_1" />
             
        <TextView
             android:id="@+id/txtAutoWeb"
@@ -545,26 +543,21 @@ android:layout_below="@+id/chamchimenu">
         android:layout_height="40dp"
         android:layout_weight="3" />
 
-
-    
-      
-
     <ImageButton
-        android:id="@+id/menu4"
-        android:layout_width="65dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0"
-        
-        android:scaleType="centerCrop"
-        android:src="@drawable/menu4" />
-
-    <ImageButton
-        android:id="@+id/share"
+        android:id="@+id/menu_icon4"
         android:layout_width="65dp"
         android:layout_height="match_parent"
         android:layout_weight="0"
         android:scaleType="centerCrop"
-        android:src="@drawable/share" />
+        android:src="@drawable/menu_icon4" />
+
+    <ImageButton
+        android:id="@+id/sharelogo5"
+        android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sharelogo5" />
 
 </LinearLayout>
             
