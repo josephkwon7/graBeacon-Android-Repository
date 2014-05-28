@@ -16,7 +16,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	 onCreate() -> onClick()�� �����ϸ� WizTurnBeaconList.java�� �̵�.
 	  
 	 */
-	
+	//
 	//add the explane
 	
 	//dkdkfjlfdlkjlfkjldkj
