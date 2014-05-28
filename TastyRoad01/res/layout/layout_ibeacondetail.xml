@@ -147,37 +147,37 @@
                     android:visibility="invisible" />
 
                 <ImageView
-                    android:id="@+id/asdfd"
+                    android:id="@+id/food1_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/asdfd" />
+                    android:src="@drawable/food1_2" />
 
                   <ImageView
-                    android:id="@+id/piza1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:layout_below="@+id/asdfd"
-                    android:src="@drawable/piza1" />
+                      android:id="@+id/food1_3"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@+id/food1_2"
+                      android:adjustViewBounds="true"
+                      android:src="@drawable/food1_3" />
 
                 <ImageView
-                    android:id="@+id/asdfds"
+                    android:id="@+id/food1_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
-                    android:scaleType="centerCrop"
+                    android:layout_below="@+id/food1_3"
                     android:adjustViewBounds="true"
-                    android:layout_below="@+id/piza1"
-                    android:src="@drawable/asdfds" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/food1_4" />
 
                 <LinearLayout
                     android:id="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" 
-                     android:layout_below="@+id/asdfds"
+                     android:layout_below="@+id/food1_4"
                      
                     >
 
@@ -194,21 +194,20 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/abx"
+                    android:id="@+id/menupan1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="centerInside"
+                    android:layout_below="@+id/textView1"
                     android:adjustViewBounds="true"
-                     android:layout_below="@+id/textView1"
-                    android:src="@drawable/abx" />
-                
+                    android:scaleType="centerInside"
+                    android:src="@drawable/menupan1" />
 		
 <LinearLayout
 android:id="@+id/table1"
 android:orientation="vertical"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:layout_below="@+id/abx">
+android:layout_below="@+id/menupan1">
 
 <TableLayout
     android:layout_width="match_parent"
@@ -220,12 +219,13 @@ android:layout_below="@+id/abx">
         android:layout_height="wrap_content" >
 
     <ImageButton
-             android:id="@+id/fileminis"
-             android:layout_width="40dp"
-             android:layout_height="40dp"
-             android:background="#ffffff"
-             android:scaleType="centerInside"
-             android:src="@drawable/fileminis" />
+        android:id="@+id/trademark1_1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="#ffffff"
+        android:scaleType="centerInside"
+        android:src="@drawable/trademark1_1" />
+
         <TextView
             android:padding="10dp"
             android:text="미스터피자(강남점)"
@@ -240,12 +240,12 @@ android:layout_below="@+id/abx">
         android:layout_height="wrap_content" >
 
          <ImageButton
-             android:id="@+id/imadges"
+             android:id="@+id/host_icon1"
              android:layout_width="40dp"
              android:layout_height="40dp"
              android:background="#ffffff"
              android:scaleType="centerInside"
-             android:src="@drawable/imadges" />
+             android:src="@drawable/host_icon1" />
 
         <TextView
             android:padding="10dp"
@@ -259,14 +259,12 @@ android:layout_below="@+id/abx">
         android:layout_height="wrap_content" >
 
             <ImageButton
-        android:id="@+id/call_us"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:scaleType="centerInside"
-        android:background="#ffffff"
-        android:src="@drawable/call_us" />
-
-            
+                android:id="@+id/call_icon1_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="#ffffff"
+                android:scaleType="centerInside"
+                android:src="@drawable/call_icon1_1" />
             
        <TextView
             android:id="@+id/txtAutoWeb"
@@ -286,12 +284,12 @@ android:layout_below="@+id/abx">
         android:layout_height="wrap_content" >
 
             <ImageButton
-                android:id="@+id/map"
+                android:id="@+id/map_icon1_1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="#ffffff"
                 android:scaleType="centerInside"
-                android:src="@drawable/map" />
+                android:src="@drawable/map_icon1_1" />
             
        <TextView
             android:id="@+id/txtAutoWeb"
@@ -545,26 +543,21 @@ android:layout_below="@+id/abx">
         android:layout_height="40dp"
         android:layout_weight="3" />
 
-
-    
-      
-
     <ImageButton
-        android:id="@+id/menu4"
-        android:layout_width="65dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0"
-        
-        android:scaleType="centerCrop"
-        android:src="@drawable/menu4" />
-
-    <ImageButton
-        android:id="@+id/share"
+        android:id="@+id/menu_icon4"
         android:layout_width="65dp"
         android:layout_height="match_parent"
         android:layout_weight="0"
         android:scaleType="centerCrop"
-        android:src="@drawable/share" />
+        android:src="@drawable/menu_icon4" />
+
+    <ImageButton
+        android:id="@+id/sharelogo5"
+        android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sharelogo5" />
 
 </LinearLayout>
             
