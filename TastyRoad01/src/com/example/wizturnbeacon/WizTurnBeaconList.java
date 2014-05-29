@@ -79,20 +79,20 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	
 	/*
 	 
-	 layout_ibeaconlist.xml°ú ¿¬°áµÅÀÖÀ½.
+	 layout_ibeaconlist.xmlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	 onStart() -> onCreate()
 	 
 	 
 	 
 	 */
 	
-	//WizTurnBeaconList.java°¡ ½ÇÇàµÇ¸é Ã³À½ ½ÃÀÛµÇ´Â ¸Þ¼Òµå
+	//WizTurnBeaconList.javaï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ÛµÇ´ï¿½ ï¿½Þ¼Òµï¿½
 	@Override
 	protected void onStart() {
 		super.onStart();
-		//LogCat¿¡ »Ñ·ÁÁÙ Debugging Á¤º¸.
+		//LogCatï¿½ï¿½ ï¿½Ñ·ï¿½ï¿½ï¿½ Debugging ï¿½ï¿½ï¿½ï¿½.
 		Log.d("WizTurnBeacon" ,"onStart()");
-		//wizturnMgr_setup()¸Þ¼Òµå ½ÇÇà.(to ºí·çÅõ½º ±â´É ¼³Á¤)
+		//wizturnMgr_setup()ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½.(to ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 		wizturnMgr_setup();
 
 	}
@@ -102,16 +102,16 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//layout_ibeaconlist.xml°ú ¿¬°á.
+		//layout_ibeaconlist.xmlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		setContentView(R.layout.layout_ibeaconlist);
 		Log.d("WizTurnBeacon" ,"onCreate()");
 		
-		//beacon list ÃÊ±âÈ­
+		//beacon list ï¿½Ê±ï¿½È­
 		beaconList_Init();
 	}
 
 	
-	//layout_ibeaconlist.xml¿¡¼­ µÚ·Î°¡±â ¹öÆ°À» ´­·¶À» ¶§(DeviceÀÇ µÚ·Î°¡±â ¹öÆ°) ¹ÝÀÀÇÏ´Â ¸Þ¼Òµå.
+	//layout_ibeaconlist.xmlï¿½ï¿½ï¿½ï¿½ ï¿½Ú·Î°ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½(Deviceï¿½ï¿½ ï¿½Ú·Î°ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°) ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½.
 	public void onBackPressed() {
 		Log.d("WizTurnBeacon" ,"onBackPressed()");
 		back();
@@ -127,9 +127,9 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		}
 	}
 	
-	//onCreate()¸Þ¼­µå¿¡¼­ beaconList_Init()¸Þ¼­µå È£ÃâÀ» ÅëÇØ, ÃÊ±âÈ­°¡ ÁøÇà.
-	//beaconList_Init()¸Þ¼­µå¿¡¼­ startActivityForResult()¸Þ¼­µå¸¦ È£ÃâÇÏ¸é onActivityResult()°¡ ½ÇÇàµÊ.
-	//Activity.class »ó¼Ó¹ÞÀ½.(onActivityResult)
+	//onCreate()ï¿½Þ¼ï¿½ï¿½å¿¡ï¿½ï¿½ beaconList_Init()ï¿½Þ¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	//beaconList_Init()ï¿½Þ¼ï¿½ï¿½å¿¡ï¿½ï¿½ startActivityForResult()ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½ï¿½Ï¸ï¿½ onActivityResult()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
+	//Activity.class ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½.(onActivityResult)
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d("WizTurnBeacon" ,"onActivityResult()");
 		//BLE available
@@ -154,13 +154,35 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	@Override
 	public void onItemClick(AdapterView<?> adpaterView, View view, int position, long l_position) {
 		//beaconList Click
-		Log.d("WizTurnBeacon" ,"onItemClick()");
-		setContentView(R.layout.layout_ibeacondetail);
-		mMode = BEACON_DETAIL;
-		mWizTurnBeacon = mWizTurnBeaconListAdapter.getItem(position);
-		menuBar_Init("Tasty Road");
-		beaconDetail_Init(mWizTurnBeacon);
-
+		switch(mWizTurnBeaconListAdapter.getItem(position).getMajor()) {
+		case 41842:
+			Log.d("WizTurnBeacon" ,"onItemClick()");
+			setContentView(R.layout.layout_ibeacondetail);
+			mMode = BEACON_DETAIL;
+			mWizTurnBeacon = mWizTurnBeaconListAdapter.getItem(position);
+			menuBar_Init("Tasty Road");
+			beaconDetail_Init(mWizTurnBeacon);
+			break;
+		
+		case 33:
+			Log.d("WizTurnBeacon" ,"onItemClick()");
+			setContentView(R.layout.layout_ibeacondetail2);
+			mMode = BEACON_DETAIL;
+			mWizTurnBeacon = mWizTurnBeaconListAdapter.getItem(position);
+			menuBar_Init("Tasty Road");
+			beaconDetail_Init(mWizTurnBeacon);
+			break;
+		
+		case 11:
+			Log.d("WizTurnBeacon" ,"onItemClick()");
+			setContentView(R.layout.layout_ibeacondetail3);
+			mMode = BEACON_DETAIL;
+			mWizTurnBeacon = mWizTurnBeaconListAdapter.getItem(position);
+			menuBar_Init("Tasty Road");
+			beaconDetail_Init(mWizTurnBeacon);
+			break;
+		}
+		return;
 	}
 
 	@Override
@@ -199,7 +221,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		}
 	}
 
-	// wizTurn Delegate(Scan½Ã ³ª¿À´Â Beacon¿¡ ´ëÇÑ Á¾ÇÕÀûÀÎ Á¤º¸)
+	// wizTurn Delegate(Scanï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Beaconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	private WizTurnDelegate _wtDelegate = new WizTurnDelegate() {
 		//GetRssi Event
 		@Override
@@ -223,26 +245,26 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 				 *  getDistance = Distance between the device and the beacon
 				 *    
 				 */
-				//Thread ³»¿¡ ¾Èµå·ÎÀÌµå UI¸¦ ¹Ù²Ü ¼ö ÀÖ´Â runOnUiThread¸¦ ÀÛµ¿½ÃÅ´.
+				//Thread ï¿½ï¿½ï¿½ï¿½ ï¿½Èµï¿½ï¿½ï¿½Ìµï¿½ UIï¿½ï¿½ ï¿½Ù²ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ runOnUiThreadï¿½ï¿½ ï¿½Ûµï¿½ï¿½ï¿½Å´.
 				public void run() {
 					Log.d("WizTurnBeacon" ,"GATT BLE onGetDeviceList wtDelegate");
 					for (int i = 0; i < device.size(); i++) {
-						//[mMode == SCANLIST == 0] ==>°Ë»öµÈ beacon device°¡ ¾øÀ½À» ÀÇ¹Ì.
+						//[mMode == SCANLIST == 0] ==>ï¿½Ë»ï¿½ï¿½ï¿½ beacon deviceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½.
 						//[!mWizTurnBeaconListAdapter.contains(device.get(i).getMacAddress())] 
-						//==>°Ë»öµÈ beacon device°¡ ¾øÀ¸¹Ç·Î, mWizTurnBeaconListAdapter.contains()¸Þ¼Òµå·ÎºÎÅÍ false°¡ ¸®ÅÏµÊ.
+						//==>ï¿½Ë»ï¿½ï¿½ï¿½ beacon deviceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½, mWizTurnBeaconListAdapter.contains()ï¿½Þ¼Òµï¿½Îºï¿½ï¿½ï¿½ falseï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½.
 						if(mMode == SCANLIST && !mWizTurnBeaconListAdapter.contains(device.get(i).getMacAddress())){
 							Log.d("WizTurnBeacon" ,"device " + device.get(i)._macAddr +" ADD");
 							mWizTurnBeaconListAdapter.addItem(device.get(i));
 							mScanList.setAdapter(mWizTurnBeaconListAdapter);
 						}
 						
-						//[mMode == BEACON_DETAIL ==1] ==>°Ë»öµÈ beacon device°¡ 1°³ ÀÖÀ½À» ÀÇ¹Ì.
+						//[mMode == BEACON_DETAIL ==1] ==>ï¿½Ë»ï¿½ï¿½ï¿½ beacon deviceï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½.
 						//[mWizTurnBeacon._macAddr.equals(device.get(i).getMacAddress())] 
-						//==> °Ë»öµÈ device°¡ beacon deviceÀÎÁö MacAddress()·Î 2Â÷ È®ÀÎ.
+						//==> ï¿½Ë»ï¿½ï¿½ï¿½ deviceï¿½ï¿½ beacon deviceï¿½ï¿½ï¿½ï¿½ MacAddress()ï¿½ï¿½ 2ï¿½ï¿½ È®ï¿½ï¿½.
 						else if(mMode == BEACON_DETAIL && mWizTurnBeacon._macAddr.equals(device.get(i).getMacAddress())){
 							Log.d("WizTurnBeacon" ,"device " + device.get(i)._macAddr +" Update");
 							
-							//beacon device¿¡ ´ëÇÑ ±âº» Á¤º¸¸¦ layout_
+							//beacon deviceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ layout_
 							mMPower.setText(Integer.toString(device.get(i).getMeasuredPower()) + " dB");
 							mRssi.setText(Float.toString(device.get(i).getRssi()) + " dB");
 							mDistance.setText(Double.toString(device.get(i).getDistance()) + " m");
@@ -344,34 +366,34 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		Log.d("WizTurnBeacon" ,"beaconList_Init");
 		setContentView(R.layout.layout_ibeaconlist);
 		
-		//»ý¼ºÀÚ parameter : ÄÁÅØ½ºÆ®Á¤º¸(WizTurnBeaconListÅ¬·¡½ºÀÇ ÇöÀç ¸Þ¼ÒµåÀÇ ÄÁÅØ½ºÆ® Á¤º¸), layout_scanlist.xmlÀÇ TextList¿¬°á, textListÁ¤º¸¸¦ ÀúÀåÇÑ arrayList
-		//array_scanlist.xmlÀÇ Á¤º¸¸¦ WizTurnBeaconListAdapterÀÇ »ý¼ºÀÚ parameter·Î Àü´Þ.
-		//array_scanlist.xmlÀº Background·Î µ¹°í ÀÖ´Â layout°°À½.
+		//ï¿½ï¿½ï¿½ï¿½ parameter : ï¿½ï¿½ï¿½Ø½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½(WizTurnBeaconListÅ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½), layout_scanlist.xmlï¿½ï¿½ TextListï¿½ï¿½ï¿½ï¿½, textListï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ arrayList
+		//array_scanlist.xmlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ WizTurnBeaconListAdapterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ parameterï¿½ï¿½ ï¿½ï¿½ï¿½.
+		//array_scanlist.xmlï¿½ï¿½ Backgroundï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ layoutï¿½ï¿½ï¿½ï¿½.
 		mWizTurnBeaconListAdapter = new WizTurnBeaconListAdapter(this,R.layout.array_scanlist ,new ArrayList<WizTurnBeacons>());
-		//layout_ibeaconlist.xmlÀÇ scanlist È­¸éÀ» ¿¬°á.
+		//layout_ibeaconlist.xmlï¿½ï¿½ scanlist È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		mScanList = (ListView) findViewById(R.id.scanList);
-		//scanlistÈ­¸é¿¡ ´ëÇÑ Å¬¸¯ ÀÌº¥Æ®¸¦ °¨Áö.
+		//scanlistÈ­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		mScanList.setOnItemClickListener(this);
-		//layout_ibeaconlist.xmlÀÇ btn_refresh ¹öÆ°À» ¿¬°á.
+		//layout_ibeaconlist.xmlï¿½ï¿½ btn_refresh ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		mBtn_refresh = (ImageButton)findViewById(R.id.btn_refresh);
-		//btn_refresh¹öÆ°¿¡ ´ëÇÑ Å¬¸¯ ÀÌº¥Æ®¸¦ °¨Áö.
+		//btn_refreshï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		mBtn_refresh.setOnClickListener(this);
-		//layout_ibeaconlist.xmlÀÇ °¡Àå À§¿¡ ÀÕ´Â menu_bar¸¦ 'Test' -> 'ScanList'·Î ÃÊ±âÈ­
+		//layout_ibeaconlist.xmlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Õ´ï¿½ menu_barï¿½ï¿½ 'Test' -> 'ScanList'ï¿½ï¿½ ï¿½Ê±ï¿½È­
 		menuBar_Init("ScanList");
-		//mMode°ªÀ» 0À¸·Î ÃÊ±âÈ­.
+		//mModeï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­.
 		mMode = SCANLIST;
 		mContext = this;
 	}
 
-	//menu_barÃÊ±âÈ­.
+	//menu_barï¿½Ê±ï¿½È­.
 	public void menuBar_Init(String menuTitle){
 		Log.d("WizTurnBeacon" ,"menuBar_Init");
-		//layout_ibeaconlist.xmlÀÇ menu_text¿Í mBtn_backÀ» ¿¬°á.
+		//layout_ibeaconlist.xmlï¿½ï¿½ menu_textï¿½ï¿½ mBtn_backï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		menu_text = (TextView)findViewById(R.id.titleTxt);
 		mBtn_back = (ImageButton)findViewById(R.id.btn_back);
 
 		mBtn_back.setOnClickListener(this);
-		//menu_text¿¡ ³ªÅ¸³ª´Â ¹®ÀÚ¸¦ ¸ðµÎ parameter°ª(menuTitle)·Î º¯°æ.
+		//menu_textï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ parameterï¿½ï¿½(menuTitle)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		menu_text.setText(menuTitle);
 	}
 
@@ -445,7 +467,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		}
 	}
 	
-	//Ã³À½ ±¸µ¿ µÆÀ» ¶§, ºí·çÅõ½º°¡ ÄÑÁ®ÀÖ´ÂÁö È®ÀÎÇÏ±â À§ÇÑ ¸Þ¼Òµå.
+	//Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½.
 	public void wizturnMgr_setup(){
 		Log.d("WizTurnBeacon" ,"wizturnMgr_setup()");
 		_wizturnMgr = WizTurnManager.sharedInstance(this);
@@ -458,7 +480,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		// If BLE is not enabled, let user enable it.
 		if (!_wizturnMgr.isBluetoothEnabled()) {
 			Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-			//onActivityResult()¸Þ¼Òµå È£Ãâ.
+			//onActivityResult()ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½.
 			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 		} else {
 			//Wizturn Scan Start
