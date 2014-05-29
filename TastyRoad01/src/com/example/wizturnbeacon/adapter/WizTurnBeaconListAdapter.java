@@ -39,15 +39,15 @@ import com.wizturn.sdk.entity.WizTurnBeacons;
 
 
 /*
-	ÀÐ¾î¿Â BeaconList¸¦ º¸¿©ÁÖ´Â ArrayAdapter.
+	ï¿½Ð¾ï¿½ï¿½ BeaconListï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ArrayAdapter.
 */
 
 
 public class WizTurnBeaconListAdapter extends ArrayAdapter{
-	//layoutInflater : ·¹ÀÌ¾Æ¿ô¿¡ ¸Â°Ô µ¥ÀÌÅÍ¸¦ Ã¤¿ö³Ö´Â ¿ªÇÒ.
+	//layoutInflater : ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½ï¿½ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ Ã¤ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	LayoutInflater inflater = null;
 	ArrayList<WizTurnBeacons> wizTrunBeacon_items;
-	//»ý¼ºÀÚ parameter : ÄÁÅØ½ºÆ®Á¤º¸, layout_scanlist.xmlÀÇ TextList¿¬°á, textListÁ¤º¸¸¦ ÀúÀåÇÑ arrayList
+	//ï¿½ï¿½ï¿½ï¿½ parameter : ï¿½ï¿½ï¿½Ø½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½, layout_scanlist.xmlï¿½ï¿½ TextListï¿½ï¿½ï¿½ï¿½, textListï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ arrayList
 	public WizTurnBeaconListAdapter(Context context, int textViewResourceId,
 			ArrayList<WizTurnBeacons> mList) {
 		super(context, textViewResourceId,  mList);
@@ -79,9 +79,9 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		wizTrunBeacon_items.clear();
 	}
 	
-	//·¹ÀÌ¾Æ¿ô¿¡ ¸Â°Ô µ¥ÀÌÅÍ¸¦ Ã¤¿ö³Ö´Â ¸Þ¼Òµå
+	//ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½ï¿½ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ Ã¤ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Þ¼Òµï¿½
 	
-	//¿©±â¿¡ ¿ì¸® ÀÌ¹ÌÁö¸¦ »ðÀÔÇÏ¸é µÊ.
+	//ï¿½ï¿½ï¿½â¿¡ ï¿½ì¸® ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½.
 	public View getView(int position, View v, ViewGroup parent) {
 		if(v==null){
 			v = inflater.inflate(R.layout.array_scanlist, null);
@@ -99,9 +99,10 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		mMajor.setText("Major: " + Integer.toString(wizTrunBeacon_items.get(position).getMajor()));
 		mMinor.setText("Minor: " + Integer.toString(wizTrunBeacon_items.get(position).getMinor()));
 		*/
-		String reqURL = "http://192.168.200.63:8080/SpringMVC2/do/beacon/";
-		//
-		//String reqURL = "http://192.168.0.9:8080/SpringMVC2/do/beacon/";
+		
+		
+		//String reqURL = "http://192.168.200.63:8080/SpringMVC2/do/beacon/";
+		String reqURL = "http://192.168.200.27:8080/tastyroad/beacon/";
 		String reqParam = "Thumbnail/"+wizTrunBeacon_items.get(position).getMajor();
 		String rawJSON = getJSON(reqURL + reqParam);
 		
