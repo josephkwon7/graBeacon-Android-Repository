@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SlidingDrawer;
@@ -73,26 +74,27 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	private TextView menu_text;
 
 	private RelativeLayout  box2 ,box3;
-
+	//�덉씠�꾩썐��detail,2,3��怨좎젙諛�linearlayout���꾩씠��box4���꾨뱶
+	private LinearLayout box4;
 	private Context mContext;
 
 	
 	/*
 	 
-	 layout_ibeaconlist.xml�� ���������.
+	 layout_ibeaconlist.xml占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占�
 	 onStart() -> onCreate()
 	 
 	 
 	 
 	 */
 	
-	//WizTurnBeaconList.java�� ����Ǹ� ó�� ���۵Ǵ� �޼ҵ�
+	//WizTurnBeaconList.java占쏙옙 占쏙옙占쏙옙퓔占�처占쏙옙 占쏙옙占쌜되댐옙 占쌨소듸옙
 	@Override
 	protected void onStart() {
 		super.onStart();
-		//LogCat�� �ѷ��� Debugging ����.
+		//LogCat占쏙옙 占싼뤄옙占쏙옙 Debugging 占쏙옙占쏙옙.
 		Log.d("WizTurnBeacon" ,"onStart()");
-		//wizturnMgr_setup()�޼ҵ� ����.(to ������� ��� ����)
+		//wizturnMgr_setup()占쌨소듸옙 占쏙옙占쏙옙.(to 占쏙옙占쏙옙占쏙옙占�占쏙옙占�占쏙옙占쏙옙)
 		wizturnMgr_setup();
 
 	}
@@ -102,16 +104,16 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//layout_ibeaconlist.xml�� ����.
+		//layout_ibeaconlist.xml占쏙옙 占쏙옙占쏙옙.
 		setContentView(R.layout.layout_ibeaconlist);
 		Log.d("WizTurnBeacon" ,"onCreate()");
 		
-		//beacon list �ʱ�ȭ
+		//beacon list 占십깍옙화
 		beaconList_Init();
 	}
 
 	
-	//layout_ibeaconlist.xml���� �ڷΰ��� ��ư�� ������ ��(Device�� �ڷΰ��� ��ư) �����ϴ� �޼ҵ�.
+	//layout_ibeaconlist.xml占쏙옙占쏙옙 占쌘로곤옙占쏙옙 占쏙옙튼占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙(Device占쏙옙 占쌘로곤옙占쏙옙 占쏙옙튼) 占쏙옙占쏙옙占싹댐옙 占쌨소듸옙.
 	public void onBackPressed() {
 		Log.d("WizTurnBeacon" ,"onBackPressed()");
 		back();
@@ -127,9 +129,9 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		}
 	}
 	
-	//onCreate()�޼��忡�� beaconList_Init()�޼��� ȣ���� ����, �ʱ�ȭ�� ����.
-	//beaconList_Init()�޼��忡�� startActivityForResult()�޼��带 ȣ���ϸ� onActivityResult()�� �����.
-	//Activity.class ��ӹ���.(onActivityResult)
+	//onCreate()占쌨쇽옙占썲에占쏙옙 beaconList_Init()占쌨쇽옙占쏙옙 호占쏙옙占쏙옙 占쏙옙占쏙옙, 占십깍옙화占쏙옙 占쏙옙占쏙옙.
+	//beaconList_Init()占쌨쇽옙占썲에占쏙옙 startActivityForResult()占쌨쇽옙占썲를 호占쏙옙占싹몌옙 onActivityResult()占쏙옙 占쏙옙占쏙옙占�
+	//Activity.class 占쏙옙達占쏙옙占�(onActivityResult)
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d("WizTurnBeacon" ,"onActivityResult()");
 		//BLE available
@@ -221,7 +223,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		}
 	}
 
-	// wizTurn Delegate(Scan�� ������ Beacon�� ���� �������� ����)
+	// wizTurn Delegate(Scan占쏙옙 占쏙옙占쏙옙占쏙옙 Beacon占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙)
 	private WizTurnDelegate _wtDelegate = new WizTurnDelegate() {
 		//GetRssi Event
 		@Override
@@ -245,26 +247,26 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 				 *  getDistance = Distance between the device and the beacon
 				 *    
 				 */
-				//Thread ���� �ȵ���̵� UI�� �ٲ� �� �ִ� runOnUiThread�� �۵���Ŵ.
+				//Thread 占쏙옙占쏙옙 占싫듸옙占쏙옙絹占�UI占쏙옙 占쌕뀐옙 占쏙옙 占쌍댐옙 runOnUiThread占쏙옙 占쌜듸옙占쏙옙킴.
 				public void run() {
 					Log.d("WizTurnBeacon" ,"GATT BLE onGetDeviceList wtDelegate");
 					for (int i = 0; i < device.size(); i++) {
-						//[mMode == SCANLIST == 0] ==>�˻��� beacon device�� ������ �ǹ�.
+						//[mMode == SCANLIST == 0] ==>占싯삼옙占쏙옙 beacon device占쏙옙 占쏙옙占쏙옙占쏙옙 占실뱄옙.
 						//[!mWizTurnBeaconListAdapter.contains(device.get(i).getMacAddress())] 
-						//==>�˻��� beacon device�� �����Ƿ�, mWizTurnBeaconListAdapter.contains()�޼ҵ�κ��� false�� ���ϵ�.
+						//==>占싯삼옙占쏙옙 beacon device占쏙옙 占쏙옙占쏙옙占실뤄옙, mWizTurnBeaconListAdapter.contains()占쌨소듸옙觀占쏙옙占�false占쏙옙 占쏙옙占싹듸옙.
 						if(mMode == SCANLIST && !mWizTurnBeaconListAdapter.contains(device.get(i).getMacAddress())){
 							Log.d("WizTurnBeacon" ,"device " + device.get(i)._macAddr +" ADD");
 							mWizTurnBeaconListAdapter.addItem(device.get(i));
 							mScanList.setAdapter(mWizTurnBeaconListAdapter);
 						}
 						
-						//[mMode == BEACON_DETAIL ==1] ==>�˻��� beacon device�� 1�� ������ �ǹ�.
+						//[mMode == BEACON_DETAIL ==1] ==>占싯삼옙占쏙옙 beacon device占쏙옙 1占쏙옙 占쏙옙占쏙옙占쏙옙 占실뱄옙.
 						//[mWizTurnBeacon._macAddr.equals(device.get(i).getMacAddress())] 
-						//==> �˻��� device�� beacon device���� MacAddress()�� 2�� Ȯ��.
+						//==> 占싯삼옙占쏙옙 device占쏙옙 beacon device占쏙옙占쏙옙 MacAddress()占쏙옙 2占쏙옙 확占쏙옙.
 						else if(mMode == BEACON_DETAIL && mWizTurnBeacon._macAddr.equals(device.get(i).getMacAddress())){
 							Log.d("WizTurnBeacon" ,"device " + device.get(i)._macAddr +" Update");
 							
-							//beacon device�� ���� �⺻ ������ layout_
+							//beacon device占쏙옙 占쏙옙占쏙옙 占썩본 占쏙옙占쏙옙占쏙옙 layout_
 							mMPower.setText(Integer.toString(device.get(i).getMeasuredPower()) + " dB");
 							mRssi.setText(Float.toString(device.get(i).getRssi()) + " dB");
 							mDistance.setText(Double.toString(device.get(i).getDistance()) + " m");
@@ -366,34 +368,34 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		Log.d("WizTurnBeacon" ,"beaconList_Init");
 		setContentView(R.layout.layout_ibeaconlist);
 		
-		//���� parameter : ���ؽ�Ʈ����(WizTurnBeaconListŬ������ ���� �޼ҵ��� ���ؽ�Ʈ ����), layout_scanlist.xml�� TextList����, textList������ ������ arrayList
-		//array_scanlist.xml�� ������ WizTurnBeaconListAdapter�� ���� parameter�� ���.
-		//array_scanlist.xml�� Background�� ���� �ִ� layout����.
+		//占쏙옙占쏙옙 parameter : 占쏙옙占쌔쏙옙트占쏙옙占쏙옙(WizTurnBeaconList클占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쌨소듸옙占쏙옙 占쏙옙占쌔쏙옙트 占쏙옙占쏙옙), layout_scanlist.xml占쏙옙 TextList占쏙옙占쏙옙, textList占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 arrayList
+		//array_scanlist.xml占쏙옙 占쏙옙占쏙옙占쏙옙 WizTurnBeaconListAdapter占쏙옙 占쏙옙占쏙옙 parameter占쏙옙 占쏙옙占�
+		//array_scanlist.xml占쏙옙 Background占쏙옙 占쏙옙占쏙옙 占쌍댐옙 layout占쏙옙占쏙옙.
 		mWizTurnBeaconListAdapter = new WizTurnBeaconListAdapter(this,R.layout.array_scanlist ,new ArrayList<WizTurnBeacons>());
-		//layout_ibeaconlist.xml�� scanlist ȭ���� ����.
+		//layout_ibeaconlist.xml占쏙옙 scanlist 화占쏙옙占쏙옙 占쏙옙占쏙옙.
 		mScanList = (ListView) findViewById(R.id.scanList);
-		//scanlistȭ�鿡 ���� Ŭ�� �̺�Ʈ�� ����.
+		//scanlist화占썽에 占쏙옙占쏙옙 클占쏙옙 占싱븝옙트占쏙옙 占쏙옙占쏙옙.
 		mScanList.setOnItemClickListener(this);
-		//layout_ibeaconlist.xml�� btn_refresh ��ư�� ����.
+		//layout_ibeaconlist.xml占쏙옙 btn_refresh 占쏙옙튼占쏙옙 占쏙옙占쏙옙.
 		mBtn_refresh = (ImageButton)findViewById(R.id.btn_refresh);
-		//btn_refresh��ư�� ���� Ŭ�� �̺�Ʈ�� ����.
+		//btn_refresh占쏙옙튼占쏙옙 占쏙옙占쏙옙 클占쏙옙 占싱븝옙트占쏙옙 占쏙옙占쏙옙.
 		mBtn_refresh.setOnClickListener(this);
-		//layout_ibeaconlist.xml�� ���� ���� �մ� menu_bar�� 'Test' -> 'ScanList'�� �ʱ�ȭ
+		//layout_ibeaconlist.xml占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쌌댐옙 menu_bar占쏙옙 'Test' -> 'ScanList'占쏙옙 占십깍옙화
 		menuBar_Init("ScanList");
-		//mMode���� 0���� �ʱ�ȭ.
+		//mMode占쏙옙占쏙옙 0占쏙옙占쏙옙 占십깍옙화.
 		mMode = SCANLIST;
 		mContext = this;
 	}
 
-	//menu_bar�ʱ�ȭ.
+	//menu_bar占십깍옙화.
 	public void menuBar_Init(String menuTitle){
 		Log.d("WizTurnBeacon" ,"menuBar_Init");
-		//layout_ibeaconlist.xml�� menu_text�� mBtn_back�� ����.
+		//layout_ibeaconlist.xml占쏙옙 menu_text占쏙옙 mBtn_back占쏙옙 占쏙옙占쏙옙.
 		menu_text = (TextView)findViewById(R.id.titleTxt);
 		mBtn_back = (ImageButton)findViewById(R.id.btn_back);
 
 		mBtn_back.setOnClickListener(this);
-		//menu_text�� ��Ÿ���� ���ڸ� ��� parameter��(menuTitle)�� ����.
+		//menu_text占쏙옙 占쏙옙타占쏙옙占쏙옙 占쏙옙占쌘몌옙 占쏙옙占�parameter占쏙옙(menuTitle)占쏙옙 占쏙옙占쏙옙.
 		menu_text.setText(menuTitle);
 	}
 
@@ -430,6 +432,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 
 		box2 = (RelativeLayout)findViewById(R.id.box2);
 		box3 = (RelativeLayout)findViewById(R.id.box3);
+		//�덉씠�꾩썐��detail,2,3��怨좎젙諛�linearlayout���꾩씠��box4�덉뿉 �꾩쓽 �뺣낫瑜�紐⑤몢 box4�덉뿉 �ｋ뒗��
+		box4 = (LinearLayout)findViewById(R.id.box4);
 		box3.setVisibility(View.GONE);
 
 		mBtn_Connect = (Button) findViewById(R.id.btn_Connect);
@@ -442,6 +446,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		Log.d("WizTurnBeacon" ,"connected_Init");
 		box2.setVisibility(View.GONE);
 		box3.setVisibility(View.VISIBLE);
+		//�덉씠�꾩썐��detail,2,3��怨좎젙諛�linearlayout���꾩씠��box4瑜�蹂댁씠�꾨줉 �ㅼ젙(visible)
+		box4.setVisibility(View.VISIBLE);
 		mBtn_Connect.setVisibility(View.GONE);
 	}
 
@@ -467,7 +473,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		}
 	}
 	
-	//ó�� ���� ���� ��, ��������� �����ִ��� Ȯ���ϱ� ���� �޼ҵ�.
+	//처占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙, 占쏙옙占쏙옙占쏙옙占쏙옙占�占쏙옙占쏙옙占쌍댐옙占쏙옙 확占쏙옙占싹깍옙 占쏙옙占쏙옙 占쌨소듸옙.
 	public void wizturnMgr_setup(){
 		Log.d("WizTurnBeacon" ,"wizturnMgr_setup()");
 		_wizturnMgr = WizTurnManager.sharedInstance(this);
@@ -480,7 +486,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		// If BLE is not enabled, let user enable it.
 		if (!_wizturnMgr.isBluetoothEnabled()) {
 			Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-			//onActivityResult()�޼ҵ� ȣ��.
+			//onActivityResult()占쌨소듸옙 호占쏙옙.
 			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 		} else {
 			//Wizturn Scan Start

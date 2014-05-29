@@ -341,15 +341,15 @@ android:layout_below="@+id/menupan1">
                     android:layout_height="wrap_content"
                     android:text="@string/hello_world"
                     android:visibility="invisible" />
-
-                <TextView
-                    android:id="@+id/ibeacondetail_Distance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hello_world"
-                    android:visibility="visible"
-                    />
-
+<!--  linearlayout고정바 box4안에 있는 distance와 충돌할우려로 주석처리함.
+                 <TextView android:id="@+id/ibeacondetail_Distance" 
+       android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:text="@string/hello_world" 
+        android:layout_weight="0"
+      
+        android:visibility="visible" />
+-->
                 <TextView
                     android:id="@+id/ibeacondetail_Proximity"
                     android:layout_width="wrap_content"
@@ -378,6 +378,7 @@ android:layout_below="@+id/menupan1">
                     android:text="Distance"
                    
                     android:visibility="invisible" />
+                  
 
                 <TextView
                     android:id="@+id/ibeacondetail_Proximity_Text"
@@ -528,7 +529,7 @@ android:layout_below="@+id/menupan1">
     </ScrollView>
 
 <LinearLayout
-    
+    android:id="@+id/box4"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
@@ -542,7 +543,19 @@ android:layout_below="@+id/menupan1">
         android:layout_gravity="bottom"
         android:layout_height="40dp"
         android:layout_weight="3" />
-
+    
+    
+    
+<!-- 리니어레이아웃의 아이디 box4로 distance값을 visible로 만들어서 아래와 같이 텍스트뷰로 거리를 구현해냄  -->
+    <TextView android:id="@+id/ibeacondetail_Distance" 
+       android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:text="@string/hello_world" 
+           android:paddingLeft="10dp"
+        android:layout_weight="0"
+        android:textSize="30dp"
+        android:visibility="visible" />
+    
     <ImageButton
         android:id="@+id/menu_icon4"
         android:layout_width="65dp"
