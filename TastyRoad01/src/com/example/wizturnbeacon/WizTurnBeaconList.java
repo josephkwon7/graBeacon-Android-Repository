@@ -155,7 +155,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	public void onItemClick(AdapterView<?> adpaterView, View view, int position, long l_position) {
 		//beaconList Click
 		switch(mWizTurnBeaconListAdapter.getItem(position).getMajor()) {
-		case 41842:
+		case 22:
 			Log.d("WizTurnBeacon" ,"onItemClick()");
 			setContentView(R.layout.layout_ibeacondetail);
 			mMode = BEACON_DETAIL;
