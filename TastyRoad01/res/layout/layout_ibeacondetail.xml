@@ -199,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView1"
                     android:adjustViewBounds="true"
-                    android:scaleType="centerInside"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/menupan1" />
 		
 <LinearLayout
@@ -547,14 +547,16 @@ android:layout_below="@+id/menupan1">
     
     
 <!-- 리니어레이아웃의 아이디 box4로 distance값을 visible로 만들어서 아래와 같이 텍스트뷰로 거리를 구현해냄  -->
-    <TextView android:id="@+id/ibeacondetail_Distance" 
-       android:layout_width="65dp"
-        android:layout_height="match_parent"
-        android:text="@string/hello_world" 
-           android:paddingLeft="10dp"
-        android:layout_weight="0"
-        android:textSize="30dp"
-        android:visibility="visible" />
+ <TextView
+                    android:id="@+id/ibeacondetail_Distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hello_world"
+                        android:paddingLeft="10dp"
+                    android:layout_weight="0"
+                    android:textSize="30dp"
+                    android:visibility="visible"
+                    />
     
     <ImageButton
         android:id="@+id/menu_icon4"
@@ -563,6 +565,14 @@ android:layout_below="@+id/menupan1">
         android:layout_weight="0"
         android:scaleType="centerCrop"
         android:src="@drawable/menu_icon4" />
+    
+     <ImageButton
+        android:id="@+id/maps3"
+        android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:scaleType="centerCrop"
+        android:src="@drawable/maps3" />
 
     <ImageButton
         android:id="@+id/sharelogo5"

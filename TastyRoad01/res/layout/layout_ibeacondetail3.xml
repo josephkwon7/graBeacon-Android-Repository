@@ -199,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView1"
                     android:adjustViewBounds="true"
-                    android:scaleType="centerInside"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/menupan3" />
 		
 <LinearLayout
@@ -559,6 +559,14 @@ android:layout_below="@+id/menupan3">
         android:layout_weight="0"
         android:scaleType="centerCrop"
         android:src="@drawable/menu_icon4" />
+    
+     <ImageButton
+        android:id="@+id/maps3"
+        android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:scaleType="centerCrop"
+        android:src="@drawable/maps3" />
 
     <ImageButton
         android:id="@+id/sharelogo5"
