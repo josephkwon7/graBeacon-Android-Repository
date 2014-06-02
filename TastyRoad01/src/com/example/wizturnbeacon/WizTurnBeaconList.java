@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wizturnbeacon.adapter.WizTurnBeaconListAdapter;
+import com.nhn.android.mapview.NaverMapView;
 import com.wizturn.sdk.WizTurnDelegate;
 import com.wizturn.sdk.WizTurnManager;
 import com.wizturn.sdk.WizTurnProximityState;
@@ -55,6 +56,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	private Button mBtn_Connect;
 	private ImageButton sharelogo5;
 	private ImageButton menu_icon4;
+	//상세정보화면 레이아웃에 맵 아이콘 객체 추가 - 6월 2일 2045분 김성은 수정
+	private ImageButton mMap_icon;
 
 	private TextView mSSID;
 	private TextView mMacAddr;
@@ -235,6 +238,12 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 			mScrollView = (ScrollView)findViewById(R.id.scrollView1);
 			mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
 			break;	
+		
+		case R.id.map_icon:
+			Log.d("WizTurnBeacon", "onClick map_Btn");
+			Intent intent1 = new Intent(this, NaverMapView.class);
+			startActivity(intent1);
+			break;
 		}
 	}
 
@@ -437,6 +446,10 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		mUUID.setText(item._proximityUUID);
 		mMajor.setText(Integer.toString(item._major));
 		mMinor.setText(Integer.toString(item._minor));
+		
+		//맵버튼 객체 추가 및 온클릭 리스너 추가 - 6월 2일 2055분 김성은 수정
+		mMap_icon = (ImageButton)findViewById(R.id.map_icon);
+		mMap_icon.setOnClickListener(this);
 
 		mMPower.setText(Integer.toString(item._measuredPower) + "dB");
 		mRssi.setText(Float.toString(item._rssi) + "dB");
