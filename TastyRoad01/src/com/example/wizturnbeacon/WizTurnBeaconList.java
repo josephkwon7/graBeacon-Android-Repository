@@ -110,7 +110,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		setContentView(R.layout.layout_ibeaconlist);
 		Log.d("WizTurnBeacon" ,"onCreate()");
 		
-		//beacon list �좎떗源띿삕��		beaconList_Init();
+		//beacon list �좎떗源띿삕��		
+		beaconList_Init();
 	}
 
 	
