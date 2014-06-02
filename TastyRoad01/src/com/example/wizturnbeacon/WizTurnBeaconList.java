@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +53,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	private ImageButton mBtn_refresh;
 	private ImageButton mBtn_back;
 	private Button mBtn_Connect;
+	private ImageButton sharelogo5;
+	private ImageButton menu_icon4;
 
 	private TextView mSSID;
 	private TextView mMacAddr;
@@ -77,7 +80,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	private LinearLayout box4;
 	//占쎈뜆�좑옙袁⑹뜍占쏙옙detail,2,3占쏙옙�⑥쥙�숃쳸占퐇inearlayout占쏙옙占쎄쑴�좑옙占폹ox4占쏙옙占쎄쑬諭�	private LinearLayout box4;
 	private Context mContext;
-
+	private ScrollView mScrollView;
 	
 	/*
 	 
@@ -218,6 +221,19 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 				}
 			}
 			break;
+			
+		case R.id.sharelogo5:
+			Log.d("WizTurnBeacon" ,"onClick sharelogo5");
+			Intent intent = new Intent(Intent.ACTION_SEND);
+			intent.setType("image/jpeg");
+			startActivity(intent.createChooser(intent, "공유하기"));
+			break;
+			
+		case R.id.menu_icon4:
+			Log.d("WizTurnBeacon" ,"onClick menu_icon4");
+			mScrollView = (ScrollView)findViewById(R.id.scrollView1);
+			mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+			break;	
 		}
 	}
 
@@ -433,6 +449,12 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 
 		mBtn_Connect = (Button) findViewById(R.id.btn_Connect);
 		mBtn_Connect.setOnClickListener(this);
+		
+		sharelogo5 = (ImageButton) findViewById(R.id.sharelogo5);
+		sharelogo5.setOnClickListener(this);
+		
+		menu_icon4 = (ImageButton) findViewById(R.id.menu_icon4);
+		menu_icon4.setOnClickListener(this);
 	}
 	
 	
