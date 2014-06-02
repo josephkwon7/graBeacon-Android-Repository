@@ -217,40 +217,17 @@ android:layout_below="@+id/menupan1">
         android:id="@+id/tableRow1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
-
-    <ImageButton
-        android:id="@+id/trademark1_1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="#ffffff"
-        android:scaleType="centerInside"
-        android:src="@drawable/trademark1_1" />
+        
+        <TextView
+            android:padding="10dp"
+            android:text=""
+            android:textSize="40px"/>
 
         <TextView
             android:padding="10dp"
-            android:text="미스터피자(강남점)"
+            android:text="최고의 맛! 최고의 피자! 미스터피자!"
             android:textSize="40px" />
-    </TableRow>
-
-  
-
-    <TableRow
-        android:id="@+id/tableRow3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-         <ImageButton
-             android:id="@+id/host_icon1"
-             android:layout_width="40dp"
-             android:layout_height="40dp"
-             android:background="#ffffff"
-             android:scaleType="centerInside"
-             android:src="@drawable/host_icon1" />
-
-        <TextView
-            android:padding="10dp"
-            android:text="미스터김"
-            android:textSize="30px" />
+        
     </TableRow>
 
     <TableRow
@@ -302,8 +279,28 @@ android:layout_below="@+id/menupan1">
             android:textSize="30px" />
 
  </TableRow>
+ 
+      <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
-    
+        
+            
+       <TextView
+            android:padding="10dp"
+             android:layout_width="40dp"
+                android:layout_height="40dp"
+            android:text=""
+            android:textSize="40px" />
+        <TextView
+            android:padding="10dp"
+             android:layout_width="40dp"
+                android:layout_height="40dp"
+            android:text=""
+            android:textSize="40px" />
+
+ </TableRow>
 
 </TableLayout>
 
@@ -534,7 +531,8 @@ android:layout_below="@+id/menupan1">
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:baselineAligned="true"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    >
 
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -547,12 +545,12 @@ android:layout_below="@+id/menupan1">
     
     
 <!-- 리니어레이아웃의 아이디 box4로 distance값을 visible로 만들어서 아래와 같이 텍스트뷰로 거리를 구현해냄  -->
- <TextView
+ 	<TextView
                     android:id="@+id/ibeacondetail_Distance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/hello_world"
-                        android:paddingLeft="10dp"
+                    android:paddingLeft="10dp"
                     android:layout_weight="0"
                     android:textSize="30dp"
                     android:visibility="visible"
@@ -567,7 +565,7 @@ android:layout_below="@+id/menupan1">
         android:src="@drawable/menu_icon4" />
     
      <ImageButton
-        android:id="@+id/map_icon"
+        android:id="@+id/maps3"
         android:layout_width="65dp"
         android:layout_height="match_parent"
         android:layout_weight="0"
