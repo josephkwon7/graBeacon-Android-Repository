@@ -5,6 +5,5 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/beeryuha/Desktop/자바 고급과정/팀 프로젝트/네이버 지도API/NMapViewerLib_OpenLib/libs/nmaps.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
