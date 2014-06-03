@@ -12,19 +12,19 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	/*
 	 
-	 activity_main.xml占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占�
-	 onCreate() -> onClick()占쏙옙 占쏙옙占쏙옙占싹몌옙 WizTurnBeaconList.java占쏙옙 占싱듸옙.
+	 activity_main.xml�좎룞���좎룞�쇿뜝�숈삕�좎룞�쇿뜝�숈삕�좑옙
+	 onCreate() -> onClick()�좎룞���좎룞�쇿뜝�숈삕�좎떦紐뚯삕 WizTurnBeaconList.java�좎룞���좎떛�몄삕.
 	  
 	 */
 	//
 	//add the explane
 	
 	//dkdkfjlfdlkjlfkjldkj
-	//onCreate()占쌨소듸옙
+	//onCreate()�좎뙣�뚮벝��	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//res - layout -activity_main.xml占쏙옙 view占쏙옙 MainActivity占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쌍곤옙 占쌀뤄옙占쏙옙.
+		//res - layout -activity_main.xml�좎룞��view�좎룞��MainActivity�좎룞�쇿뜝�숈삕 �좎룞�쇿뜝�숈삕�좎룞���좎룞���좎뙇怨ㅼ삕 �좎�琉꾩삕�좎룞��
  		setContentView(R.layout.activity_main);
  		/*
  		startActivity(new Intent(this, Start_Activity.class));
@@ -38,20 +38,20 @@ public class MainActivity extends Activity implements OnClickListener{
  		}
 		
 			
-		//activity_main.xml占쏙옙 main_start 占쏙옙튼占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹듸옙占쏙옙 占쏙옙.
+		//activity_main.xml�좎룞��main_start �좎룞�숉듉�좎룞���좎룞�쇿뜝�숈삕�좎룞�쇿뜝�숈삕 �좎룞�쇿뜝�숈삕�좎떦�몄삕�좎룞���좎룞��
 		findViewById(R.id.main_start).setOnClickListener(this);
 
 	}
 
 
-	//main_start 占쏙옙튼占쏙옙 클占쏙옙占실댐옙 占싱븝옙트 占쌩삼옙 占쏙옙 占쏙옙占쏙옙풔占�占쌨소듸옙
+	//main_start �좎룞�숉듉�좎룞���닷뜝�숈삕�좎떎�먯삕 �좎떛釉앹삕���좎뙥�쇱삕 �좎룞���좎룞�쇿뜝�숈삕�붷뜝占썲뜝�⑥냼�몄삕
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		
-		//MainActivity占쏙옙 Context占쏙옙占쏙옙占쏙옙 WizTurnBeaconList.java占쏙옙 占싼깍옙.
+		//MainActivity�좎룞��Context�좎룞�쇿뜝�숈삕�좎룞��WizTurnBeaconList.java�좎룞���좎떬源띿삕.
 		Intent intent = new Intent(MainActivity.this , WizTurnBeaconList.class);
-		//WizTurnBeaconList.java占쏙옙 Navigation.
+		//WizTurnBeaconList.java�좎룞��Navigation.
 		startActivity(intent);
 	}
 }
