@@ -42,7 +42,10 @@ public class MainActivity extends Activity implements OnClickListener{
  		}
 		
 			
-		//activity_main.xml占쎌쥙猷욑옙占퐉ain_start 占쎌쥙猷욑옙�됰뱣占쎌쥙猷욑옙占쏙옙醫롫짗占쎌눨�앾옙�덉굲占쎌쥙猷욑옙�용쐻占쎌늿��占쎌쥙猷욑옙�용쐻占쎌늿�뺧옙醫롫뼣占쎈챷�뺧옙醫롫짗占쏙옙占쎌쥙猷욑옙占�		findViewById(R.id.main_start).setOnClickListener(this);
+		/*
+		 activity_main.xml占쎌쥙猷욑옙占퐉ain_start 占쎌쥙猷욑옙�됰뱣占쎌쥙猷욑옙占쏙옙醫롫짗占쎌눨�앾옙�덉굲占쎌쥙猷욑옙�용쐻占쎌늿��占쎌쥙猷욑옙�용쐻占쎌늿�뺧옙醫롫뼣占쎈챷�뺧옙醫롫짗占쏙옙占쎌쥙猷욑옙占�		
+		 */
+ 		findViewById(R.id.main_start).setOnClickListener(this);
 
 	}
 
