@@ -23,6 +23,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	//onCreate()�좎뙣�뚮벝��	
 	
 	
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
