@@ -4,11 +4,12 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
    >
-   <ImageView 
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
+
+   <ImageView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
        android:layout_centerInParent="true"
-       android:src="@drawable/main"/>
+       android:src="@drawable/logo" />
 
     <Button
         android:id="@+id/main_start"
