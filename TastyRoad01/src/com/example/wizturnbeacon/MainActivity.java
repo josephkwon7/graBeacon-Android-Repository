@@ -16,13 +16,13 @@ public class MainActivity extends Activity implements OnClickListener{
 	 onCreate() -> onClick()�좎룞���좎룞�쇿뜝�숈삕�좎떦紐뚯삕 WizTurnBeaconList.java�좎룞���좎떛�몄삕.
 	  
 	 */
-	//
-	//add the explane
+	/*
+	add the explane
 	
-	//dkdkfjlfdlkjlfkjldkj
-	//onCreate()�좎뙣�뚮벝��	
+	dkdkfjlfdlkjlfkjldkj
+	onCreate()�좎뙣�뚮벝��	
 	
-	
+	*/
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
