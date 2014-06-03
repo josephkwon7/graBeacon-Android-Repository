@@ -12,22 +12,20 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	/*
 	 
-	 activity_main.xml占쎌쥙猷욑옙占쏙옙醫롫짗占쎌눨�앾옙�덉굲占쎌쥙猷욑옙�용쐻占쎌늿�뺧옙醫묒삕
-	 onCreate() -> onClick()占쎌쥙猷욑옙占쏙옙醫롫짗占쎌눨�앾옙�덉굲占쎌쥙��쭗��굲 WizTurnBeaconList.java占쎌쥙猷욑옙占쏙옙醫롫뼓占쎈챷��
-	  
+	 activity_main.xml�좎럩伊숂뙴�묒삕�좎룞�숅넫濡レ쭢�좎럩�⑨옙�얠삕占쎈뜆援꿨뜝�뚯쪠�룹쉻�숋옙�⑹맶�좎럩�울옙類㏃삕�ル쵐��	 onCreate() -> onClick()�좎럩伊숂뙴�묒삕�좎룞�숅넫濡レ쭢�좎럩�⑨옙�얠삕占쎈뜆援꿨뜝�뚯쪠占쏙옙彛쀯옙占쎄뎡 WizTurnBeaconList.java�좎럩伊숂뙴�묒삕�좎룞�숅넫濡ル폆�좎럥梨뤄옙占�	  
 	 */
 	/*
 	add the explane
 	
 	dkdkfjlfdlkjlfkjldkj
-	onCreate()占쎌쥙�ｏ옙��쿈占쏙옙	
+	onCreate()�좎럩伊숋옙節륁삕占쏙옙荑덂뜝�숈삕	
 	
 	*/
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		/*res - layout -activity_main.xml占쎌쥙猷욑옙占퐒iew占쎌쥙猷욑옙占폦ainActivity占쎌쥙猷욑옙�용쐻占쎌늿��占쎌쥙猷욑옙�용쐻占쎌늿�뺧옙醫롫짗占쏙옙占쎌쥙猷욑옙占쏙옙醫롫솂�ⓦ끉��占쎌쥙占쏙쭔袁⑹굲占쎌쥙猷욑옙占� 		
+		/*res - layout -activity_main.xml�좎럩伊숂뙴�묒삕�좏릳iew�좎럩伊숂뙴�묒삕�좏룱ainActivity�좎럩伊숂뙴�묒삕占쎌슜�삣뜝�뚮듌占쏙옙�좎럩伊숂뙴�묒삕占쎌슜�삣뜝�뚮듌占쎈벨�숅넫濡レ쭢�좎룞�쇿뜝�뚯쪠�룹쉻�쇿뜝�숈삕�ル∥�귨옙��걠占쏙옙�좎럩伊쇿뜝�숈춸熬곣뫗援꿨뜝�뚯쪠�룹쉻�쇿뜝占�		
 		*/
 		setContentView(R.layout.activity_main);
  		/*
@@ -43,21 +41,22 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 			
 		/*
-		 activity_main.xml占쎌쥙猷욑옙占퐉ain_start 占쎌쥙猷욑옙�됰뱣占쎌쥙猷욑옙占쏙옙醫롫짗占쎌눨�앾옙�덉굲占쎌쥙猷욑옙�용쐻占쎌늿��占쎌쥙猷욑옙�용쐻占쎌늿�뺧옙醫롫뼣占쎈챷�뺧옙醫롫짗占쏙옙占쎌쥙猷욑옙占�		
+		 activity_main.xml�좎럩伊숂뙴�묒삕�좏릧ain_start �좎럩伊숂뙴�묒삕占쎈맧諭ｅ뜝�뚯쪠�룹쉻�쇿뜝�숈삕�ル∥吏쀥뜝�뚮닲占쎌빢�숋옙�됯뎡�좎럩伊숂뙴�묒삕占쎌슜�삣뜝�뚮듌占쏙옙�좎럩伊숂뙴�묒삕占쎌슜�삣뜝�뚮듌占쎈벨�숅넫濡ル샬�좎럥梨뤄옙類㏃삕�ル∥吏쀥뜝�숈삕�좎럩伊숂뙴�묒삕�좑옙		
 		 */
  		findViewById(R.id.main_start).setOnClickListener(this);
 
 	}
 
 
-	//main_start 占쎌쥙猷욑옙�됰뱣占쎌쥙猷욑옙占쏙옙�룸쐻占쎌늿�뺧옙醫롫뼄占쎈Ŋ��占쎌쥙�쏃뇡�뱀굲占쏙옙占쎌쥙�ο옙�깆굲 占쎌쥙猷욑옙占쏙옙醫롫짗占쎌눨�앾옙�덉굲占쎈떱�앭뜝�뀀쐻占썩뫁�쇽옙紐꾩굲
-	@Override
+	//main_start �좎럩伊숂뙴�묒삕占쎈맧諭ｅ뜝�뚯쪠�룹쉻�쇿뜝�숈삕占쎈８�삣뜝�뚮듌占쎈벨�숅넫濡ル펲�좎럥흮占쏙옙�좎럩伊숋옙�껊눀占쎈�援꿨뜝�숈삕�좎럩伊숋옙恝�숋옙源녾뎡 �좎럩伊숂뙴�묒삕�좎룞�숅넫濡レ쭢�좎럩�⑨옙�얠삕占쎈뜆援꿨뜝�덈뼮占쎌빆�앾옙��맶�좎뜦維곻옙�쎌삕筌뤾쑴援�	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		
-		//MainActivity占쎌쥙猷욑옙占폚ontext占쎌쥙猷욑옙�용쐻占쎌늿�뺧옙醫롫짗占쏙옙WizTurnBeaconList.java占쎌쥙猷욑옙占쏙옙醫롫뼩繹먮씮��
-		Intent intent = new Intent(MainActivity.this , WizTurnBeaconList.class);
-		//WizTurnBeaconList.java占쎌쥙猷욑옙占폧avigation.
+		/*MainActivity�좎럩伊숂뙴�묒삕�좏룠ontext�좎럩伊숂뙴�묒삕占쎌슜�삣뜝�뚮듌占쎈벨�숅넫濡レ쭢�좎룞�셒izTurnBeaconList.java�좎럩伊숂뙴�묒삕�좎룞�숅넫濡ル섄濚밸Ŧ��옙占�		
+		 */
+		 Intent intent = new Intent(MainActivity.this , WizTurnBeaconList.class);
+		
+		//WizTurnBeaconList.java�좎럩伊숂뙴�묒삕�좏룲avigation.
 		startActivity(intent);
 	}
 }
