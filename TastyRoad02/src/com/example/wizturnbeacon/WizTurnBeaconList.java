@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -18,12 +19,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wizturnbeacon.adapter.PopupHelper;
 import com.example.wizturnbeacon.adapter.WizTurnBeaconListAdapter;
 import com.nhn.android.mapview.NaverMapView;
 import com.wizturn.sdk.WizTurnDelegate;
@@ -228,9 +231,24 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 			
 		case R.id.sharelogo5:
 			Log.d("WizTurnBeacon" ,"onClick sharelogo5");
-			Intent intent = new Intent(Intent.ACTION_SEND);
-			intent.setType("image/jpeg");
-			startActivity(intent.createChooser(intent, "공유하기"));
+PopupWindow window = PopupHelper.newBasicPopupWindow(this);
+			
+			LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			
+			View popupView = inflater.inflate(R.layout.popup, null);
+			
+			window.setContentView(popupView);
+			int totalHeight = getWindowManager().getDefaultDisplay().getHeight();
+			int[] location = new int[2];
+			v.getLocationOnScreen(location);
+			
+			if (location[1] < (totalHeight / 2.0)) {
+				// top half of screen
+				window.setAnimationStyle(R.style.Animations_PopDownMenuRight);
+				window.showAsDropDown(v);
+			} else { // bottom half
+				PopupHelper.showLikeQuickAction(window, popupView, v, getWindowManager(), 0, 0);
+			}
 			break;
 			
 		case R.id.menu_icon4:
