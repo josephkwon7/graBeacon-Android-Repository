@@ -59,7 +59,7 @@
                 android:src="@drawable/btn_line" />
 
             <ImageButton
-                android:id="@+id/line_faecebook"
+                android:id="@+id/btn_facebook"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_margin="30dp"
