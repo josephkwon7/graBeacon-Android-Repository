@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -20,18 +21,15 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.provider.MediaStore.Images;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.wizturnbeacon.MainActivity;
 import com.example.wizturnbeacon.R;
@@ -39,15 +37,16 @@ import com.wizturn.sdk.entity.WizTurnBeacons;
 
 
 /*
-	�о�� BeaconList�� �����ִ� ArrayAdapter.
 */
 
 
 public class WizTurnBeaconListAdapter extends ArrayAdapter{
-	//layoutInflater : ���̾ƿ��� �°� �����͸� ä���ִ� ����.
-	LayoutInflater inflater = null;
-	ArrayList<WizTurnBeacons> wizTrunBeacon_items;
-	//���� parameter : ���ؽ�Ʈ����, layout_scanlist.xml�� TextList����, textList������ ������ arrayList
+	
+	///Field	
+	private LayoutInflater inflater = null;
+	private ArrayList<WizTurnBeacons> wizTrunBeacon_items;
+
+	///Constructor
 	public WizTurnBeaconListAdapter(Context context, int textViewResourceId,
 			ArrayList<WizTurnBeacons> mList) {
 		super(context, textViewResourceId,  mList);
@@ -55,6 +54,12 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		wizTrunBeacon_items = mList;
 	}
 	
+	///Getter added by YH
+	public ArrayList<WizTurnBeacons> getWizTrunBeacon_items(){
+		return this.wizTrunBeacon_items;
+	}
+	
+	/// Method
 	public boolean contains(String macAddr) {
 		for (int i = 0; i < wizTrunBeacon_items.size(); i++) {
 			if (wizTrunBeacon_items.get(i) != null && wizTrunBeacon_items.get(i).getMacAddress().equals(macAddr)) {
@@ -79,29 +84,16 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		wizTrunBeacon_items.clear();
 	}
 	
-	//���̾ƿ��� �°� �����͸� ä���ִ� �޼ҵ�
-	
-	//���⿡ �츮 �̹����� �����ϸ� ��.
+
 	public View getView(int position, View v, ViewGroup parent) {
 		if(v==null){
 			v = inflater.inflate(R.layout.array_scanlist, null);
 		}
 		/*
 		TextView mSSID = (TextView)v.findViewById(R.id.scanList_SSID);
-		TextView mUUID = (TextView)v.findViewById(R.id.scanList_UUID);
-		TextView mMacAddr= (TextView)v.findViewById(R.id.scanList_MacAddr);
-		TextView mMajor = (TextView)v.findViewById(R.id.scanList_Major);
-		TextView mMinor= (TextView)v.findViewById(R.id.scanList_Minor);
-		
 		mSSID.setText("SSID: " + wizTrunBeacon_items.get(position).getName());
-		mMacAddr.setText("MacAddr: " + wizTrunBeacon_items.get(position).getMacAddress());
-		mUUID.setText("UUID: " + wizTrunBeacon_items.get(position).getProximityUUID());
-		mMajor.setText("Major: " + Integer.toString(wizTrunBeacon_items.get(position).getMajor()));
-		mMinor.setText("Minor: " + Integer.toString(wizTrunBeacon_items.get(position).getMinor()));
 		*/
 		
-		
-		//String reqURL = "http://192.168.200.63:8080/SpringMVC2/do/beacon/";
 		String req1 = "http://192.168.200.27:8080/tastyroad/beacon/Thumbnail/";
 		String req2 = wizTrunBeacon_items.get(position).getProximityUUID()+"/";
 		String req3 = wizTrunBeacon_items.get(position).getMajor()+"/";
@@ -175,7 +167,15 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		return builder.toString();
 	}
 		
-	
+	//RSSI(전파수신강도)를 내림 차순으로 정렬. 즉 가까운 거리순으로 wiTurnBeacons 인스턴스 정렬
+	public void sort() {
+		Collections.sort(wizTrunBeacon_items, new Comparator<WizTurnBeacons>() {
+			@Override
+			public int compare(WizTurnBeacons lhs, WizTurnBeacons rhs) {
+				return (int) (rhs.getRssi() - lhs.getRssi());
+			}
+		});
+	}
 	
 	
 }
