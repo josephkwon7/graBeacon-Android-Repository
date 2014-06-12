@@ -147,6 +147,8 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	public class RequestURLThread extends Thread{
 		
 		String reqURL;
+		String rawJSON;
+		String thumbURL;
 		Bitmap thumbImg;
 		
 		public RequestURLThread(){
@@ -188,14 +190,14 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 			}
 			///////////////////////////////////////////////
 			
-			String rawJSON = builder.toString();
+			rawJSON = builder.toString();
 			Log.e(MainActivity.class.toString(), "RawJSON !!!!! : "+ rawJSON);
 			JSONParser parser = new JSONParser();
 			
 			try {
 				Object obj = parser.parse(rawJSON);
 				JSONObject jsonObject = (JSONObject) obj;
-			 	String thumbURL = (String) jsonObject.get("imgSmall1");
+			 	thumbURL = (String) jsonObject.get("imgSmall1");
 			 	Log.e(MainActivity.class.toString(), "URL !!!!! : "+thumbURL);
 			 	
 				try {
