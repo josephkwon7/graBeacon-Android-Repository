@@ -63,7 +63,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		return this.wizTrunBeacon_items;
 	}
 	
-	/// Method
+	///Method
 	public boolean contains(String macAddr) {
 		for (int i = 0; i < wizTrunBeacon_items.size(); i++) {
 			if (wizTrunBeacon_items.get(i) != null && wizTrunBeacon_items.get(i).getMacAddress().equals(macAddr)) {
@@ -195,11 +195,11 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 			try {
 				Object obj = parser.parse(rawJSON);
 				JSONObject jsonObject = (JSONObject) obj;
-			 	reqURL = (String) jsonObject.get("imgSmall1");
-			 	Log.e(MainActivity.class.toString(), "URL !!!!! : "+reqURL);
+			 	String thumbURL = (String) jsonObject.get("imgSmall1");
+			 	Log.e(MainActivity.class.toString(), "URL !!!!! : "+thumbURL);
 			 	
 				try {
-					URL url = new URL(reqURL);
+					URL url = new URL(thumbURL);
 					thumbImg = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 					
 				} catch (MalformedURLException e) {
