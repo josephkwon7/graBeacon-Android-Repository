@@ -84,25 +84,17 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 
 	private RelativeLayout  box2 ,box3;
 	private LinearLayout box4;
-	//占쎈뜆�좑옙袁⑹뜍占쏙옙detail,2,3占쏙옙�⑥쥙�숃쳸占퐇inearlayout占쏙옙占쎄쑴�좑옙占폹ox4占쏙옙占쎄쑬諭�	private LinearLayout box4;
 	private Context mContext;
 	private ScrollView mScrollView;
 	
 	/*
-	 
-	 layout_ibeaconlist.xml�좎룞���좎룞�쇿뜝�숈삕�좎룞�쇿뜝�숈삕�좑옙
-	 onStart() -> onCreate()
-	 
-	 
-	 
+
 	 */
 	
 	//WizTurnBeaconList.java�좎룞���좎룞�쇿뜝�숈삕�붷뜝占쎌쿂�좎룞���좎룞�쇿뜝�쒕릺�먯삕 �좎뙣�뚮벝��	@Override
 	protected void onStart() {
 		super.onStart();
-		//LogCat�좎룞���좎떬琉꾩삕�좎룞��Debugging �좎룞�쇿뜝�숈삕.
 		Log.d("WizTurnBeacon" ,"onStart()");
-		//wizturnMgr_setup()�좎뙣�뚮벝���좎룞�쇿뜝�숈삕.(to �좎룞�쇿뜝�숈삕�좎룞�쇿뜝占썲뜝�숈삕�좑옙�좎룞�쇿뜝�숈삕)
 		wizturnMgr_setup();
 
 	}
@@ -112,16 +104,13 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//layout_ibeaconlist.xml�좎룞���좎룞�쇿뜝�숈삕.
 		setContentView(R.layout.layout_ibeaconlist);
 		Log.d("WizTurnBeacon" ,"onCreate()");
 		
-		//beacon list �좎떗源띿삕��		
 		beaconList_Init();
 	}
 
 	
-	//layout_ibeaconlist.xml�좎룞�쇿뜝�숈삕 �좎뙓濡쒓낀�쇿뜝�숈삕 �좎룞�숉듉�좎룞���좎룞�쇿뜝�숈삕�좎룞���좎룞��Device�좎룞���좎뙓濡쒓낀�쇿뜝�숈삕 �좎룞�숉듉) �좎룞�쇿뜝�숈삕�좎떦�먯삕 �좎뙣�뚮벝��
 	public void onBackPressed() {
 		Log.d("WizTurnBeacon" ,"onBackPressed()");
 		back();
@@ -137,9 +126,6 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		}
 	}
 	
-	//onCreate()�좎뙣�쎌삕�좎뜴�먨뜝�숈삕 beaconList_Init()�좎뙣�쎌삕�좎룞���멨뜝�숈삕�좎룞���좎룞�쇿뜝�숈삕, �좎떗源띿삕�붷뜝�숈삕 �좎룞�쇿뜝�숈삕.
-	//beaconList_Init()�좎뙣�쎌삕�좎뜴�먨뜝�숈삕 startActivityForResult()�좎뙣�쎌삕�좎뜴瑜��멨뜝�숈삕�좎떦紐뚯삕 onActivityResult()�좎룞���좎룞�쇿뜝�숈삕�좑옙
-	//Activity.class �좎룞�숅걫�좎룞�쇿뜝占�onActivityResult)
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d("WizTurnBeacon" ,"onActivityResult()");
 		//BLE available
@@ -265,7 +251,6 @@ PopupWindow window = PopupHelper.newBasicPopupWindow(this);
 		}
 	}
 
-	// wizTurn Delegate(Scan�좎룞���좎룞�쇿뜝�숈삕�좎룞��Beacon�좎룞���좎룞�쇿뜝�숈삕 �좎룞�쇿뜝�숈삕�좎룞�쇿뜝�숈삕 �좎룞�쇿뜝�숈삕)
 	private WizTurnDelegate _wtDelegate = new WizTurnDelegate() {
 		//GetRssi Event
 		@Override
@@ -289,33 +274,43 @@ PopupWindow window = PopupHelper.newBasicPopupWindow(this);
 				 *  getDistance = Distance between the device and the beacon
 				 *    
 				 */
-				//Thread �좎룞�쇿뜝�숈삕 �좎떕�몄삕�좎룞�숂돌�좑옙UI�좎룞���좎뙐�먯삕 �좎룞���좎뙇�먯삕 runOnUiThread�좎룞���좎뙗�몄삕�좎룞�숉궡.
 				public void run() {
 					Log.d("WizTurnBeacon" ,"GATT BLE onGetDeviceList wtDelegate");
 					for (int i = 0; i < device.size(); i++) {
-						//[mMode == SCANLIST == 0] ==>�좎떙�쇱삕�좎룞��beacon device�좎룞���좎룞�쇿뜝�숈삕�좎룞���좎떎諭꾩삕.
-						//[!mWizTurnBeaconListAdapter.contains(device.get(i).getMacAddress())] 
-						//==>�좎떙�쇱삕�좎룞��beacon device�좎룞���좎룞�쇿뜝�숈삕�좎떎琉꾩삕, mWizTurnBeaconListAdapter.contains()�좎뙣�뚮벝�숃��좎룞�쇿뜝占퐀alse�좎룞���좎룞�쇿뜝�밸벝��
-						if(mMode == SCANLIST && !mWizTurnBeaconListAdapter.contains(device.get(i).getMacAddress())){
-							Log.d("WizTurnBeacon" ,"device " + device.get(i)._macAddr +" ADD");
+					if(mMode == SCANLIST && !mWizTurnBeaconListAdapter.contains(device.get(i).getMacAddress())){
+							Log.d("!!!!!" ,"device " + device.get(i)._macAddr +" ADD");
 							mWizTurnBeaconListAdapter.addItem(device.get(i));
 							mScanList.setAdapter(mWizTurnBeaconListAdapter);
 						}
 						
-						//[mMode == BEACON_DETAIL ==1] ==>�좎떙�쇱삕�좎룞��beacon device�좎룞��1�좎룞���좎룞�쇿뜝�숈삕�좎룞���좎떎諭꾩삕.
-						//[mWizTurnBeacon._macAddr.equals(device.get(i).getMacAddress())] 
-						//==> �좎떙�쇱삕�좎룞��device�좎룞��beacon device�좎룞�쇿뜝�숈삕 MacAddress()�좎룞��2�좎룞���뺝뜝�숈삕.
-						else if(mMode == BEACON_DETAIL && mWizTurnBeacon._macAddr.equals(device.get(i).getMacAddress())){
-							Log.d("WizTurnBeacon" ,"device " + device.get(i)._macAddr +" Update");
+					else if(mMode == BEACON_DETAIL && mWizTurnBeacon._macAddr.equals(device.get(i).getMacAddress())){
+							Log.d("!!!!!" ,"device " + device.get(i)._macAddr +" Update");
 							
-							//beacon device�좎룞���좎룞�쇿뜝�숈삕 �좎뜦蹂��좎룞�쇿뜝�숈삕�좎룞��layout_
 							mMPower.setText(Integer.toString(device.get(i).getMeasuredPower()) + " dB");
 							mRssi.setText(Float.toString(device.get(i).getRssi()) + " dB");
 							mDistance.setText(Double.toString(device.get(i).getDistance()) + " m");
 							mProxivity.setText(device.get(i).getProximity().toString());
 						}
 					}
+					for (int i = 0; i < device.size(); i++) {
+						for (int j = 0; j < mWizTurnBeaconListAdapter.getWizTrunBeacon_items().size(); j++) {
+							Log.d("!!!!!" ,"getItem(j).getMacAddress()" + mWizTurnBeaconListAdapter.getItem(j).getMacAddress());
+							Log.d("!!!!!" ,"device.get(i).getMacAddress()" + device.get(i).getMacAddress());
+						
+							if(mWizTurnBeaconListAdapter.getItem(j).getMacAddress().equals(device.get(i).getMacAddress())){
+							Log.d("!!!!!" ,"Pre Update RSSI !!!!!"+" "+ mWizTurnBeaconListAdapter.getItem(j)._rssi +" "+device.get(i)._rssi) ;
+							mWizTurnBeaconListAdapter.getItem(j)._rssi = device.get(i)._rssi;
+							Log.d("!!!!!" ,"wizTrunBeacon_items.size()" + mWizTurnBeaconListAdapter.getWizTrunBeacon_items().size());
+							Log.d("!!!!!" ,"Updated RSSI !!!!!" +" "+ mWizTurnBeaconListAdapter.getItem(j)._rssi +" "+device.get(i)._rssi);
+						
+							}
+		                }
+					}
+					//Sort and Notify to ListAdaptor - YH
+					mWizTurnBeaconListAdapter.sort();
+					mWizTurnBeaconListAdapter.notifyDataSetChanged();
 				}
+				
 			});
 		}
 		//Proximity Event
@@ -410,32 +405,20 @@ PopupWindow window = PopupHelper.newBasicPopupWindow(this);
 		Log.d("WizTurnBeacon" ,"beaconList_Init");
 		setContentView(R.layout.layout_ibeaconlist);
 		
-		//�좎룞�쇿뜝�숈삕 parameter : �좎룞�쇿뜝�붿룞�숉듃�좎룞�쇿뜝�숈삕(WizTurnBeaconList�닷뜝�숈삕�좎룞�쇿뜝�숈삕 �좎룞�쇿뜝�숈삕 �좎뙣�뚮벝�쇿뜝�숈삕 �좎룞�쇿뜝�붿룞�숉듃 �좎룞�쇿뜝�숈삕), layout_scanlist.xml�좎룞��TextList�좎룞�쇿뜝�숈삕, textList�좎룞�쇿뜝�숈삕�좎룞���좎룞�쇿뜝�숈삕�좎룞��arrayList
-		//array_scanlist.xml�좎룞���좎룞�쇿뜝�숈삕�좎룞��WizTurnBeaconListAdapter�좎룞���좎룞�쇿뜝�숈삕 parameter�좎룞���좎룞�쇿뜝占�		//array_scanlist.xml�좎룞��Background�좎룞���좎룞�쇿뜝�숈삕 �좎뙇�먯삕 layout�좎룞�쇿뜝�숈삕.
 		mWizTurnBeaconListAdapter = new WizTurnBeaconListAdapter(this,R.layout.array_scanlist ,new ArrayList<WizTurnBeacons>());
-		//layout_ibeaconlist.xml�좎룞��scanlist �붷뜝�숈삕�좎룞���좎룞�쇿뜝�숈삕.
 		mScanList = (ListView) findViewById(R.id.scanList);
-		//scanlist�붷뜝�쎌뿉 �좎룞�쇿뜝�숈삕 �닷뜝�숈삕 �좎떛釉앹삕�멨뜝�숈삕 �좎룞�쇿뜝�숈삕.
 		mScanList.setOnItemClickListener(this);
-		//layout_ibeaconlist.xml�좎룞��btn_refresh �좎룞�숉듉�좎룞���좎룞�쇿뜝�숈삕.
 		mBtn_refresh = (ImageButton)findViewById(R.id.btn_refresh);
-		//btn_refresh�좎룞�숉듉�좎룞���좎룞�쇿뜝�숈삕 �닷뜝�숈삕 �좎떛釉앹삕�멨뜝�숈삕 �좎룞�쇿뜝�숈삕.
 		mBtn_refresh.setOnClickListener(this);
-		//layout_ibeaconlist.xml�좎룞���좎룞�쇿뜝�숈삕 �좎룞�쇿뜝�숈삕 �좎뙆�먯삕 menu_bar�좎룞��'Test' -> 'ScanList'�좎룞���좎떗源띿삕��		menuBar_Init("ScanList");
-		//mMode�좎룞�쇿뜝�숈삕 0�좎룞�쇿뜝�숈삕 �좎떗源띿삕��
 		mMode = SCANLIST;
 		mContext = this;
 	}
 
-	//menu_bar�좎떗源띿삕��
 	public void menuBar_Init(String menuTitle){
 		Log.d("WizTurnBeacon" ,"menuBar_Init");
-		//layout_ibeaconlist.xml�좎룞��menu_text�좎룞��mBtn_back�좎룞���좎룞�쇿뜝�숈삕.
 		menu_text = (TextView)findViewById(R.id.titleTxt);
 		mBtn_back = (ImageButton)findViewById(R.id.btn_back);
-
 		mBtn_back.setOnClickListener(this);
-		//menu_text�좎룞���좎룞�숉��좎룞�쇿뜝�숈삕 �좎룞�쇿뜝�섎챿���좎룞�쇿뜝占퐌arameter�좎룞��menuTitle)�좎룞���좎룞�쇿뜝�숈삕.
 		menu_text.setText(menuTitle);
 	}
 
@@ -476,7 +459,6 @@ PopupWindow window = PopupHelper.newBasicPopupWindow(this);
 
 		box2 = (RelativeLayout)findViewById(R.id.box2);
 		box3 = (RelativeLayout)findViewById(R.id.box3);
-		//占쎈뜆�좑옙袁⑹뜍占쏙옙detail,2,3占쏙옙�⑥쥙�숃쳸占퐇inearlayout占쏙옙占쎄쑴�좑옙占폹ox4占쎈뜆肉�占쎄쑴��占쎈베�ョ몴占쏙쭗�ㅻあ box4占쎈뜆肉�占쏙퐢�쀯옙占�		box4 = (LinearLayout)findViewById(R.id.box4);
 		box3.setVisibility(View.GONE);
 
 		mBtn_Connect = (Button) findViewById(R.id.btn_Connect);
@@ -495,7 +477,6 @@ PopupWindow window = PopupHelper.newBasicPopupWindow(this);
 		Log.d("WizTurnBeacon" ,"connected_Init");
 		box2.setVisibility(View.GONE);
 		box3.setVisibility(View.VISIBLE);
-		//占쎈뜆�좑옙袁⑹뜍占쏙옙detail,2,3占쏙옙�⑥쥙�숃쳸占퐇inearlayout占쏙옙占쎄쑴�좑옙占폹ox4�쒙옙癰귣똻�좑옙袁⑥쨯 占썬끉��visible)
 		box4.setVisibility(View.VISIBLE);
 		mBtn_Connect.setVisibility(View.GONE);
 	}
@@ -522,7 +503,6 @@ PopupWindow window = PopupHelper.newBasicPopupWindow(this);
 		}
 	}
 	
-	//泥섇뜝�숈삕 �좎룞�쇿뜝�숈삕 �좎룞�쇿뜝�숈삕 �좎룞�� �좎룞�쇿뜝�숈삕�좎룞�쇿뜝�숈삕�좑옙�좎룞�쇿뜝�숈삕�좎뙇�먯삕�좎룞���뺝뜝�숈삕�좎떦源띿삕 �좎룞�쇿뜝�숈삕 �좎뙣�뚮벝��
 	public void wizturnMgr_setup(){
 		Log.d("WizTurnBeacon" ,"wizturnMgr_setup()");
 		_wizturnMgr = WizTurnManager.sharedInstance(this);
@@ -535,7 +515,6 @@ PopupWindow window = PopupHelper.newBasicPopupWindow(this);
 		// If BLE is not enabled, let user enable it.
 		if (!_wizturnMgr.isBluetoothEnabled()) {
 			Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-			//onActivityResult()�좎뙣�뚮벝���멨뜝�숈삕.
 			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 		} else {
 			//Wizturn Scan Start
