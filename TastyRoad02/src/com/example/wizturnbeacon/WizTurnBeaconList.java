@@ -275,6 +275,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 			break;
 		
 		case R.id.btn_facebook:
+			Log.e("facebook", "button event start");
 			Intent shareIntent2 = new Intent();
 			shareIntent2.setAction(Intent.ACTION_SEND);
 			shareIntent2.setType("image/jpeg");
@@ -285,7 +286,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		case R.id.btn_kakao:
 			Intent shareIntent3 = new Intent();
 			shareIntent3.setAction(Intent.ACTION_SEND);
-			shareIntent3.setType("image/jpeg");
+			shareIntent3.setType("text/plain");
 			shareIntent3.setPackage("com.kakao.talk");
 			startActivity(shareIntent3);
 			break;	
