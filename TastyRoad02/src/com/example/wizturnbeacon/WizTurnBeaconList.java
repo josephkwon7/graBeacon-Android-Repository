@@ -61,6 +61,10 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	private ImageButton menu_icon4;
 	//상세정보화면 레이아웃에 맵 아이콘 객체 추가 - 6월 2일 2045분 김성은 수정
 	private ImageButton mMap_icon;
+	private ImageButton mBtn_twitter;
+	private ImageButton mBtn_facebook;
+	private ImageButton mBtn_kakao;
+	private ImageButton mBtn_line;
 
 	private TextView mSSID;
 	private TextView mMacAddr;
@@ -217,7 +221,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 			
 		case R.id.sharelogo5:
 			Log.d("WizTurnBeacon" ,"onClick sharelogo5");
-PopupWindow window = PopupHelper.newBasicPopupWindow(this);
+			PopupWindow window = PopupHelper.newBasicPopupWindow(this);
 			
 			LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
@@ -235,6 +239,19 @@ PopupWindow window = PopupHelper.newBasicPopupWindow(this);
 			} else { // bottom half
 				PopupHelper.showLikeQuickAction(window, popupView, v, getWindowManager(), 0, 0);
 			}
+			
+			mBtn_twitter = (ImageButton) popupView.findViewById(R.id.btn_twitter);
+			mBtn_twitter.setOnClickListener(this);
+			
+			mBtn_facebook = (ImageButton) popupView.findViewById(R.id.btn_facebook);
+			mBtn_facebook.setOnClickListener(this);
+			
+			mBtn_kakao = (ImageButton) popupView.findViewById(R.id.btn_kakao);
+			mBtn_kakao.setOnClickListener(this);
+			
+			mBtn_line = (ImageButton) popupView.findViewById(R.id.btn_line);
+			mBtn_line.setOnClickListener(this);
+			
 			break;
 			
 		case R.id.menu_icon4:
@@ -248,6 +265,40 @@ PopupWindow window = PopupHelper.newBasicPopupWindow(this);
 			Intent intent1 = new Intent(this, NaverMapView.class);
 			startActivity(intent1);
 			break;
+			
+		case R.id.btn_twitter:
+			Intent shareIntent1 = new Intent();
+			shareIntent1.setAction(Intent.ACTION_SEND);
+			shareIntent1.setType("image/jpeg");
+			shareIntent1.setPackage("com.twitter.android");
+			startActivity(shareIntent1);
+			break;
+		
+		case R.id.btn_facebook:
+			Intent shareIntent2 = new Intent();
+			shareIntent2.setAction(Intent.ACTION_SEND);
+			shareIntent2.setType("image/jpeg");
+			shareIntent2.setPackage("com.facebook.katana");
+			startActivity(shareIntent2);
+			break;
+			
+		case R.id.btn_kakao:
+			Intent shareIntent3 = new Intent();
+			shareIntent3.setAction(Intent.ACTION_SEND);
+			shareIntent3.setType("image/jpeg");
+			shareIntent3.setPackage("com.kakao.talk");
+			startActivity(shareIntent3);
+			break;	
+			
+		case R.id.btn_line:
+			Intent shareIntent4 = new Intent();
+			shareIntent4.setAction(Intent.ACTION_SEND);
+			shareIntent4.setType("image/jpeg");
+			shareIntent4.putExtra(shareIntent4.EXTRA_TEXT, "");
+			shareIntent4.setPackage("jp.naver.line.android");
+			startActivity(shareIntent4);
+			break;
+			
 		}
 	}
 
