@@ -40,6 +40,7 @@ import com.wizturn.sdk.entity.WizTurnBeacons;
 
 public class WizTurnBeaconList extends Activity implements OnClickListener , OnItemClickListener{
 
+	///Field
 	public WizTurnBeaconListAdapter mWizTurnBeaconListAdapter;
 	public ListView mScanList;
 
@@ -56,37 +57,21 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 
 	private ImageButton mBtn_refresh;
 	private ImageButton mBtn_back;
-	private Button mBtn_Connect;
+	//private Button mBtn_Connect;
 	private ImageButton sharelogo5;
 	private ImageButton menu_icon4;
-	//상세정보화면 레이아웃에 맵 아이콘 객체 추가 - 6월 2일 2045분 김성은 수정
+	//상세정보화면 레이아웃에 맵 아이콘 객체 추가 - 6월 2일 20:45분 김성은 수정
 	private ImageButton mMap_icon;
 	private ImageButton mBtn_twitter;
 	private ImageButton mBtn_facebook;
 	private ImageButton mBtn_kakao;
 	private ImageButton mBtn_line;
 
-	private TextView mSSID;
-	private TextView mMacAddr;
-	private TextView mUUID;
-	private TextView mMajor;
-	private TextView mMinor;
-
-	private TextView mMPower;
-	private TextView mRssi;
 	private TextView mDistance;
-	private TextView mProxivity;
-
-	private TextView mConnected;
-	private TextView mTXPower;
-	private TextView mInterval;
-	private TextView mBattery;
-	private TextView mHardware;
-	private TextView mFirmware;
 
 	private TextView menu_text;
 
-	private RelativeLayout  box2 ,box3;
+	private RelativeLayout  box2,box3;
 	private LinearLayout box4;
 	private Context mContext;
 	private ScrollView mScrollView;
@@ -94,14 +79,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	/*
 
 	 */
-	
-	//WizTurnBeaconList.java�좎룞���좎룞�쇿뜝�숈삕�붷뜝占쎌쿂�좎룞���좎룞�쇿뜝�쒕릺�먯삕 �좎뙣�뚮벝��	@Override
-	protected void onStart() {
-		super.onStart();
-		Log.d("WizTurnBeacon" ,"onStart()");
-		wizturnMgr_setup();
 
-	}
+	///Method
 	
 	//onCreate()
 	@Override
@@ -113,8 +92,14 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		
 		beaconList_Init();
 	}
-
 	
+	protected void onStart() {
+		super.onStart();
+		Log.d("WizTurnBeacon" ,"onStart()");
+		wizturnMgr_setup();
+	}
+	
+
 	public void onBackPressed() {
 		Log.d("WizTurnBeacon" ,"onBackPressed()");
 		back();
@@ -125,11 +110,11 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		super.onDestroy();
 		Log.d("WizTurnBeacon" ,"onDestroy()");
 		if (_wizturnMgr.isStarted()) {
-			// WizTurnMgr Destroy
 			_wizturnMgr.destroy();
 		}
 	}
 	
+	//BLE(Bluetooth Low Energy)를 키는 요청 처리
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d("WizTurnBeacon" ,"onActivityResult()");
 		//BLE available
@@ -148,12 +133,9 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	
-	
-	
+	//detail page 추가 작업 필요
 	@Override
 	public void onItemClick(AdapterView<?> adpaterView, View view, int position, long l_position) {
-		//beaconList Click
 		switch(mWizTurnBeaconListAdapter.getItem(position).getMajor()) {
 		case 22:
 			Log.d("WizTurnBeacon" ,"onItemClick()");
@@ -185,9 +167,9 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		return;
 	}
 
+	//onClick Callback method - item click시 호출됨
 	@Override
 	public void onClick(View v) {
-		//Button Click
 		switch(v.getId()){
 		case R.id.btn_refresh:
 			Log.d("WizTurnBeacon" ,"onClick btn_refresh");
@@ -202,34 +184,20 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 			back();
 			break;
 
-		case R.id.btn_Connect:
-			Log.d("WizTurnBeacon" ,"onClick btn_Connect");
-			if (mWizTurnBeacon != null) {
-				_connect = new WizTurnBeaconConnect(this, mWizTurnBeacon, createConnectionCallback());
-				Log.d("WizTurnBeacon" ,"Gatt BLE isConnected: " + _connect.isConnected());
-				//not Connected
-				if (_connect.isConnected() == false){
-					_wizturnMgr.stopController();
-					showDialog("Connecting...");
-					_connect.connectBeacon();
-					//Already Connected
-				}else if (_connect.isConnected() == true){
-					Toast.makeText(mContext, "Status:Already Connected", Toast.LENGTH_SHORT).show();
-				}
-			}
-			break;
-			
+		//(removed case for connect)
+		
+		//@detail view : SNS share button click시 공유 popup 보여주기
 		case R.id.sharelogo5:
 			Log.d("WizTurnBeacon" ,"onClick sharelogo5");
+			
 			PopupWindow window = PopupHelper.newBasicPopupWindow(this);
-			
 			LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			
 			View popupView = inflater.inflate(R.layout.popup, null);
-			
-			window.setContentView(popupView);
 			int totalHeight = getWindowManager().getDefaultDisplay().getHeight();
 			int[] location = new int[2];
+			
+			window.setContentView(popupView);
+
 			v.getLocationOnScreen(location);
 			
 			if (location[1] < (totalHeight / 2.0)) {
@@ -253,19 +221,22 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 			mBtn_line.setOnClickListener(this);
 			
 			break;
-			
+		
+		//@detail view : menu button click시 page 하단 이동 	
 		case R.id.menu_icon4:
 			Log.d("WizTurnBeacon" ,"onClick menu_icon4");
 			mScrollView = (ScrollView)findViewById(R.id.scrollView1);
 			mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
 			break;	
 		
+		//@detail view : map button click시 지도 보기 화면 이동
 		case R.id.map_icon:
 			Log.d("WizTurnBeacon", "onClick map_Btn");
 			Intent intent1 = new Intent(this, NaverMapView.class);
 			startActivity(intent1);
 			break;
-			
+		
+		//@SNS share popup : twitter 시작
 		case R.id.btn_twitter:
 			Intent shareIntent1 = new Intent();
 			shareIntent1.setAction(Intent.ACTION_SEND);
@@ -274,6 +245,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 			startActivity(shareIntent1);
 			break;
 		
+		//@SNS share popup : facebook 시작
 		case R.id.btn_facebook:
 			Log.e("facebook", "button event start");
 			Intent shareIntent2 = new Intent();
@@ -282,7 +254,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 			shareIntent2.setPackage("com.facebook.katana");
 			startActivity(shareIntent2);
 			break;
-			
+		
+		//@SNS share popup : kakao talk 시작
 		case R.id.btn_kakao:
 			Intent shareIntent3 = new Intent();
 			shareIntent3.setAction(Intent.ACTION_SEND);
@@ -290,7 +263,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 			shareIntent3.setPackage("com.kakao.talk");
 			startActivity(shareIntent3);
 			break;	
-			
+		
+		//@SNS share popup : kakao talk 시작
 		case R.id.btn_line:
 			Intent shareIntent4 = new Intent();
 			shareIntent4.setAction(Intent.ACTION_SEND);
@@ -303,69 +277,78 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		}
 	}
 
+	//WizturnDelegate inner class - beacon 검색(scan) 결과를 받아서 처리하는 부분
 	private WizTurnDelegate _wtDelegate = new WizTurnDelegate() {
-		//GetRssi Event
+
+		//onGetRSSI 호출시 log만 찍는 역할
 		@Override
 		public void onGetRSSI(IWizTurnController iWizTurnController, List<String> Data, List<Integer> RSSI) {
 			Log.d("WizTurnBeacon" ,"GATT BLE onGetRSSI wtDelegate");
 
 		}
-		//Get beacon device Event
+		
+		//DeviceList(beacon list)를 탐지(scan) 후 받아올 경우 호출 되는 메서드로 보임
 		@Override
 		public void onGetDeviceList(IWizTurnController iWizTurnController, final List<WizTurnBeacons> device) {
+			
+			//runOnUiThread! : 특정 action을 UI 쓰레드에서 실행함. 현재 실행중인 쓰레드가 UI쓰레드(main) 이면 즉시 수행됨
+			//현재 실행중인 쓰레드가 UI쓰레드(main)가 아니면 UI쓰레드(main)에 queue(대기열)에 들어가 순번이 되면 수행됨 - YH
 			runOnUiThread(new Runnable() {
-				/*	
-				 *  getMacAddr = Mac Address of the beacon
-				 * 	getMajor = Major version of the beacon
-				 * 	getMinor  = Minor version of the beacon
-				 * 	getName = SSID of the beacon
-				 * 	getProximity = Defines distance relationship between the device and the beacon
-				 *  getProximityUUID = Proximity UUID of the beacon
-				 *  getRssi = Rssi at the moment of scanning
-				 *  getMeasuredPower = Measured Power of the beacon
-				 *  getDistance = Distance between the device and the beacon
-				 *    
-				 */
+				
+				//run() method - Thread로 수행될 body 부분  
 				public void run() {
 					Log.d("WizTurnBeacon" ,"GATT BLE onGetDeviceList wtDelegate");
+		
+					//List<WizTurnBeacons> device : 탐지된 beacon device를 말함
+					//탐지된 beacon 갯수만큼 반복 수행
 					for (int i = 0; i < device.size(); i++) {
-					if(mMode == SCANLIST && !mWizTurnBeaconListAdapter.contains(device.get(i).getMacAddress())){
-							Log.d("!!!!!" ,"device " + device.get(i)._macAddr +" ADD");
+						
+						//현재 SCANLIST 모드에 있고, mWizTurnBeaconListAdapter.wizTrunBeacon_items list에 포함되어 있지 않으면
+						//즉, 표시하지 않음 새로운 beacon device가 탐지 되었다면.
+						if(mMode == SCANLIST && !mWizTurnBeaconListAdapter.contains(device.get(i).getMacAddress())){
+							Log.i("!!!!!" ,"device " + device.get(i)._macAddr +" ADD");
+							//mWizTurnBeaconListAdapter.wizTrunBeacon_items list에 추가 (한 후 ListView에 표시)
 							mWizTurnBeaconListAdapter.addItem(device.get(i));
+							//mWizTurnBeaconListAdapter를 mScanList(ListView)에 붙여줌. 즉 화면에 표시함.
 							mScanList.setAdapter(mWizTurnBeaconListAdapter);
 						}
-						
-					else if(mMode == BEACON_DETAIL && mWizTurnBeacon._macAddr.equals(device.get(i).getMacAddress())){
-							Log.d("!!!!!" ,"device " + device.get(i)._macAddr +" Update");
-							
-							mMPower.setText(Integer.toString(device.get(i).getMeasuredPower()) + " dB");
-							mRssi.setText(Float.toString(device.get(i).getRssi()) + " dB");
+					
+						else if(mMode == BEACON_DETAIL && mWizTurnBeaconListAdapter.contains(device.get(i).getMacAddress())){
+							//@detail view : 실시간 거리 표시
 							mDistance.setText(Double.toString(device.get(i).getDistance()) + " m");
-							mProxivity.setText(device.get(i).getProximity().toString());
 						}
+					
 					}
+											
+					//탐지된 beacon 객체가 들어 있는 mWizTurnBeaconListAdapter.wizTrunBeacon_items list를 대상으로,
+					//새로 측정된 RSSI(수신전파 강도. 거리 계산에 사용되는 인자값).를 Update 함 (새로운 거리값 계산을 위함) 
 					for (int i = 0; i < device.size(); i++) {
 						for (int j = 0; j < mWizTurnBeaconListAdapter.getWizTrunBeacon_items().size(); j++) {
-							Log.d("!!!!!" ,"getItem(j).getMacAddress()" + mWizTurnBeaconListAdapter.getItem(j).getMacAddress());
-							Log.d("!!!!!" ,"device.get(i).getMacAddress()" + device.get(i).getMacAddress());
+							Log.i("!!!!!" ,"getItem(j).getMacAddress()" + mWizTurnBeaconListAdapter.getItem(j).getMacAddress());
+							Log.i("!!!!!" ,"device.get(i).getMacAddress()" + device.get(i).getMacAddress());
 						
+							//탐지된 device가 list에 저장된 device와 같으면.(mac주소로 비교)
 							if(mWizTurnBeaconListAdapter.getItem(j).getMacAddress().equals(device.get(i).getMacAddress())){
-							Log.d("!!!!!" ,"Pre Update RSSI !!!!!"+" "+ mWizTurnBeaconListAdapter.getItem(j)._rssi +" "+device.get(i)._rssi) ;
-							mWizTurnBeaconListAdapter.getItem(j)._rssi = device.get(i)._rssi;
-							Log.d("!!!!!" ,"wizTrunBeacon_items.size()" + mWizTurnBeaconListAdapter.getWizTrunBeacon_items().size());
-							Log.d("!!!!!" ,"Updated RSSI !!!!!" +" "+ mWizTurnBeaconListAdapter.getItem(j)._rssi +" "+device.get(i)._rssi);
-						
+								Log.i("!!!!!" ,"Pre Update RSSI !!!!!"+" "+ mWizTurnBeaconListAdapter.getItem(j)._rssi +" "+device.get(i)._rssi) ;
+	
+								//RSSI(수신전파 강도. 거리 계산에 사용되는 인자값) update 부분
+								mWizTurnBeaconListAdapter.getItem(j)._rssi = device.get(i)._rssi;
+								
+								Log.i("!!!!!" ,"wizTrunBeacon_items.size()" + mWizTurnBeaconListAdapter.getWizTrunBeacon_items().size());
+								Log.i("!!!!!" ,"Updated RSSI !!!!!" +" "+ mWizTurnBeaconListAdapter.getItem(j)._rssi +" "+device.get(i)._rssi);
 							}
 		                }
 					}
-					//Sort and Notify to ListAdaptor - YH
+					//RSSI기준으로 내림차순 정렬 수행 
 					mWizTurnBeaconListAdapter.sort();
+					//정렬 후에 Adaptor에 표시할 list변동을 알려서 정렬된 list로 다시 표시하게 함
 					mWizTurnBeaconListAdapter.notifyDataSetChanged();
 				}
 				
 			});
 		}
-		//Proximity Event
+		
+		//거리 가까운 정도 표시, Immediate, Near, Far, .... (사용안함)
 		@Override
 		public void onGetProximity(IWizTurnController iWizTurnController, WizTurnProximityState proximity) {
 			Log.d("WizTurnBeacon" ,"GATT BLE onGetProximity wtDelegate");
@@ -373,86 +356,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		}
 	};
 
-
-
-
-	//Connection Callback
-	private WizTurnBeaconConnect.ConnectionCallback createConnectionCallback() {
-		return new WizTurnBeaconConnect.ConnectionCallback() {
-			//connected
-			@Override
-			public void onConnected(final BeaconCharacteristics beaconChars) {
-
-				/*	 
-				 *  getAdvertisingIntervalMillis = Advertising interval in milliseconds
-				 * 	getBatteryPercent = Battery level in percent
-				 * 	getBroadcastingPower  = Broadcasting power
-				 * 	getHardwareVersion = Revision of hardware
-				 *  getSoftwareVersion = Version of operating system
-				 *  
-				 */
-
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						Log.d("WizTurnBeacon" ,"GATT BLE onConnected ConnectionCallback");
-						mTransactionListener.onConnectedComplete(beaconChars);
-					}
-				});
-			}
-
-			//connection error
-			@Override
-			public void onConnectionError() {
-				dismiss();
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						Log.d("WizTurnBeacon" ,"GATT BLE onConnectionError ConnectionCallback");
-						Toast.makeText(mContext, "Status:ConnectionError", Toast.LENGTH_SHORT).show();
-					}
-				});
-			}
-			//disconnected
-			@Override
-			public void onDisconnected() {
-				dismiss();
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						Log.d("WizTurnBeacon" ,"GATT BLE onDisconnected ConnectionCallback");
-						_wizturnMgr.startController();
-						Toast.makeText(mContext, "Status: Disconnected from beacon", Toast.LENGTH_SHORT).show();
-					}
-				});
-			}
-		};
-	}
-
-	private TransactionListener mTransactionListener = new TransactionListener() {
-
-		//connection complete Listener
-		@Override
-		public void onConnectedComplete(BeaconCharacteristics beaconChars) {
-			Log.d("WizTurnBeacon" ,"onConnectedComplete()");
-			dismiss();
-			connection_Init();
-			mConnected.setText("" +"YES");
-			mTXPower.setText("" + beaconChars.getBroadcastingPower() + " dB");
-			mInterval.setText("" +beaconChars.getAdvertisingIntervalMillis() + " Hz");
-			mBattery.setText("" +beaconChars.getBatteryPercent() + " %");
-			mHardware.setText("" +beaconChars.getHardwareVersion().toString() );
-			mFirmware.setText("" +beaconChars.getSoftwareVersion().toString());
-			Toast.makeText(mContext, "Connected", Toast.LENGTH_LONG).show();
-		}
-
-	};
-
-	public interface TransactionListener{
-		public void onConnectedComplete(BeaconCharacteristics beaconChars);
-	}
-
-
+	//@main view : view 초기화
 	public void beaconList_Init(){
 		Log.d("WizTurnBeacon" ,"beaconList_Init");
 		setContentView(R.layout.layout_ibeaconlist);
@@ -466,6 +370,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		mContext = this;
 	}
 
+	//@ 공통 : menuBar 초기화
 	public void menuBar_Init(String menuTitle){
 		Log.d("WizTurnBeacon" ,"menuBar_Init");
 		menu_text = (TextView)findViewById(R.id.titleTxt);
@@ -474,123 +379,79 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		menu_text.setText(menuTitle);
 	}
 
-
+	//@detail view : view 초기화
 	public void beaconDetail_Init(WizTurnBeacons item){
 		Log.d("WizTurnBeacon" ,"beaconDetail_Init");
-		mSSID = (TextView)findViewById(R.id.ibeacondetail_SSID);
-		mMacAddr = (TextView)findViewById(R.id.ibeacondetail_MacAddr);
-		mUUID = (TextView)findViewById(R.id.ibeacondetail_UUID);
-		mMajor = (TextView)findViewById(R.id.ibeacondetail_Major);
-		mMinor = (TextView)findViewById(R.id.ibeacondetail_Minor);
 
-		mMPower = ((TextView)findViewById(R.id.ibeacondetail_MPower));
-		mRssi = ((TextView)findViewById(R.id.ibeacondetail_Rssi));
-		mDistance = ((TextView)findViewById(R.id.ibeacondetail_Distance));
-		mProxivity = ((TextView)findViewById(R.id.ibeacondetail_Proximity));
-		mConnected = ((TextView)findViewById(R.id.ibeacondetail_connected));
-		mTXPower = ((TextView)findViewById(R.id.ibeacondetail_TX));
-		mInterval = ((TextView)findViewById(R.id.ibeacondetail_Interval));
-		mBattery = ((TextView)findViewById(R.id.ibeacondetail_Battery));
-		mHardware = ((TextView)findViewById(R.id.ibeacondetail_Hardware));
-		mFirmware = ((TextView)findViewById(R.id.ibeacondetail_Firmware));
-
-		mSSID.setText(item._name);
-		mMacAddr.setText(item._macAddr);
-		mUUID.setText(item._proximityUUID);
-		mMajor.setText(Integer.toString(item._major));
-		mMinor.setText(Integer.toString(item._minor));
-		
-		//맵버튼 객체 추가 및 온클릭 리스너 추가 - 6월 2일 2055분 김성은 수정
-		mMap_icon = (ImageButton)findViewById(R.id.map_icon);
-		mMap_icon.setOnClickListener(this);
-
-		mMPower.setText(Integer.toString(item._measuredPower) + "dB");
-		mRssi.setText(Float.toString(item._rssi) + "dB");
-		mDistance.setText(Double.toString(item.getDistance())+ "m");
-		mProxivity.setText(item._proximity.toString());
-
+		//맛집 상세 정보 image 부분 (메뉴까지 포함)
 		box2 = (RelativeLayout)findViewById(R.id.box2);
+		
+		//맛집 정보 table 부분
 		box3 = (RelativeLayout)findViewById(R.id.box3);
 		box3.setVisibility(View.GONE);
-
-		mBtn_Connect = (Button) findViewById(R.id.btn_Connect);
-		mBtn_Connect.setOnClickListener(this);
+				
+		//맛집까지의 거리를 실시간 표시
+		mDistance = ((TextView)findViewById(R.id.ibeacondetail_Distance));
+		mDistance.setText(Double.toString(item.getDistance())+ "m");
 		
-		sharelogo5 = (ImageButton) findViewById(R.id.sharelogo5);
-		sharelogo5.setOnClickListener(this);
-		
+		//메뉴 보기 버튼 (detail view 제일 아래로 이동)
 		menu_icon4 = (ImageButton) findViewById(R.id.menu_icon4);
 		menu_icon4.setOnClickListener(this);
-	}
-	
-	
-
-	public void connection_Init(){
-		Log.d("WizTurnBeacon" ,"connected_Init");
-		box2.setVisibility(View.GONE);
-		box3.setVisibility(View.VISIBLE);
-		box4.setVisibility(View.VISIBLE);
-		mBtn_Connect.setVisibility(View.GONE);
+		
+		//맵 보기 버튼 (맵보기 view로 이동)
+		mMap_icon = (ImageButton)findViewById(R.id.map_icon);
+		mMap_icon.setOnClickListener(this);
+		
+		//SNS 공유 버튼 (공유 popup 띄움)
+		sharelogo5 = (ImageButton) findViewById(R.id.sharelogo5);
+		sharelogo5.setOnClickListener(this);
 	}
 
-
+	//back 버트 클릭시 수행
 	public void back(){
 		Log.d("WizTurnBeacon" ,"back()");
+		//main view에서 back 했으면.
 		if(mMode == SCANLIST){
+			//beacon 탐지 종료
 			if (_wizturnMgr.isStarted()) {
 				// WizTurn Scan Stop
 				_wizturnMgr.stopController();
 			}
+			//activity 종료
 			finish();
+		//@detail view에서 back했을 경우
 		}else if(mMode == BEACON_DETAIL){
-			if(_connect != null && _connect.isConnected() == true){
-				//disconnect
-				_connect.close();
-			}
+			//main view 초기화
 			beaconList_Init();
+			//beacon 탐지 다시 시작
 			_wizturnMgr.startController();			
-
+		//기타 다른 화면에서 back했을 경우 App 종료
 		}else{
 			_wizturnMgr.destroy();
 		}
 	}
 	
+	//BlueTooth 기능 보유 여부 확인 및 활성화(Enabled) 확인. 비활성시 활성화. Beacon탐지 시작.
 	public void wizturnMgr_setup(){
 		Log.d("WizTurnBeacon" ,"wizturnMgr_setup()");
 		_wizturnMgr = WizTurnManager.sharedInstance(this);
 
-		// Check if device supports BLE.
+		// BLE(bluetooth low energy)를 지원 하는지 확인.
 		if (!_wizturnMgr.hasBluetooth()) {
 			Toast.makeText(this, "Device does not have Bluetooth Low Energy", Toast.LENGTH_LONG).show();
 			return;
 		}
-		// If BLE is not enabled, let user enable it.
+		
+		// BLE가 활성화 안되어 있으면 활성화 되게 함 (추가로 wizturn manager가 제공하는 서비스 정상 동작 확인)
 		if (!_wizturnMgr.isBluetoothEnabled()) {
 			Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 		} else {
-			//Wizturn Scan Start
+			//Beacon탐지 시작
 			_wizturnMgr.setInitController();
 			_wizturnMgr.setWizTurnDelegate(_wtDelegate);
 			_wizturnMgr.startController();
 		}
-
-	}
-
-	private void showDialog(String Title){
-		Log.d("WizTurnBeacon" ,"showDialog()");
-		_loadingDialog = new ProgressDialog(this, ProgressDialog.THEME_HOLO_LIGHT);
-		_loadingDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		_loadingDialog.setTitle(R.string.app_name);
-		_loadingDialog.setMessage(Title);
-		_loadingDialog.setCancelable(false);
-		_loadingDialog.setIndeterminate(true);
-		_loadingDialog.show();
-	}
-
-	private void dismiss(){
-		Log.d("WizTurnBeacon" ,"dismiss()");
-		_loadingDialog.dismiss();
 	}
 }
 
