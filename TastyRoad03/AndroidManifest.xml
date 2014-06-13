@@ -43,7 +43,7 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
              >
         </activity>
-         <activity android:name="Start_Activity"
+         <activity android:name="StartActivity"
              	   android:screenOrientation="portrait"
              	   android:theme="@android:style/Theme.NoTitleBar"
           ></activity>

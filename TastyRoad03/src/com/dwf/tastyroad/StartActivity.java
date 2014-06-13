@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-public class Start_Activity extends Activity {
+public class StartActivity extends Activity {
 
 	/** Called when the activity is first created. */
 	@Override
