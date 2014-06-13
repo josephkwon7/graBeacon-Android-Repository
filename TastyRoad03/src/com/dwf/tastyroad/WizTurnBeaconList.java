@@ -378,13 +378,6 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	public void beaconDetail_Init(WizTurnBeacons item){
 		Log.d("WizTurnBeacon" ,"beaconDetail_Init");
 
-		//맛집 상세 정보 image 부분 (메뉴까지 포함)
-		box2 = (RelativeLayout)findViewById(R.id.box2);
-		
-		//맛집 정보 table 부분
-		box3 = (RelativeLayout)findViewById(R.id.box3);
-		box3.setVisibility(View.GONE);
-				
 		//맛집까지의 거리를 실시간 표시
 		mDistance = ((TextView)findViewById(R.id.ibeacondetail_Distance));
 		mDistance.setText(Double.toString(item.getDistance())+ "m");
