@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
@@ -19,10 +18,10 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,10 +42,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	///Field
 	public WizTurnBeaconListAdapter mWizTurnBeaconListAdapter;
 	public ListView mScanList;
-
-	private ProgressDialog _loadingDialog;
-
-	public WizTurnBeacons mWizTurnBeacon;
+	//public WizTurnBeacons mWizTurnBeacon;
+	public BeaconExtended beaconExtended;
 	public WizTurnManager _wizturnMgr;
 	public WizTurnBeaconConnect _connect;
 
@@ -57,8 +54,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 
 	private ImageButton mBtn_refresh;
 	private ImageButton mBtn_back;
-	//private Button mBtn_Connect;
-	private ImageButton sharelogo5;
+	private ImageButton sharelogo;
 	private ImageButton menu_icon4;
 	private ImageButton mMap_icon;
 	private ImageButton mBtn_twitter;
@@ -69,7 +65,6 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	private TextView mDistance;
 	private TextView menu_text;
 
-	private RelativeLayout  box2,box3;
 	private LinearLayout box4;
 	private Context mContext;
 	private ScrollView mScrollView;
@@ -118,7 +113,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		//BLE available
 		if (requestCode == REQUEST_ENABLE_BT) {
 			if (resultCode == Activity.RESULT_OK) {
-				//Wizturn Scan Start
+				//Beacon Scan Start
 				_wizturnMgr.setInitController();
 				_wizturnMgr.setWizTurnDelegate(_wtDelegate);
 				_wizturnMgr.startController();
@@ -134,41 +129,22 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	//detail page 추가 작업 필요
 	@Override
 	public void onItemClick(AdapterView<?> adpaterView, View view, int position, long l_position) {
-		switch(mWizTurnBeaconListAdapter.getItem(position).getMajor()) {
-		case 22:
-			Log.d("WizTurnBeacon" ,"onItemClick()");
-			setContentView(R.layout.layout_ibeacondetail);
-			mMode = BEACON_DETAIL;
-			mWizTurnBeacon = mWizTurnBeaconListAdapter.getItem(position);
-			menuBar_Init("Tasty Road");
-			beaconDetail_Init(mWizTurnBeacon);
-			break;
 		
-		case 33:
-			Log.d("WizTurnBeacon" ,"onItemClick()");
-			setContentView(R.layout.layout_ibeacondetail2);
-			mMode = BEACON_DETAIL;
-			mWizTurnBeacon = mWizTurnBeaconListAdapter.getItem(position);
-			menuBar_Init("Tasty Road");
-			beaconDetail_Init(mWizTurnBeacon);
-			break;
-		
-		case 11:
-			Log.d("WizTurnBeacon" ,"onItemClick()");
-			setContentView(R.layout.layout_ibeacondetail3);
-			mMode = BEACON_DETAIL;
-			mWizTurnBeacon = mWizTurnBeaconListAdapter.getItem(position);
-			menuBar_Init("Tasty Road");
-			beaconDetail_Init(mWizTurnBeacon);
-			break;
-		}
-		return;
+		Log.d("WizTurnBeacon" ,"onItemClick()");
+		setContentView(R.layout.layout_ibeacondetail);
+		mMode = BEACON_DETAIL;
+		beaconExtended = mWizTurnBeaconListAdapter.getItem(position);
+		menuBar_Init("Tasty Road");
+		beaconDetail_Init(beaconExtended);
+
 	}
 
 	//onClick Callback method - item click시 자동 호출됨
 	@Override
 	public void onClick(View v) {
+		
 		boolean flag = false;
+
 		switch(v.getId()){
 		case R.id.btn_refresh:
 			Log.d("WizTurnBeacon" ,"onClick btn_refresh");
@@ -186,7 +162,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		//(removed case for connect)
 		
 		//@detail view : SNS share button click시 공유 popup 보여주기
-		case R.id.sharelogo5:
+		case R.id.sharelogo:
 			Log.d("WizTurnBeacon" ,"onClick sharelogo5");
 			
 			PopupWindow window = PopupHelper.newBasicPopupWindow(this);
@@ -224,7 +200,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		//@detail view : menu button click시 page 하단 이동 	
 		case R.id.menu_icon4:
 			Log.d("WizTurnBeacon" ,"onClick menu_icon4");
-			mScrollView = (ScrollView)findViewById(R.id.scrollView1);
+			mScrollView = (ScrollView)findViewById(R.id.scroll_view_1);
 			mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
 			break;	
 		
@@ -278,11 +254,11 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 			}
 			if(!flag){
 				Toast.makeText(this, "페이스북 앱이 설치되어있지 않아 웹페이지로 이동합니다.",Toast.LENGTH_LONG).show();
-				Intent shareIntent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://facebook.com"));
-				startActivity(shareIntent1);
+				Intent shareIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://facebook.com"));
+				startActivity(shareIntent2);
 			}
 			break;
-		
+			
 		//@SNS share popup : kakao talk 시작
 		case R.id.btn_kakao:
 			String kakaoPackageName = "com.kakao.talk";
@@ -305,7 +281,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 				startActivity(intent3);
 			}
 			break;	
-		
+			
 		//@SNS share popup : kakao talk 시작
 		case R.id.btn_line:
 			String linePackageName = "jp.naver.line.android";
@@ -379,7 +355,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 					//탐지된 beacon 객체가 들어 있는 mWizTurnBeaconListAdapter.wizTrunBeacon_items list를 대상으로,
 					//새로 측정된 RSSI(수신전파 강도. 거리 계산에 사용되는 인자값).를 Update 함 (새로운 거리값 계산을 위함) 
 					for (int i = 0; i < device.size(); i++) {
-						for (int j = 0; j < mWizTurnBeaconListAdapter.getWizTrunBeacon_items().size(); j++) {
+						for (int j = 0; j < mWizTurnBeaconListAdapter.getBeaconExtended_items().size(); j++) {
 							Log.i("!!!!!" ,"getItem(j).getMacAddress()" + mWizTurnBeaconListAdapter.getItem(j).getMacAddress());
 							Log.i("!!!!!" ,"device.get(i).getMacAddress()" + device.get(i).getMacAddress());
 						
@@ -390,7 +366,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 								//RSSI(수신전파 강도. 거리 계산에 사용되는 인자값) update 부분
 								mWizTurnBeaconListAdapter.getItem(j)._rssi = device.get(i)._rssi;
 								
-								Log.i("!!!!!" ,"wizTrunBeacon_items.size()" + mWizTurnBeaconListAdapter.getWizTrunBeacon_items().size());
+								Log.i("!!!!!" ,"wizTrunBeacon_items.size()" + mWizTurnBeaconListAdapter.getBeaconExtended_items().size());
 								Log.i("!!!!!" ,"Updated RSSI !!!!!" +" "+ mWizTurnBeaconListAdapter.getItem(j)._rssi +" "+device.get(i)._rssi);
 							}
 		                }
@@ -417,7 +393,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		Log.d("WizTurnBeacon" ,"beaconList_Init");
 		setContentView(R.layout.layout_ibeaconlist);
 		
-		mWizTurnBeaconListAdapter = new WizTurnBeaconListAdapter(this,R.layout.array_scanlist ,new ArrayList<WizTurnBeacons>());
+		mWizTurnBeaconListAdapter = new WizTurnBeaconListAdapter(this, R.layout.array_scanlist, new ArrayList<BeaconExtended>());
 		mScanList = (ListView) findViewById(R.id.scanList);
 		mScanList.setOnItemClickListener(this);
 		mBtn_refresh = (ImageButton)findViewById(R.id.btn_refresh);
@@ -429,16 +405,22 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	//@ 공통 : menuBar 초기화
 	public void menuBar_Init(String menuTitle){
 		Log.d("WizTurnBeacon" ,"menuBar_Init");
-		menu_text = (TextView)findViewById(R.id.titleTxt);
+		menu_text = (TextView)findViewById(R.id.title_txt);
 		mBtn_back = (ImageButton)findViewById(R.id.btn_back);
 		mBtn_back.setOnClickListener(this);
 		menu_text.setText(menuTitle);
 	}
 
 	//@detail view : view 초기화
-	public void beaconDetail_Init(WizTurnBeacons item){
+	public void beaconDetail_Init(BeaconExtended item){
 		Log.d("WizTurnBeacon" ,"beaconDetail_Init");
-
+	
+		((ImageView)findViewById(R.id.food_detail_1)).setImageBitmap(item.getImgBig1());
+		((ImageView)findViewById(R.id.food_detail_2)).setImageBitmap(item.getImgBig2());
+		((ImageView)findViewById(R.id.food_detail_3)).setImageBitmap(item.getImgBig3());
+		((ImageView)findViewById(R.id.food_menu)).setImageBitmap(item.getImgMenu());
+		
+		
 		//맛집까지의 거리를 실시간 표시
 		mDistance = ((TextView)findViewById(R.id.ibeacondetail_Distance));
 		mDistance.setText(Double.toString(item.getDistance())+ "m");
@@ -452,8 +434,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		mMap_icon.setOnClickListener(this);
 		
 		//SNS 공유 버튼 (공유 popup 띄움)
-		sharelogo5 = (ImageButton) findViewById(R.id.sharelogo5);
-		sharelogo5.setOnClickListener(this);
+		sharelogo = (ImageButton) findViewById(R.id.sharelogo);
+		sharelogo.setOnClickListener(this);
 	}
 
 	//back 버트 클릭시 수행
