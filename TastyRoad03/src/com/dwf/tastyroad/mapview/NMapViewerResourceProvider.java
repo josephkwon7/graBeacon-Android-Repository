@@ -171,11 +171,11 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 	private final ResourceIdsOnMap mResourceIdsForMarkerOnMap[] = {
 		// Spot, Pin icons
 		new ResourceIdsOnMap(NMapPOIflagType.PIN, R.drawable.shop_bar, R.drawable.shop_bar),
-		new ResourceIdsOnMap(NMapPOIflagType.SPOT, R.drawable.redmarker, R.drawable.redmarker),
+//		new ResourceIdsOnMap(NMapPOIflagType.SPOT, R.drawable.redmarker, R.drawable.redmarker),
 
 		// Direction POI icons: From, To
-		new ResourceIdsOnMap(NMapPOIflagType.FROM, R.drawable.ic_map_start, R.drawable.ic_map_start_over),
-		new ResourceIdsOnMap(NMapPOIflagType.TO, R.drawable.ic_map_arrive, R.drawable.ic_map_arrive_over),
+//		new ResourceIdsOnMap(NMapPOIflagType.FROM, R.drawable.ic_map_start, R.drawable.ic_map_start_over),
+//		new ResourceIdsOnMap(NMapPOIflagType.TO, R.drawable.ic_map_arrive, R.drawable.ic_map_arrive_over),
 	};
 
 	/**
@@ -307,12 +307,12 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 		Drawable drawable = null;
 
 		if (markerId >= NMapPOIflagType.NUMBER_BASE && markerId < NMapPOIflagType.NUMBER_END) { // Direction Number icons
-			int resourceId = (focused) ? R.drawable.ic_map_no_02 : R.drawable.ic_map_no_01;
+//			int resourceId = (focused) ? R.drawable.ic_map_no_02 : R.drawable.ic_map_no_01;
 			int fontColor = (focused) ? POI_FONT_COLOR_ALPHABET : POI_FONT_COLOR_NUMBER;
 
 			String strNumber = String.valueOf(markerId - NMapPOIflagType.NUMBER_BASE);
 
-			drawable = getDrawableWithNumber(resourceId, strNumber, 0.0F, fontColor, POI_FONT_SIZE_NUMBER);
+//			drawable = getDrawableWithNumber(resourceId, strNumber, 0.0F, fontColor, POI_FONT_SIZE_NUMBER);
 		} else if (markerId >= NMapPOIflagType.CUSTOM_BASE && markerId < NMapPOIflagType.CUSTOM_END) { // Custom POI icons
 
 		}
@@ -360,22 +360,22 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 		return textBitmap;
 	}
 
-	@Override
-	public Drawable getCalloutBackground(NMapOverlayItem item) {
-
-		if (item instanceof NMapPOIitem) {
-			NMapPOIitem poiItem = (NMapPOIitem)item;
-
-			if (poiItem.showRightButton()) {
-				Drawable drawable = mContext.getResources().getDrawable(R.drawable.bg_speech);
-				return drawable;
-			}
-		}
-
-		Drawable drawable = mContext.getResources().getDrawable(R.drawable.pin_ballon_bg);
-
-		return drawable;
-	}
+//	@Override
+//	public Drawable getCalloutBackground(NMapOverlayItem item) {
+//
+//		if (item instanceof NMapPOIitem) {
+//			NMapPOIitem poiItem = (NMapPOIitem)item;
+//
+//			if (poiItem.showRightButton()) {
+//				Drawable drawable = mContext.getResources().getDrawable(R.drawable.bg_speech);
+//				return drawable;
+//			}
+//		}
+//
+//		Drawable drawable = mContext.getResources().getDrawable(R.drawable.pin_ballon_bg);
+//
+//		return drawable;
+//	}
 
 	@Override
 	public String getCalloutRightButtonText(NMapOverlayItem item) {
@@ -419,9 +419,9 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 
 				switch (poiItem.getRightAccessoryId()) {
 					case NMapPOIflagType.CLICKABLE_ARROW:
-						drawable[0] = mContext.getResources().getDrawable(R.drawable.pin_ballon_arrow);
-						drawable[1] = mContext.getResources().getDrawable(R.drawable.pin_ballon_on_arrow);
-						drawable[2] = mContext.getResources().getDrawable(R.drawable.pin_ballon_on_arrow);
+//						drawable[0] = mContext.getResources().getDrawable(R.drawable.pin_ballon_arrow);
+//						drawable[1] = mContext.getResources().getDrawable(R.drawable.pin_ballon_on_arrow);
+//						drawable[2] = mContext.getResources().getDrawable(R.drawable.pin_ballon_on_arrow);
 						break;
 				}
 
@@ -518,5 +518,11 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 		}
 
 		return resourceId;
+	}
+
+	@Override
+	public Drawable getCalloutBackground(NMapOverlayItem item) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
