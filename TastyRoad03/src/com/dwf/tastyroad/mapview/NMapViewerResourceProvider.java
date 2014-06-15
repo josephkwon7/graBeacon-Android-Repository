@@ -170,7 +170,7 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 	// Resource Ids for single icons
 	private final ResourceIdsOnMap mResourceIdsForMarkerOnMap[] = {
 		// Spot, Pin icons
-		new ResourceIdsOnMap(NMapPOIflagType.PIN, R.drawable.navermap_shop_bar, R.drawable.navermap_shop_bar),
+		new ResourceIdsOnMap(NMapPOIflagType.PIN, R.drawable.map_shop_marker_1, R.drawable.map_shop_marker_1),
 //		new ResourceIdsOnMap(NMapPOIflagType.SPOT, R.drawable.redmarker, R.drawable.redmarker),
 
 		// Direction POI icons: From, To
@@ -244,8 +244,8 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 	public Drawable[] getLocationDot() {
 		Drawable[] drawable = new Drawable[2];
 
-		drawable[0] = mContext.getResources().getDrawable(R.drawable.navermap_pubtrans_ic_mylocation_off);
-		drawable[1] = mContext.getResources().getDrawable(R.drawable.navermap_pubtrans_ic_mylocation_on);
+		drawable[0] = mContext.getResources().getDrawable(R.drawable.map_mylocation_off);
+		drawable[1] = mContext.getResources().getDrawable(R.drawable.map_mylocation_on);
 
 		for (int i = 0; i < drawable.length; i++) {
 			int w = drawable[i].getIntrinsicWidth() / 2;
@@ -260,7 +260,7 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 	@Override
 	public Drawable getDirectionArrow() {
 
-		Drawable drawable = mContext.getResources().getDrawable(R.drawable.navermap_ic_angle);
+		Drawable drawable = mContext.getResources().getDrawable(R.drawable.map_angle);
 
 		if (drawable != null) {
 			int w = drawable.getIntrinsicWidth() / 2;
@@ -390,24 +390,24 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 		return null;
 	}
 
-	@Override
-	public Drawable[] getCalloutRightButton(NMapOverlayItem item) {
-		if (item instanceof NMapPOIitem) {
-			NMapPOIitem poiItem = (NMapPOIitem)item;
-
-			if (poiItem.showRightButton()) {
-				Drawable[] drawable = new Drawable[3];
-
-				drawable[0] = mContext.getResources().getDrawable(R.drawable.btn_green_normal);
-				drawable[1] = mContext.getResources().getDrawable(R.drawable.btn_green_pressed);
-				drawable[2] = mContext.getResources().getDrawable(R.drawable.btn_green_highlight);
-
-				return drawable;
-			}
-		}
-
-		return null;
-	}
+//	@Override
+//	public Drawable[] getCalloutRightButton(NMapOverlayItem item) {
+//		if (item instanceof NMapPOIitem) {
+//			NMapPOIitem poiItem = (NMapPOIitem)item;
+//
+//			if (poiItem.showRightButton()) {
+//				Drawable[] drawable = new Drawable[3];
+//
+//				drawable[0] = mContext.getResources().getDrawable(R.drawable.btn_green_normal);
+//				drawable[1] = mContext.getResources().getDrawable(R.drawable.btn_green_pressed);
+//				drawable[2] = mContext.getResources().getDrawable(R.drawable.btn_green_highlight);
+//
+//				return drawable;
+//			}
+//		}
+//
+//		return null;
+//	}
 
 	@Override
 	public Drawable[] getCalloutRightAccessory(NMapOverlayItem item) {
@@ -522,6 +522,12 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 
 	@Override
 	public Drawable getCalloutBackground(NMapOverlayItem item) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Drawable[] getCalloutRightButton(NMapOverlayItem item) {
 		// TODO Auto-generated method stub
 		return null;
 	}
