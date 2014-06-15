@@ -8,6 +8,9 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -165,6 +168,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	//onClick Callback method - item click시 자동 호출됨
 	@Override
 	public void onClick(View v) {
+		boolean flag = false;
 		switch(v.getId()){
 		case R.id.btn_refresh:
 			Log.d("WizTurnBeacon" ,"onClick btn_refresh");
@@ -233,40 +237,97 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		
 		//@SNS share popup : twitter 시작
 		case R.id.btn_twitter:
-			Intent shareIntent1 = new Intent();
-			shareIntent1.setAction(Intent.ACTION_SEND);
-			shareIntent1.setType("image/jpeg");
-			shareIntent1.setPackage("com.twitter.android");
-			startActivity(shareIntent1);
+			String twitterPackageName = "com.twitter.android";
+			final PackageManager pm1 = getPackageManager();
+			List<ApplicationInfo> packages1 = pm1.getInstalledApplications(PackageManager.GET_META_DATA);
+			for (ApplicationInfo packageinfo : packages1) {
+				if (twitterPackageName.equals(packageinfo.packageName)){
+					flag = true;
+					Intent shareIntent1 = new Intent();
+					shareIntent1.setPackage(twitterPackageName);
+					shareIntent1.setType("text/plain");
+					startActivity(shareIntent1);
+					Toast.makeText(this, "트위터 앱이 실행되었습니다.", Toast.LENGTH_LONG).show();
+					break;
+				}
+			}
+			if(!flag){
+				Toast.makeText(this, "트위터 앱이 설치되어있지 않아 웹페이지로 이동합니다.",Toast.LENGTH_LONG).show();
+				Intent shareIntent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.twitter.com"));
+				startActivity(shareIntent1);
+			}
 			break;
 		
 		//@SNS share popup : facebook 시작
 		case R.id.btn_facebook:
 			Log.e("facebook", "button event start");
-			Intent shareIntent2 = new Intent();
-			shareIntent2.setAction(Intent.ACTION_SEND);
-			shareIntent2.setType("image/jpeg");
-			shareIntent2.setPackage("com.facebook.katana");
-			startActivity(shareIntent2);
+			String facebookPackageName = "com.facebook.katana";
+			String facebookClassName = "com.facebook.katana.LoginActivity";
+			final PackageManager pm2 = getPackageManager();
+			List<ApplicationInfo> packages2 = pm2.getInstalledApplications(PackageManager.GET_META_DATA);
+			for (ApplicationInfo packageinfo : packages2) {
+				if (facebookPackageName.equals(packageinfo.packageName)){
+					flag = true;
+					Intent shareIntent2 = new Intent();
+					shareIntent2.setClassName(facebookPackageName, facebookClassName);
+					shareIntent2.setType("text/plain");
+					startActivity(shareIntent2);
+					Toast.makeText(this, "페이스북 앱이 실행되었습니다.", Toast.LENGTH_LONG).show();
+					break;
+				}
+			}
+			if(!flag){
+				Toast.makeText(this, "페이스북 앱이 설치되어있지 않아 웹페이지로 이동합니다.",Toast.LENGTH_LONG).show();
+				Intent shareIntent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://facebook.com"));
+				startActivity(shareIntent1);
+			}
 			break;
 		
 		//@SNS share popup : kakao talk 시작
 		case R.id.btn_kakao:
-			Intent shareIntent3 = new Intent();
-			shareIntent3.setAction(Intent.ACTION_SEND);
-			shareIntent3.setType("text/plain");
-			shareIntent3.setPackage("com.kakao.talk");
-			startActivity(shareIntent3);
+			String kakaoPackageName = "com.kakao.talk";
+			final PackageManager pm3 = getPackageManager();
+			List<ApplicationInfo> packages3 = pm3.getInstalledApplications(PackageManager.GET_META_DATA);
+			for (ApplicationInfo packageinfo : packages3) {
+				if (kakaoPackageName.equals(packageinfo.packageName)){
+					flag = true;
+					Intent shareIntent3 = new Intent();
+					shareIntent3.setPackage(kakaoPackageName);
+					shareIntent3.setType("text/plain");
+					startActivity(shareIntent3);
+					Toast.makeText(this, "카카오 앱이 실행되었습니다.", Toast.LENGTH_LONG).show();
+					break;
+				}
+			}
+			if(!flag){
+				Toast.makeText(this, "카카오 앱이 설치되어있지 않아 웹페이지로 이동합니다.",Toast.LENGTH_LONG).show();
+				Intent intent3 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://kakao.com/talk"));
+				startActivity(intent3);
+			}
 			break;	
 		
 		//@SNS share popup : kakao talk 시작
 		case R.id.btn_line:
-			Intent shareIntent4 = new Intent();
-			shareIntent4.setAction(Intent.ACTION_SEND);
-			shareIntent4.setType("image/jpeg");
-			shareIntent4.putExtra(shareIntent4.EXTRA_TEXT, "");
-			shareIntent4.setPackage("jp.naver.line.android");
-			startActivity(shareIntent4);
+			String linePackageName = "jp.naver.line.android";
+			final PackageManager pm4 = getPackageManager();
+			List<ApplicationInfo> packages4 = pm4.getInstalledApplications(PackageManager.GET_META_DATA);
+			for (ApplicationInfo packageinfo : packages4) {
+				if (linePackageName.equals(packageinfo.packageName)){
+					flag = true;
+					Intent shareIntent4 = new Intent();
+					shareIntent4.putExtra(shareIntent4.EXTRA_TEXT, "");
+					shareIntent4.setPackage(linePackageName);
+					shareIntent4.setType("text/plain");
+					startActivity(shareIntent4);
+					Toast.makeText(this, "라인 앱이 실행되었습니다.", Toast.LENGTH_LONG).show();
+					break;
+				}
+			}
+			if(!flag){
+				Toast.makeText(this, "라인 앱이 설치되어있지 않아 웹페이지로 이동합니다.",Toast.LENGTH_LONG).show();
+				Intent intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://line.me"));
+				startActivity(intent4);
+			}
 			break;
 			
 		}
