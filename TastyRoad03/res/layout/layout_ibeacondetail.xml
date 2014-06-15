@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context="com.example.pebBletestapp.MainActivity$PlaceholderFragment" >
     
 	     <RelativeLayout
@@ -11,7 +11,7 @@
 	        android:background="@drawable/bar_title" >
 
 			        <TextView
-			            android:id="@+id/titleTxt"
+			            android:id="@+id/title_txt"
 			            android:layout_width="match_parent"
 			            android:layout_height="match_parent"
 			            android:gravity="center_vertical|center_horizontal"
@@ -30,25 +30,14 @@
 			            android:layout_marginTop="14dp"
 			            
 			            android:background="@drawable/btn_back" />
-			        
-			        <Button android:id="@+id/btn_Connect" 
-			            android:layout_width="wrap_content" 
-			            android:layout_height="wrap_content" 
-			            android:layout_centerVertical="true"
-			            android:layout_alignParentRight="true"
-			            android:background="@drawable/btn_login" 
-			            android:layout_marginBottom="30dp" 
-			            android:visibility="gone"
-			            android:text="connect" 
-			            android:textColor="#FFD700" />
     	</RelativeLayout>
 
 	    <ScrollView
-	        android:id="@+id/scrollView1"
+	        android:id="@+id/scroll_view_1"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_below="@+id/menu_bar"
-	        android:layout_centerHorizontal="true">
+	        android:layout_centerHorizontal="true" >
 
 			        <LinearLayout
 			            android:layout_width="match_parent"
@@ -63,71 +52,68 @@
 					                android:layout_marginRight="5dp" >
 
 					                        <ImageView
-							                    android:id="@+id/food1_2"
+							                    android:id="@+id/food_detail_1"
 							                    android:layout_width="match_parent"
 							                    android:layout_height="wrap_content"
 							                    android:adjustViewBounds="true"
-							                    android:scaleType="fitCenter"
-							                    android:src="@drawable/food1_2" />
+							                    android:scaleType="fitCenter"/>
 							
 							                <ImageView
-							                    android:id="@+id/food1_3"
+							                    android:id="@+id/food_detail_2"
 							                    android:layout_width="match_parent"
 							                    android:layout_height="wrap_content"
-							                    android:layout_below="@+id/food1_2"
-							                    android:adjustViewBounds="true"
-							                    android:src="@drawable/food1_3" />
+							                    android:layout_below="@+id/food_detail_1"
+							                    android:adjustViewBounds="true" />
 							
 							                <ImageView
-							                    android:id="@+id/food1_4"
+							                    android:id="@+id/food_detail_3"
 							                    android:layout_width="match_parent"
 							                    android:layout_height="wrap_content"
 							                    android:layout_alignParentLeft="true"
 							                    android:layout_alignParentRight="true"
-							                    android:layout_below="@+id/food1_3"
+							                    android:layout_below="@+id/food_detail_2"
 							                    android:adjustViewBounds="true"
-							                    android:scaleType="centerCrop"
-							                    android:src="@drawable/food1_4" />
+							                    android:scaleType="centerCrop" />
 
 							                 <LinearLayout
+							                    android:id="@+id/menubar"
 							                    android:layout_width="match_parent"
 							                    android:layout_height="wrap_content"
 							                    android:orientation="vertical" 
-							                    android:layout_below="@+id/food1_4"
+							                    android:layout_below="@+id/food_detail_3"
 							                    android:background="@drawable/border"
-							                    android:layout_margin="3dp"
-							                    android:id="@+id/menubar">
+							                    android:layout_margin="3dp" >
                     
 										                <LinearLayout
 										                   android:id="@+id/textView1"
 										                   android:layout_width="match_parent"
 										                   android:layout_height="wrap_content" 
-										                   android:layout_below="@+id/food1_4" >
+										                   android:layout_below="@+id/food_detail_3" >
 
 												                    <TextView
 												                        android:id="@+id/textView2"
 												                        android:layout_width="match_parent"
 												                        android:layout_height="wrap_content"
-												                        android:background="#ffffff"
-												                        android:gravity="center_horizontal"
-												                        android:textStyle="bold"
-												                        android:text="�޴���"
-												                        android:textColor="#8B4513"
 												                        android:layout_margin="5dp"
 												                        android:layout_weight="2"
-												                        android:textSize="60px" />
+												                        android:background="#ffffff"
+												                        android:gravity="center_horizontal"
+												                        android:text="메뉴판"
+												                        android:textColor="#8B4513"
+												                        android:textSize="60px"
+												                        android:textStyle="bold" />
+
                 										</LinearLayout>
 
 										                <ImageView
-										                    android:id="@+id/menupan1"
+										                    android:id="@+id/food_menu"
 										                    android:layout_width="match_parent"
 										                    android:layout_height="wrap_content"
 										                    android:layout_margin="5dp"
 										                    android:layout_weight="8"
 										                    android:adjustViewBounds="true"
 										                    android:focusableInTouchMode="true"
-										                    android:scaleType="centerCrop"
-										                    android:src="@drawable/menupan1" />
+										                    android:scaleType="centerCrop" />
 											</LinearLayout>
 		
 											<LinearLayout
@@ -174,7 +160,7 @@
 																                android:layout_height="40dp"
 																                android:background="#ffffff"
 																                android:scaleType="centerInside"
-																                android:src="@drawable/call_icon1_1" />
+																                android:src="@drawable/btn_call_restaurant" />
 																            
 																	       <TextView
 																	            android:id="@+id/txtAutoWeb"
@@ -200,7 +186,7 @@
 																		        android:scaleType="centerInside"
 																		        android:layout_marginLeft="3dp"
 																		        android:layout_marginBottom="3dp"
-																		        android:src="@drawable/map_icon1_1" />
+																		        android:src="@drawable/icon_map" />
 																		            
 																		     <TextView
 																		          android:id="@+id/txtAutoWeb"
@@ -283,7 +269,7 @@
 			        android:layout_weight="1"
 			        android:background="#ff8c00"
 			        android:scaleType="centerInside"
-			        android:src="@drawable/ccook_book" />
+			        android:src="@drawable/btn_menu" />
 			    
 			     <ImageButton
 			         android:id="@+id/map_icon"
@@ -293,16 +279,16 @@
 			         android:layout_weight="1"
 			         android:background="#ff8c00"
 			         android:scaleType="centerInside"
-			         android:src="@drawable/map1" />
+			         android:src="@drawable/btn_map" />
 			
 			    <ImageButton
-			        android:id="@+id/sharelogo5"
+			        android:id="@+id/sharelogo"
 			        android:layout_width="65dp"
 			        android:layout_height="45dp"
 			        android:layout_gravity="center"
 			        android:layout_weight="1"
 			        android:background="#ff8c00"
 			        android:scaleType="centerInside"
-			        android:src="@drawable/share08" />
+			        android:src="@drawable/btn_share" />
 	</LinearLayout>            
 </RelativeLayout>
