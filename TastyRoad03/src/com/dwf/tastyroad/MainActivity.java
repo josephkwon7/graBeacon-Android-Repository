@@ -1,13 +1,12 @@
 package com.dwf.tastyroad;
 
-import com.example.wizturnbeacon.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import com.example.wizturnbeacon.R;
 
 public class MainActivity extends Activity implements OnClickListener{
 	
@@ -29,17 +28,17 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 		/*res - layout -activity_main.xml�좎럩伊숂뙴�묒삕�좏릳iew�좎럩伊숂뙴�묒삕�좏룱ainActivity�좎럩伊숂뙴�묒삕占쎌슜�삣뜝�뚮듌占쏙옙�좎럩伊숂뙴�묒삕占쎌슜�삣뜝�뚮듌占쎈벨�숅넫濡レ쭢�좎룞�쇿뜝�뚯쪠�룹쉻�쇿뜝�숈삕�ル∥�귨옙��걠占쏙옙�좎럩伊쇿뜝�숈춸熬곣뫗援꿨뜝�뚯쪠�룹쉻�쇿뜝占�		
 		*/
-		setContentView(R.layout.activity_main);
- 		/*
+ 		setContentView(R.layout.activity_main);
+/*
  		startActivity(new Intent(this, Start_Activity.class));
  		
  		*/
  		
- 		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = 
-			  new StrictMode.ThreadPolicy.Builder().permitAll().build();
-			StrictMode.setThreadPolicy(policy);
- 		}
+// 		if (android.os.Build.VERSION.SDK_INT > 9) {
+//			StrictMode.ThreadPolicy policy = 
+//			  new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//			StrictMode.setThreadPolicy(policy);
+// 		}
 		
 			
 		/*
