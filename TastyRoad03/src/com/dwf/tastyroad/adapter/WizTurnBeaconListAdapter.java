@@ -32,6 +32,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+import com.dwf.tastyroad.BeaconExtended;
 import com.dwf.tastyroad.MainActivity;
 import com.example.wizturnbeacon.R;
 import com.wizturn.sdk.entity.WizTurnBeacons;
@@ -43,30 +44,31 @@ import com.wizturn.sdk.entity.WizTurnBeacons;
 
 public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	
-	///Field	
+	///Field
 	private LayoutInflater inflater = null;
-	private ArrayList<WizTurnBeacons> wizTrunBeacon_items;
-	HashMap<WizTurnBeacons, Bitmap> getImgUrlMap = new HashMap<WizTurnBeacons, Bitmap>();
+	public ArrayList<BeaconExtended> beaconExtended_items;
+	//private HashMap<BeaconExtended, Bitmap> getImgUrlMap = new HashMap<BeaconExtended, Bitmap>();
+	
 	private String reqURL;
 	int count;
 	
 	///Constructor
 	public WizTurnBeaconListAdapter(Context context, int textViewResourceId,
-			ArrayList<WizTurnBeacons> mList) {
+			ArrayList<BeaconExtended> mList) {
 		super(context, textViewResourceId,  mList);
 		inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		wizTrunBeacon_items = mList;
+		beaconExtended_items = mList;
 	}
 	
 	///Getter added by YH
-	public ArrayList<WizTurnBeacons> getWizTrunBeacon_items(){
-		return this.wizTrunBeacon_items;
+	public ArrayList<BeaconExtended> getBeaconExtended_items(){
+		return this.beaconExtended_items;
 	}
 	
 	///Method
 	public boolean contains(String macAddr) {
-		for (int i = 0; i < wizTrunBeacon_items.size(); i++) {
-			if (wizTrunBeacon_items.get(i) != null && wizTrunBeacon_items.get(i).getMacAddress().equals(macAddr)) {
+		for (int i = 0; i < beaconExtended_items.size(); i++) {
+			if (beaconExtended_items.get(i) != null && beaconExtended_items.get(i).getMacAddress().equals(macAddr)) {
 				return true;
 			}
 		}
@@ -75,17 +77,22 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	
 	//beacon add Item
 	public void addItem(WizTurnBeacons item){
-		wizTrunBeacon_items.add(item);
+		beaconExtended_items.add(
+				new BeaconExtended(item.getProximityUUID(), item.getName(), 
+						item.getMacAddress(), item.getMajor(), item.getMinor(), 
+						item.getMeasuredPower(), (int) item.getRssi(), 
+						item.getProximity())
+				);
 	}
 	
 	//beacon get Item
-	public WizTurnBeacons getItem(int position) {
-		return wizTrunBeacon_items.get(position);
+	public BeaconExtended getItem(int position) {
+		return beaconExtended_items.get(position);
 	}
 	
 	//beaconList Clear
 	public void clearItem() {
-		wizTrunBeacon_items.clear();
+		beaconExtended_items.clear();
 	}
 	
 
@@ -93,10 +100,11 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		
 		Bitmap thumbImg;
 		String req1 = "http://192.168.200.27:8080/tastyroad/beacon/Thumbnail/";
-		String req2 = wizTrunBeacon_items.get(position).getProximityUUID()+"/";
-		String req3 = wizTrunBeacon_items.get(position).getMajor()+"/";
-		String req4 = wizTrunBeacon_items.get(position).getMinor()+"";
+		String req2 = beaconExtended_items.get(position).getProximityUUID()+"/";
+		String req3 = beaconExtended_items.get(position).getMajor()+"/";
+		String req4 = beaconExtended_items.get(position).getMinor()+"";
 		reqURL = req1 + req2 + req3 + req4;
+		
 		
 		if(v==null){
 			v = inflater.inflate(R.layout.array_scanlist, null);
@@ -105,37 +113,38 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		TextView mSSID = (TextView)v.findViewById(R.id.scanList_SSID);
 		mSSID.setText("SSID: " + wizTrunBeacon_items.get(position).getName());
 		*/
-		if(!getImgUrlMap.containsKey(wizTrunBeacon_items.get(position))){
-			RequestURLThread thread = new RequestURLThread(reqURL);
+		//if(beaconExtended_items.get(position).getImgSmall1())
+		Log.i("!!!!!", beaconExtended_items.get(position).toString());
+		if(beaconExtended_items.get(position).getImgSmall1()==null){
+			RequestURLThread thread = new RequestURLThread(reqURL, beaconExtended_items.get(position));
 			thread.start();
 			
-			try {
-				thread.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-				
-				thumbImg = thread.getBitmap();
-				getImgUrlMap.put(wizTrunBeacon_items.get(position), thumbImg);
+			
+				try {
+					thread.join();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+			
+			this.beaconExtended_items.set(position, thread.getBeaconExtended());
 		}
-		else{
-			thumbImg=getImgUrlMap.get(wizTrunBeacon_items.get(position));
-		}	
 		
-			ImageView thumbView = (ImageView)v.findViewById(R.id.imageView1);
-			thumbView.setImageBitmap(thumbImg);
+		((ImageView)v.findViewById(R.id.imageView1)).setImageBitmap(beaconExtended_items.get(position).getImgSmall1());
 		
-			return v;
+		
+		
+		return v;
 		
 	}
 
 		
 	//RSSI(전파수신강도)를 내림 차순으로 정렬. 즉 가까운 거리순으로 wiTurnBeacons 인스턴스 정렬
 	public void sort() {
-		Collections.sort(wizTrunBeacon_items, new Comparator<WizTurnBeacons>() {
+		Collections.sort(beaconExtended_items, new Comparator<BeaconExtended>() {
 			@Override
-			public int compare(WizTurnBeacons lhs, WizTurnBeacons rhs) {
+			public int compare(BeaconExtended lhs, BeaconExtended rhs) {
 				++count;
 				return (int) (rhs.getRssi() - lhs.getRssi());
 			}
@@ -146,23 +155,23 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	
 	public class RequestURLThread extends Thread{
 		
-		String reqURL;
-		String rawJSON;
-		String thumbURL;
-		Bitmap thumbImg;
+		private BeaconExtended beaconExtended;
+		private String reqURL;
+		private String rawJSON;
 		
 		public RequestURLThread(){
 			
 		}
 		
-		public RequestURLThread(String reqURL) {
+		public RequestURLThread(String reqURL, BeaconExtended beaconExtended) {
 			super();
 			this.reqURL = reqURL;
+			this.beaconExtended = beaconExtended;
 		}
 		
 		public void run(){
-			Log.e(MainActivity.class.toString(), "RequestURL !!!!! : "+ reqURL);
-			Log.e(MainActivity.class.toString(),"getJSON START!!!");
+			Log.i("!!!!!", "RequestURL !!!!! : "+ reqURL);
+			Log.i("!!!!!", "getJSON START!!!");
 
 			StringBuilder builder = new StringBuilder();
 			HttpClient client = new DefaultHttpClient();
@@ -188,7 +197,6 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 			} catch (IOException e){
 				e.printStackTrace();
 			}
-			///////////////////////////////////////////////
 			
 			rawJSON = builder.toString();
 			Log.e(MainActivity.class.toString(), "RawJSON !!!!! : "+ rawJSON);
@@ -197,28 +205,28 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 			try {
 				Object obj = parser.parse(rawJSON);
 				JSONObject jsonObject = (JSONObject) obj;
-			 	thumbURL = (String) jsonObject.get("imgSmall1");
-			 	Log.e(MainActivity.class.toString(), "URL !!!!! : "+thumbURL);
-			 	
-				try {
-					URL url = new URL(thumbURL);
-					thumbImg = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-					
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+
+				///////////////////////////////////////////////
+				beaconExtended.setImgSmall1(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgSmall1")).openConnection().getInputStream()));
+				beaconExtended.setImgBig1(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgBig1")).openConnection().getInputStream()));
+				beaconExtended.setImgBig2(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgBig2")).openConnection().getInputStream()));
+				beaconExtended.setImgBig3(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgBig3")).openConnection().getInputStream()));
+				//beaconExtended.setImgBig4(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgBig4")).openConnection().getInputStream()));
+				//beaconExtended.setImgMapMarker(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgMapMarker")).openConnection().getInputStream()));
+				beaconExtended.setImgMenu(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgMenu")).openConnection().getInputStream()));
+				
+				Log.e("!!!!!", beaconExtended.toString());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 		
-		public Bitmap getBitmap(){
-			return thumbImg;
+		public BeaconExtended getBeaconExtended(){
+			return this.beaconExtended;
 		}
 	}
 	
