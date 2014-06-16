@@ -52,11 +52,13 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 
 	private final Rect mTempRect = new Rect();
 	private final Paint mTextPaint = new Paint();
+	
+	private Bitmap imgMarker;
 
-	public NMapViewerResourceProvider(Context context) {
+	public NMapViewerResourceProvider(Context context, Bitmap imgMarker) {
 		super(context);
-
 		mTextPaint.setAntiAlias(true);
+		this.imgMarker = imgMarker;
 	}
 
 	/**
@@ -96,8 +98,10 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 		if (marker != null) {
 			bitmap = getBitmap(marker);
 		}
-
+		
+		//
 		return bitmap;
+		//return imgMarker;
 	}
 
 	public Bitmap getBitmap(Drawable marker) {
@@ -170,7 +174,8 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 	// Resource Ids for single icons
 	private final ResourceIdsOnMap mResourceIdsForMarkerOnMap[] = {
 		// Spot, Pin icons
-		new ResourceIdsOnMap(NMapPOIflagType.PIN, R.drawable.map_shop_marker_1, R.drawable.map_shop_marker_1),
+		
+		new ResourceIdsOnMap(NMapPOIflagType.PIN, R.drawable.icon_arrow, R.drawable.icon_arrow)
 //		new ResourceIdsOnMap(NMapPOIflagType.SPOT, R.drawable.redmarker, R.drawable.redmarker),
 
 		// Direction POI icons: From, To
