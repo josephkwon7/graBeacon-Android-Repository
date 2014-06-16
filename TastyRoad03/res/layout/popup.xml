@@ -39,6 +39,7 @@
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_margin="30dp"
+                android:background="#ffffff"
                 android:src="@drawable/btn_twitter" />
 
             <ImageButton
@@ -46,6 +47,7 @@
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_margin="30dp"
+                android:background="#ffffff"
                 android:src="@drawable/btn_kakao" />
         </TableRow>
 
@@ -56,6 +58,7 @@
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_margin="30dp"
+                android:background="#ffffff"
                 android:src="@drawable/btn_line" />
 
             <ImageButton
@@ -63,6 +66,7 @@
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_margin="30dp"
+                android:background="#ffffff"
                 android:src="@drawable/btn_facebook" />
         </TableRow>
     </TableLayout>
