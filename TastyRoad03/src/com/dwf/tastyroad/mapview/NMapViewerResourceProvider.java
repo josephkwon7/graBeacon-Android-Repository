@@ -170,7 +170,7 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 	// Resource Ids for single icons
 	private final ResourceIdsOnMap mResourceIdsForMarkerOnMap[] = {
 		// Spot, Pin icons
-		new ResourceIdsOnMap(NMapPOIflagType.PIN, R.drawable.map_shop_marker_1, R.drawable.map_shop_marker_1),
+		new ResourceIdsOnMap(NMapPOIflagType.PIN, R.drawable.ic_pin_01, R.drawable.ic_pin_02),
 //		new ResourceIdsOnMap(NMapPOIflagType.SPOT, R.drawable.redmarker, R.drawable.redmarker),
 
 		// Direction POI icons: From, To
