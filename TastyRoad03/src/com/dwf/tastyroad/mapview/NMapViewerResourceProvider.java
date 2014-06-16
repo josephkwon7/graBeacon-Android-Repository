@@ -464,8 +464,14 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 
 	@Override
 	public Drawable getCalloutBackground(NMapOverlayItem item) {
-		// TODO Auto-generated method stub
-		return null;
+
+		if (item instanceof NMapPOIitem) {
+			NMapPOIitem poiItem = (NMapPOIitem)item;
+		}
+
+		Drawable drawable = mContext.getResources().getDrawable(R.drawable.pin_ballon_bg);
+
+		return drawable;
 	}
 
 	@Override
