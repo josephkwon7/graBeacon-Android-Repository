@@ -144,8 +144,8 @@
 																	            android:textSize="40px"/>
 
 																	        <TextView
+																	            android:id="@+id/copy_comment"
 																	            android:padding="10dp"
-																	            android:text="�ְ��� ��! �ְ��� ����! �̽�������!"
 																	            android:textSize="40px" />
     															</TableRow>
 
@@ -163,12 +163,11 @@
 																                android:src="@drawable/btn_call_restaurant" />
 																            
 																	       <TextView
-																	            android:id="@+id/txtAutoWeb"
+																	            android:id="@+id/phone"
 																	            android:layout_width="match_parent"
 																	            android:layout_height="wrap_content"
 																	       		android:autoLink="phone"
 																	            android:padding="10dp"
-																	            android:text="010-9130-0112"
 																	            android:background="#ffffff"
 																	            android:textSize="30px" />
 															 	</TableRow>
@@ -189,12 +188,11 @@
 																		        android:src="@drawable/icon_map" />
 																		            
 																		     <TextView
-																		          android:id="@+id/txtAutoWeb"
+																		          android:id="@+id/address"
 																		          android:layout_width="match_parent"
 																		          android:layout_height="wrap_content"
 																		     	  android:autoLink="map"
 																		          android:padding="10dp"
-																		          android:text="����Ư���� ���ʱ� ����4�� 1316-29"
 																		          android:layout_marginRight="9dp"
 																		          android:layout_marginBottom="5dp"
 																		          android:background="#ffffff"

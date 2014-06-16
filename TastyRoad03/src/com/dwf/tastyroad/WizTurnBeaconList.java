@@ -42,7 +42,6 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	///Field
 	public WizTurnBeaconListAdapter mWizTurnBeaconListAdapter;
 	public ListView mScanList;
-	//public WizTurnBeacons mWizTurnBeacon;
 	public BeaconExtended beaconExtended;
 	public WizTurnManager _wizturnMgr;
 	public WizTurnBeaconConnect _connect;
@@ -55,7 +54,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	private ImageButton mBtn_refresh;
 	private ImageButton mBtn_back;
 	private ImageButton sharelogo;
-	private ImageButton menu_icon4;
+	private ImageButton menu_icon;
 	private ImageButton mMap_icon;
 	private ImageButton mBtn_twitter;
 	private ImageButton mBtn_facebook;
@@ -208,6 +207,9 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		case R.id.map_icon:
 			Log.d("WizTurnBeacon", "onClick map_Btn");
 			Intent intent1 = new Intent(this, NaverMapView.class);
+			intent1.putExtra("imgMarker", beaconExtended.getImgMarker());
+			intent1.putExtra("geoLat", beaconExtended.getGeoLat());
+			intent1.putExtra("geoLong", beaconExtended.getGeoLong());
 			startActivity(intent1);
 			break;
 		
@@ -419,15 +421,19 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		((ImageView)findViewById(R.id.food_detail_2)).setImageBitmap(item.getImgBig2());
 		((ImageView)findViewById(R.id.food_detail_3)).setImageBitmap(item.getImgBig3());
 		((ImageView)findViewById(R.id.food_menu)).setImageBitmap(item.getImgMenu());
+		//((ImageView)findViewById(R.id.xx)).setImageBitmap(item.getImgMarker());
 		
+		((TextView)findViewById(R.id.copy_comment)).setText(item.getCopyComment());
+		((TextView)findViewById(R.id.phone)).setText(item.getPhone());
+		((TextView)findViewById(R.id.address)).setText(item.getAddr());
 		
 		//맛집까지의 거리를 실시간 표시
 		mDistance = ((TextView)findViewById(R.id.ibeacondetail_Distance));
 		mDistance.setText(Double.toString(item.getDistance())+ "m");
 		
 		//메뉴 보기 버튼 (detail view 제일 아래로 이동)
-		menu_icon4 = (ImageButton) findViewById(R.id.menu_icon4);
-		menu_icon4.setOnClickListener(this);
+		menu_icon = (ImageButton) findViewById(R.id.menu_icon4);
+		menu_icon.setOnClickListener(this);
 		
 		//맵 보기 버튼 (맵보기 view로 이동)
 		mMap_icon = (ImageButton)findViewById(R.id.map_icon);

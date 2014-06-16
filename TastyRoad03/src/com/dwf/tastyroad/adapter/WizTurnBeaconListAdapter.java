@@ -50,7 +50,9 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	//private HashMap<BeaconExtended, Bitmap> getImgUrlMap = new HashMap<BeaconExtended, Bitmap>();
 	
 	private String reqURL;
-	int count;
+	private int count;
+	public final String serverURL = "http://192.168.200.27:8080/tastyroad/";
+	
 	
 	///Constructor
 	public WizTurnBeaconListAdapter(Context context, int textViewResourceId,
@@ -99,7 +101,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	public View getView(int position, View v, ViewGroup parent) {
 		
 		Bitmap thumbImg;
-		String req1 = "http://192.168.200.27:8080/tastyroad/beacon/Thumbnail/";
+		String req1 = serverURL +"beacon/Thumbnail/";
 		String req2 = beaconExtended_items.get(position).getProximityUUID()+"/";
 		String req3 = beaconExtended_items.get(position).getMajor()+"/";
 		String req4 = beaconExtended_items.get(position).getMinor()+"";
@@ -145,12 +147,12 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		Collections.sort(beaconExtended_items, new Comparator<BeaconExtended>() {
 			@Override
 			public int compare(BeaconExtended lhs, BeaconExtended rhs) {
-				++count;
+				//++count;
 				return (int) (rhs.getRssi() - lhs.getRssi());
 			}
 		});
 		
-		Log.e("Collection.sort ", "compare start ..." + count);
+		//Log.e("Collection.sort ", "compare start ..." + count);
 	}
 	
 	public class RequestURLThread extends Thread{
@@ -170,8 +172,8 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		}
 		
 		public void run(){
-			Log.i("!!!!!", "RequestURL !!!!! : "+ reqURL);
-			Log.i("!!!!!", "getJSON START!!!");
+			Log.e(getName().toString(), "RequestURL !!!!! : "+ reqURL);
+			Log.e(getName().toString(), "getJSON START!!!");
 
 			StringBuilder builder = new StringBuilder();
 			HttpClient client = new DefaultHttpClient();
@@ -181,7 +183,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 				StatusLine statusLine = response.getStatusLine();
 				int statusCode = statusLine.getStatusCode();
 				if(statusCode == 200){
-					Log.e(MainActivity.class.toString(),"getJSON OK!!!");
+					Log.e(getName().toString(),"getJSON OK!!!");
 					HttpEntity entity = response.getEntity();
 					InputStream content = entity.getContent();
 					BufferedReader reader = new BufferedReader(new InputStreamReader(content));
@@ -190,7 +192,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 						builder.append(line);
 					}
 				} else {
-					Log.e(MainActivity.class.toString(),"Failed to get JSON object");
+					Log.e(getName().toString(),"Failed to get JSON object");
 				}
 			}catch(ClientProtocolException e){
 				e.printStackTrace();
@@ -199,7 +201,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 			}
 			
 			rawJSON = builder.toString();
-			Log.e(MainActivity.class.toString(), "RawJSON !!!!! : "+ rawJSON);
+			Log.e(getName().toString(), "RawJSON !!!!! : "+ rawJSON);
 			JSONParser parser = new JSONParser();
 			
 			try {
@@ -207,15 +209,21 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 				JSONObject jsonObject = (JSONObject) obj;
 
 				///////////////////////////////////////////////
-				beaconExtended.setImgSmall1(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgSmall1")).openConnection().getInputStream()));
-				beaconExtended.setImgBig1(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgBig1")).openConnection().getInputStream()));
-				beaconExtended.setImgBig2(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgBig2")).openConnection().getInputStream()));
-				beaconExtended.setImgBig3(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgBig3")).openConnection().getInputStream()));
-				//beaconExtended.setImgBig4(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgBig4")).openConnection().getInputStream()));
-				//beaconExtended.setImgMapMarker(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgMapMarker")).openConnection().getInputStream()));
-				beaconExtended.setImgMenu(BitmapFactory.decodeStream(new URL((String)jsonObject.get("imgMenu")).openConnection().getInputStream()));
+				String imgCommonURL = serverURL + "resources/img/";
+				beaconExtended.setImgSmall1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgSmall1")).openConnection().getInputStream()));
+				beaconExtended.setImgBig1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig1")).openConnection().getInputStream()));
+				beaconExtended.setImgBig2(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig2")).openConnection().getInputStream()));
+				beaconExtended.setImgBig3(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig3")).openConnection().getInputStream()));
+				beaconExtended.setImgMarker(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgMarker")).openConnection().getInputStream()));
+				beaconExtended.setImgMenu(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgMenu")).openConnection().getInputStream()));
+				beaconExtended.setName((String)jsonObject.get("name"));
+				beaconExtended.setAddr((String)jsonObject.get("addr"));
+				beaconExtended.setPhone((String)jsonObject.get("phone"));
+				beaconExtended.setGeoLat((Double)jsonObject.get("geoLat"));
+				beaconExtended.setGeoLong((Double)jsonObject.get("geoLong"));
+				beaconExtended.setCopyComment((String)jsonObject.get("copyComment"));
 				
-				Log.e("!!!!!", beaconExtended.toString());
+				Log.e(getName().toString(), "!!!!! " + beaconExtended.toString());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			} catch (MalformedURLException e) {

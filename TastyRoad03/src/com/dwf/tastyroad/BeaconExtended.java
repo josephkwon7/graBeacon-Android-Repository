@@ -17,12 +17,12 @@ public class BeaconExtended extends WizTurnBeacons {
 	private double geoLong;
 	private String copyComment;
 	private Bitmap imgSmall1;
-	private Bitmap imgMapMarker;
+	private Bitmap imgMarker;
 	private Bitmap imgBig1;
 	private Bitmap imgBig2;
 	private Bitmap imgBig3;
-	private Bitmap imgBig4;
 	private Bitmap imgMenu;
+	private int res_type;
 
 	///Constructor
 	public BeaconExtended(String proximityUUID, String name, String macAddr,
@@ -33,6 +33,7 @@ public class BeaconExtended extends WizTurnBeacons {
 	}
 
 	///Getter/Setter
+
 	public int getResId() {
 		return resId;
 	}
@@ -105,12 +106,12 @@ public class BeaconExtended extends WizTurnBeacons {
 		this.imgSmall1 = imgSmall1;
 	}
 
-	public Bitmap getImgMapMarker() {
-		return imgMapMarker;
+	public Bitmap getImgMarker() {
+		return imgMarker;
 	}
 
-	public void setImgMapMarker(Bitmap imgMapMarker) {
-		this.imgMapMarker = imgMapMarker;
+	public void setImgMarker(Bitmap imgMarker) {
+		this.imgMarker = imgMarker;
 	}
 
 	public Bitmap getImgBig1() {
@@ -137,14 +138,6 @@ public class BeaconExtended extends WizTurnBeacons {
 		this.imgBig3 = imgBig3;
 	}
 
-	public Bitmap getImgBig4() {
-		return imgBig4;
-	}
-
-	public void setImgBig4(Bitmap imgBig4) {
-		this.imgBig4 = imgBig4;
-	}
-
 	public Bitmap getImgMenu() {
 		return imgMenu;
 	}
@@ -153,10 +146,17 @@ public class BeaconExtended extends WizTurnBeacons {
 		this.imgMenu = imgMenu;
 	}
 
+	public int getRes_type() {
+		return res_type;
+	}
+
+	public void setRes_type(int res_type) {
+		this.res_type = res_type;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		
 		builder.append("BeaconExtended [resId=");
 		builder.append(resId);
 		builder.append(", name=");
@@ -175,25 +175,21 @@ public class BeaconExtended extends WizTurnBeacons {
 		builder.append(copyComment);
 		builder.append(", imgSmall1=");
 		builder.append(imgSmall1);
-		builder.append(", imgMapMarker=");
-		builder.append(imgMapMarker);
+		builder.append(", imgMarker=");
+		builder.append(imgMarker);
 		builder.append(", imgBig1=");
 		builder.append(imgBig1);
 		builder.append(", imgBig2=");
 		builder.append(imgBig2);
 		builder.append(", imgBig3=");
 		builder.append(imgBig3);
-		builder.append(", imgBig4=");
-		builder.append(imgBig4);
 		builder.append(", imgMenu=");
 		builder.append(imgMenu);
-		builder.append(", proximityUUID=");
-		builder.append(super._proximityUUID);
-		
+		builder.append(", res_type=");
+		builder.append(res_type);
 		builder.append("]");
-		
-		
 		return builder.toString();
 	}
-	
+
+
 }
