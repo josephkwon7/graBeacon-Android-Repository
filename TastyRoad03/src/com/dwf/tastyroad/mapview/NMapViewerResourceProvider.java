@@ -3,7 +3,7 @@
  * 
  * Copyright 2010 NHN Corp. All rights Reserved. 
  * NHN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms. 
- */ //
+ */
 
 package com.dwf.tastyroad.mapview;
 
@@ -52,13 +52,11 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 
 	private final Rect mTempRect = new Rect();
 	private final Paint mTextPaint = new Paint();
-	
-	private Bitmap imgMarker;
 
-	public NMapViewerResourceProvider(Context context, Bitmap imgMarker) {
+	public NMapViewerResourceProvider(Context context) {
 		super(context);
+
 		mTextPaint.setAntiAlias(true);
-		this.imgMarker = imgMarker;
 	}
 
 	/**
@@ -98,10 +96,8 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 		if (marker != null) {
 			bitmap = getBitmap(marker);
 		}
-		
-		//
+
 		return bitmap;
-		//return imgMarker;
 	}
 
 	public Bitmap getBitmap(Drawable marker) {
@@ -174,8 +170,7 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 	// Resource Ids for single icons
 	private final ResourceIdsOnMap mResourceIdsForMarkerOnMap[] = {
 		// Spot, Pin icons
-		
-		new ResourceIdsOnMap(NMapPOIflagType.PIN, R.drawable.icon_arrow, R.drawable.icon_arrow)
+		new ResourceIdsOnMap(NMapPOIflagType.PIN, R.drawable.map_shop_marker_1, R.drawable.map_shop_marker_1),
 //		new ResourceIdsOnMap(NMapPOIflagType.SPOT, R.drawable.redmarker, R.drawable.redmarker),
 
 		// Direction POI icons: From, To
@@ -365,23 +360,6 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 		return textBitmap;
 	}
 
-//	@Override
-//	public Drawable getCalloutBackground(NMapOverlayItem item) {
-//
-//		if (item instanceof NMapPOIitem) {
-//			NMapPOIitem poiItem = (NMapPOIitem)item;
-//
-//			if (poiItem.showRightButton()) {
-//				Drawable drawable = mContext.getResources().getDrawable(R.drawable.bg_speech);
-//				return drawable;
-//			}
-//		}
-//
-//		Drawable drawable = mContext.getResources().getDrawable(R.drawable.pin_ballon_bg);
-//
-//		return drawable;
-//	}
-
 	@Override
 	public String getCalloutRightButtonText(NMapOverlayItem item) {
 		if (item instanceof NMapPOIitem) {
@@ -395,47 +373,6 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 		return null;
 	}
 
-//	@Override
-//	public Drawable[] getCalloutRightButton(NMapOverlayItem item) {
-//		if (item instanceof NMapPOIitem) {
-//			NMapPOIitem poiItem = (NMapPOIitem)item;
-//
-//			if (poiItem.showRightButton()) {
-//				Drawable[] drawable = new Drawable[3];
-//
-//				drawable[0] = mContext.getResources().getDrawable(R.drawable.btn_green_normal);
-//				drawable[1] = mContext.getResources().getDrawable(R.drawable.btn_green_pressed);
-//				drawable[2] = mContext.getResources().getDrawable(R.drawable.btn_green_highlight);
-//
-//				return drawable;
-//			}
-//		}
-//
-//		return null;
-//	}
-
-	@Override
-	public Drawable[] getCalloutRightAccessory(NMapOverlayItem item) {
-		if (item instanceof NMapPOIitem) {
-			NMapPOIitem poiItem = (NMapPOIitem)item;
-
-			if (poiItem.hasRightAccessory() && (poiItem.getRightAccessoryId() > 0)) {
-				Drawable[] drawable = new Drawable[3];
-
-				switch (poiItem.getRightAccessoryId()) {
-					case NMapPOIflagType.CLICKABLE_ARROW:
-//						drawable[0] = mContext.getResources().getDrawable(R.drawable.pin_ballon_arrow);
-//						drawable[1] = mContext.getResources().getDrawable(R.drawable.pin_ballon_on_arrow);
-//						drawable[2] = mContext.getResources().getDrawable(R.drawable.pin_ballon_on_arrow);
-						break;
-				}
-
-				return drawable;
-			}
-		}
-
-		return null;
-	}
 
 	/**
 	 * 말풍선의 텍스트 색상을 customize한다.
@@ -533,6 +470,12 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 
 	@Override
 	public Drawable[] getCalloutRightButton(NMapOverlayItem item) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Drawable[] getCalloutRightAccessory(NMapOverlayItem item) {
 		// TODO Auto-generated method stub
 		return null;
 	}
