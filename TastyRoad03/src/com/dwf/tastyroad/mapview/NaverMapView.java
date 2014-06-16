@@ -128,8 +128,6 @@ public class NaverMapView extends NMapActivity{
 		Bitmap imgMarker = (Bitmap) intent.getExtras().get("imgMarker");
 		geoLat = intent.getExtras().getDouble("geoLat");
 		geoLong = intent.getExtras().getDouble("geoLong");
-		//geoLat = 127.027717;
-		//geoLong = 37.494406;
 		Log.e(getClass().toString(), "!!!!" + imgMarker);
 		Log.e(getClass().toString(), "!!!!" + geoLat);
 		Log.e(getClass().toString(), "!!!!" + geoLong);		
