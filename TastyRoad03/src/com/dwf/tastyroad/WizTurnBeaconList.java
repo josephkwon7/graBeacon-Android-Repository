@@ -207,7 +207,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		case R.id.map_icon:
 			Log.d("WizTurnBeacon", "onClick map_Btn");
 			Intent intent1 = new Intent(this, NaverMapView.class);
-			intent1.putExtra("imgMarker", beaconExtended.getImgMarker());
+			intent1.putExtra("name", beaconExtended.getName());
 			intent1.putExtra("geoLat", beaconExtended.getGeoLat());
 			intent1.putExtra("geoLong", beaconExtended.getGeoLong());
 			startActivity(intent1);

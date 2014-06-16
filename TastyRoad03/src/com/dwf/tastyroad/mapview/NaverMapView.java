@@ -85,6 +85,7 @@ public class NaverMapView extends NMapActivity{
 	
 	private double geoLat;
 	private double geoLong;
+	private String resName;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -123,15 +124,13 @@ public class NaverMapView extends NMapActivity{
 		
 		///////////////////////////////////오버레이 기능 추가 부분////////////////////////////////////////////////
 		
-		//Intent 이용 WizTrunBeaconList에서 Marker이미지, 위도, 경도 받아옴
+		//Intent 이용 WizTrunBeaconList에서 위도, 경도, 이름 받아옴
 		Intent intent = getIntent();
-		Bitmap imgMarker = (Bitmap) intent.getExtras().get("imgMarker");
+		//Bitmap imgMarker = (Bitmap) intent.getExtras().get("imgMarker");
 		geoLat = intent.getExtras().getDouble("geoLat");
 		geoLong = intent.getExtras().getDouble("geoLong");
-		Log.e(getClass().toString(), "!!!!" + imgMarker);
-		Log.e(getClass().toString(), "!!!!" + geoLat);
-		Log.e(getClass().toString(), "!!!!" + geoLong);		
-
+		resName = intent.getExtras().getString("name");
+		
 		mMapViewerResourceProvider = new NMapViewerResourceProvider(this);//, imgMarker);
 		
 		mOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
@@ -188,8 +187,11 @@ public class NaverMapView extends NMapActivity{
 		NMapPOIdata poiData = new NMapPOIdata(1, mMapViewerResourceProvider);
 		poiData.beginPOIdata(1);
 		
+		Log.e(getClass().getName(), "!!!!! " +resName);
+
+		
 		//마커가 찍힐 위/경도 정의, 마커를 클릭하였을 때 위에 문구창 텍스트 정의 부분
-		poiData.addPOIitem(geoLong, geoLat, null, markerId, 0);
+		poiData.addPOIitem(geoLong, geoLat, resName, markerId, 0);
 //		poiData.addPOIitem(127.027717, 37.494406, null, markerId, 0);
 //		poiData.addPOIitem(127.061, 37.51, "Pizza 123-456", markerId, 0);
 		poiData.endPOIdata();
