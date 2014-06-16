@@ -128,11 +128,13 @@ public class NaverMapView extends NMapActivity{
 		Bitmap imgMarker = (Bitmap) intent.getExtras().get("imgMarker");
 		geoLat = intent.getExtras().getDouble("geoLat");
 		geoLong = intent.getExtras().getDouble("geoLong");
+		//geoLat = 127.027717;
+		//geoLong = 37.494406;
 		Log.e(getClass().toString(), "!!!!" + imgMarker);
 		Log.e(getClass().toString(), "!!!!" + geoLat);
 		Log.e(getClass().toString(), "!!!!" + geoLong);		
 
-		mMapViewerResourceProvider = new NMapViewerResourceProvider(this, imgMarker);
+		mMapViewerResourceProvider = new NMapViewerResourceProvider(this);//, imgMarker);
 		
 		mOverlayManager = new NMapOverlayManager(this, mMapView, mMapViewerResourceProvider);
 		// register callout overlay listener to customize it.
@@ -189,7 +191,7 @@ public class NaverMapView extends NMapActivity{
 		poiData.beginPOIdata(1);
 		
 		//마커가 찍힐 위/경도 정의, 마커를 클릭하였을 때 위에 문구창 텍스트 정의 부분
-		poiData.addPOIitem(geoLat, geoLong, null, markerId, 0);
+		poiData.addPOIitem(geoLong, geoLat, null, markerId, 0);
 //		poiData.addPOIitem(127.027717, 37.494406, null, markerId, 0);
 //		poiData.addPOIitem(127.061, 37.51, "Pizza 123-456", markerId, 0);
 		poiData.endPOIdata();
