@@ -51,7 +51,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	
 	private String reqURL;
 	private int count;
-	//public final String serverURL = "http://192.168.200.27:8080/tastyroad/";
+	//public final String serverURL = "http://192.168.200.63:8080/tastyroad/";
 	public final String serverURL = "http://tastyroad.cafe24.com/";
 	
 	///Constructor
@@ -101,6 +101,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	public View getView(int position, View v, ViewGroup parent) {
 		
 		Bitmap thumbImg;
+		//String req1 = serverURL +"beacon/Thumbnail/";
 		String req1 = serverURL +"beacon/";
 		String req2 = beaconExtended_items.get(position).getProximityUUID()+"/";
 		String req3 = beaconExtended_items.get(position).getMajor()+"/";
@@ -214,6 +215,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 				beaconExtended.setImgBig1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig1")).openConnection().getInputStream()));
 				beaconExtended.setImgBig2(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig2")).openConnection().getInputStream()));
 				beaconExtended.setImgBig3(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig3")).openConnection().getInputStream()));
+				beaconExtended.setImgMarker(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgMarker")).openConnection().getInputStream()));
 				beaconExtended.setImgMenu(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgMenu")).openConnection().getInputStream()));
 				beaconExtended.setName((String)jsonObject.get("name"));
 				beaconExtended.setAddr((String)jsonObject.get("addr"));
