@@ -215,7 +215,6 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 				beaconExtended.setImgBig1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig1")).openConnection().getInputStream()));
 				beaconExtended.setImgBig2(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig2")).openConnection().getInputStream()));
 				beaconExtended.setImgBig3(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig3")).openConnection().getInputStream()));
-				beaconExtended.setImgMarker(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgMarker")).openConnection().getInputStream()));
 				beaconExtended.setImgMenu(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgMenu")).openConnection().getInputStream()));
 				beaconExtended.setName((String)jsonObject.get("name"));
 				beaconExtended.setAddr((String)jsonObject.get("addr"));
