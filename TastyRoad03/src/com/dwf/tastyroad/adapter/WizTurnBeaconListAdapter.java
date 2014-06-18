@@ -51,8 +51,8 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	
 	private String reqURL;
 	private int count;
-	public final String serverURL = "http://192.168.200.27:8080/tastyroad/";
-	
+	//public final String serverURL = "http://192.168.200.27:8080/tastyroad/";
+	public final String serverURL = "http://tastyroad.cafe24.com/";
 	
 	///Constructor
 	public WizTurnBeaconListAdapter(Context context, int textViewResourceId,
@@ -101,7 +101,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	public View getView(int position, View v, ViewGroup parent) {
 		
 		Bitmap thumbImg;
-		String req1 = serverURL +"beacon/Thumbnail/";
+		String req1 = serverURL +"beacon/";
 		String req2 = beaconExtended_items.get(position).getProximityUUID()+"/";
 		String req3 = beaconExtended_items.get(position).getMajor()+"/";
 		String req4 = beaconExtended_items.get(position).getMinor()+"";
