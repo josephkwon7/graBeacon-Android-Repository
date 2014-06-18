@@ -17,12 +17,11 @@ public class BeaconExtended extends WizTurnBeacons {
 	private double geoLong;
 	private String copyComment;
 	private Bitmap imgSmall1;
-	private Bitmap imgMarker;
 	private Bitmap imgBig1;
 	private Bitmap imgBig2;
 	private Bitmap imgBig3;
 	private Bitmap imgMenu;
-	private int res_type;
+	private int res_category;
 
 	///Constructor
 	public BeaconExtended(String proximityUUID, String name, String macAddr,
@@ -106,14 +105,6 @@ public class BeaconExtended extends WizTurnBeacons {
 		this.imgSmall1 = imgSmall1;
 	}
 
-	public Bitmap getImgMarker() {
-		return imgMarker;
-	}
-
-	public void setImgMarker(Bitmap imgMarker) {
-		this.imgMarker = imgMarker;
-	}
-
 	public Bitmap getImgBig1() {
 		return imgBig1;
 	}
@@ -146,12 +137,12 @@ public class BeaconExtended extends WizTurnBeacons {
 		this.imgMenu = imgMenu;
 	}
 
-	public int getRes_type() {
-		return res_type;
+	public int getRes_category() {
+		return res_category;
 	}
 
-	public void setRes_type(int res_type) {
-		this.res_type = res_type;
+	public void setRes_category(int res_category) {
+		this.res_category = res_category;
 	}
 
 	@Override
@@ -175,8 +166,6 @@ public class BeaconExtended extends WizTurnBeacons {
 		builder.append(copyComment);
 		builder.append(", imgSmall1=");
 		builder.append(imgSmall1);
-		builder.append(", imgMarker=");
-		builder.append(imgMarker);
 		builder.append(", imgBig1=");
 		builder.append(imgBig1);
 		builder.append(", imgBig2=");
@@ -185,8 +174,8 @@ public class BeaconExtended extends WizTurnBeacons {
 		builder.append(imgBig3);
 		builder.append(", imgMenu=");
 		builder.append(imgMenu);
-		builder.append(", res_type=");
-		builder.append(res_type);
+		builder.append(", res_category=");
+		builder.append(res_category);
 		builder.append("]");
 		return builder.toString();
 	}
