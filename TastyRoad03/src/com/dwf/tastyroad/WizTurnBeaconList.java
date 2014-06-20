@@ -7,10 +7,12 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,6 +70,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 	private Context mContext;
 	private ScrollView mScrollView;
 	
+	SharedPreferences preferences;
+	
 	///Method
 	
 	//최초 자동 실행
@@ -87,6 +91,31 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		super.onStart();
 		Log.d("WizTurnBeacon" ,"onStart()");
 		wizturnMgr_setup();
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		// Tutorial intent start!!!
+		preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+		String turn = preferences.getString("on/off", "on");
+
+		if (turn.equals("on")) {
+			Intent intent = new Intent(WizTurnBeaconList.this,
+					Tutorial.class);
+			startActivity(intent);
+
+			SharedPreferences.Editor editor = preferences.edit();
+			editor.putString("on/off", "off");
+			editor.commit();
+
+		}
+	}
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
 	}
 	
 	//back 버튼 클릭시 자동 호출되는 callback method
