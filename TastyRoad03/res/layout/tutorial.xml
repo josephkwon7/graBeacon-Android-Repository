@@ -41,17 +41,6 @@
             android:background="@drawable/rounded" />
 
         <TextView
-            android:id="@+id/textView03"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/imageView02"
-            android:gravity="center"
-            android:text="이곳에 최신의 비콘정보가 나타납니다."
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
             android:id="@+id/textView02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,6 +60,18 @@
             android:text="뒤로가기"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/textView03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="이곳에 최신의 맛집정보가 나타납니다."
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </RelativeLayout>
 
    <RelativeLayout
@@ -80,6 +81,14 @@
         android:layout_marginTop="30dp"
         android:layout_weight="1" >
 
+        <ImageView
+            android:id="@+id/imageView04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/finger_click1" />
+
         <TextView
             android:id="@+id/textView05"
             android:layout_width="wrap_content"
@@ -87,16 +96,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:gravity="center"
-            android:text="각 비콘정보를 터치하시면 해당 맛집의 메뉴/가격/위치 등의 상세정보를 볼수 있습니다."
+            android:text="각 맛집정보를 터치하면 해당 맛집의 상세정보를 볼수 있습니다."
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ImageView
-            android:id="@+id/imageView04"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/finger_click1" />
 
     </RelativeLayout>
 
@@ -129,7 +130,7 @@
             android:layout_above="@+id/imageView1"
             android:layout_alignParentLeft="true"
             android:gravity="center"
-            android:text="비콘정보들은 거리순 자동정렬 됩니다. 스크롤로 확인하세요."
+            android:text="맛집정보들은 거리순 자동정렬 됩니다. 스크롤로 확인하세요."
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>
