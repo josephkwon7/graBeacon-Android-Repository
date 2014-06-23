@@ -162,7 +162,7 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		setContentView(R.layout.layout_ibeacondetail);
 		mMode = BEACON_DETAIL;
 		beaconExtended = mWizTurnBeaconListAdapter.getItem(position);
-		menuBar_Init("Tasty Road");
+		menuBar_Init("");
 		beaconDetail_Init(beaconExtended);
 
 	}

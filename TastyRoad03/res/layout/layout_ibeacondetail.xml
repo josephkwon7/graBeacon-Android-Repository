@@ -10,17 +10,11 @@
 	        android:layout_height="60dp"
 	        android:background="@drawable/bar_title" >
 
-			        <TextView
+			          <TextView
 			            android:id="@+id/title_txt"
 			            android:layout_width="match_parent"
 			            android:layout_height="match_parent"
-			            android:gravity="center_vertical|center_horizontal"
-			            android:text="Tasty Road"
-			             android:textStyle="bold"
-			            android:background="#ff8c00"
-			            android:textColor="#ffffff"
-			            android:typeface="serif"
-			            android:textSize="18sp" />
+			            android:background="#ff8c00" />
 			
 			        <ImageButton
 			            android:id="@+id/btn_back"
@@ -28,8 +22,16 @@
 			            android:layout_height="30dip"
 			            android:layout_marginLeft="15dp"
 			            android:layout_marginTop="14dp"
-			            
 			            android:background="@drawable/btn_back" />
+
+			        <ImageView
+			            android:id="@+id/imageView1"
+			            android:layout_width="150dip"
+			            android:layout_height="wrap_content"
+			            android:layout_centerHorizontal="true"
+			            android:src="@drawable/main_text" 
+			            />
+
     	</RelativeLayout>
 
 	    <ScrollView
