@@ -225,7 +225,24 @@
 																	            android:text=""
 																	            android:background="#ffffff"
 																	            android:textSize="30px" />
+																	        
 														        </TableRow>
+														          <TableRow
+														            android:id="@+id/tableRow3"
+														            android:layout_width="wrap_content"
+														            android:layout_height="wrap_content" >
+																		     
+																	        <TextView
+																	            android:id="@+id/txtAutoWeb4"
+																	            android:layout_width="match_parent"
+																	            android:layout_height="wrap_content"
+																	       		android:autoLink="map"
+																	            android:text=""
+																	            android:background="#ffffff"
+																	            android:textSize="30px" />
+														        </TableRow>
+														        
+														        
     												</TableLayout>
 										</LinearLayout>				
            					</RelativeLayout>			
