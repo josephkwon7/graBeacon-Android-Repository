@@ -1,15 +1,20 @@
 package com.dwf.tastyroad;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.example.wizturnbeacon.R;
+import com.wizturn.sdk.WizTurnManager;
 
 public class MainActivity extends Activity implements OnClickListener{
 	
+	
+	public WizTurnManager _wizturnMgr;
+	public final int REQUEST_ENABLE_BT = 0000;
 	
 	/*
 	 
@@ -29,6 +34,15 @@ public class MainActivity extends Activity implements OnClickListener{
 		/*res - layout -activity_main.xml�좎럩伊숂뙴�묒삕�좏릳iew�좎럩伊숂뙴�묒삕�좏룱ainActivity�좎럩伊숂뙴�묒삕占쎌슜�삣뜝�뚮듌占쏙옙�좎럩伊숂뙴�묒삕占쎌슜�삣뜝�뚮듌占쎈벨�숅넫濡レ쭢�좎룞�쇿뜝�뚯쪠�룹쉻�쇿뜝�숈삕�ル∥�귨옙��걠占쏙옙�좎럩伊쇿뜝�숈춸熬곣뫗援꿨뜝�뚯쪠�룹쉻�쇿뜝占�		
 		*/
  		setContentView(R.layout.activity_main);
+ 		
+		// BLE가 활성화 안되어 있으면 활성화 되게 함
+ 		_wizturnMgr = WizTurnManager.sharedInstance(this);
+ 		if (!_wizturnMgr.isBluetoothEnabled()) {
+			Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+		}
+ 		
+ 		
 /*
  		startActivity(new Intent(this, Start_Activity.class));
  		
