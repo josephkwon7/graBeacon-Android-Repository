@@ -429,6 +429,8 @@ public class WizTurnBeaconList extends Activity implements OnClickListener , OnI
 		mScanList.setOnItemClickListener(this);
 		mBtn_refresh = (ImageButton)findViewById(R.id.btn_refresh);
 		mBtn_refresh.setOnClickListener(this);
+		
+		menuBar_Init("");
 		mMode = SCANLIST;
 		mContext = this;
 	}
