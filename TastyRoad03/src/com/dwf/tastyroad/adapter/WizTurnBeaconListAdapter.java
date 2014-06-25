@@ -48,11 +48,24 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	private LayoutInflater inflater = null;
 	public ArrayList<BeaconExtended> beaconExtended_items;
 	//private HashMap<BeaconExtended, Bitmap> getImgUrlMap = new HashMap<BeaconExtended, Bitmap>();
+
 	
+	/*기존코드주석처리. by 정준호.*/
+//	private String reqURL;
+//	private int count;
+//	public final String serverURL = "http://192.168.200.63:8080/tastyroad/";
+//	public final String serverURL = "http://192.168.200.63:8080/";
+//	public final String serverURL = "http://tastyroad.cafe24.com/";
+	/*기존코드주석처리 끝. by 정준호.*/
+	
+	
+	/*새로 추가된 코드 by 정준호.*/
 	private String reqURL;
 	private int count;
-	//public final String serverURL = "http://192.168.200.63:8080/tastyroad/";
+	//public final String serverURL = "http://192.168.200.63:8080/";
 	public final String serverURL = "http://tastyroad.cafe24.com/";
+	/*새로 추가된 코드 끝. by 정준호.*/
+	
 	
 	///Constructor
 	public WizTurnBeaconListAdapter(Context context, int textViewResourceId,
@@ -102,11 +115,24 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		
 		Bitmap thumbImg;
 		//String req1 = serverURL +"beacon/Thumbnail/";
+		
+		/*기존코드주석처리. by 정준호.*/
+		/*
 		String req1 = serverURL +"beacon/";
 		String req2 = beaconExtended_items.get(position).getProximityUUID()+"/";
 		String req3 = beaconExtended_items.get(position).getMajor()+"/";
 		String req4 = beaconExtended_items.get(position).getMinor()+"";
 		reqURL = req1 + req2 + req3 + req4;
+		*/
+		/*기존코드주석처리 끝. by 정준호.*/
+		
+		
+		/*새로 추가된 코드 by 정준호.*/
+		String req1 = beaconExtended_items.get(position).getProximityUUID()+"/";
+		String req2 = beaconExtended_items.get(position).getMajor()+"/";
+		String req3 = beaconExtended_items.get(position).getMinor()+".json";
+		reqURL = serverURL + req1 + req2 + req3;
+		/*새로 추가된 코드 끝. by 정준호.*/
 		
 		
 		if(v==null){
@@ -209,29 +235,50 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 				Object obj = parser.parse(rawJSON);
 				JSONObject jsonObject = (JSONObject) obj;
 
-				///////////////////////////////////////////////
-				String imgCommonURL = serverURL + "resources/img/";
-				beaconExtended.setImgSmall1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgSmall1")).openConnection().getInputStream()));
-				beaconExtended.setImgBig1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig1")).openConnection().getInputStream()));
-				beaconExtended.setImgBig2(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig2")).openConnection().getInputStream()));
-				beaconExtended.setImgBig3(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig3")).openConnection().getInputStream()));
-				beaconExtended.setImgMenu(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgMenu")).openConnection().getInputStream()));
-				beaconExtended.setName((String)jsonObject.get("name"));
-				beaconExtended.setAddr((String)jsonObject.get("addr"));
-				beaconExtended.setPhone((String)jsonObject.get("phone"));
-				beaconExtended.setGeoLat((Double)jsonObject.get("geoLat"));
-				beaconExtended.setGeoLong((Double)jsonObject.get("geoLong"));
-				beaconExtended.setCopyComment((String)jsonObject.get("copyComment"));
+				/*기존코드주석처리. by정준호.*/
+//				String imgCommonURL = serverURL + "resources/img/";
+//				beaconExtended.setImgSmall1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgSmall1")).openConnection().getInputStream()));
+//				beaconExtended.setImgBig1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig1")).openConnection().getInputStream()));
+//				beaconExtended.setImgBig2(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig2")).openConnection().getInputStream()));
+//				beaconExtended.setImgBig3(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgBig3")).openConnection().getInputStream()));
+//				beaconExtended.setImgMenu(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgMenu")).openConnection().getInputStream()));
+//				beaconExtended.setName((String)jsonObject.get("name"));
+//				beaconExtended.setAddr((String)jsonObject.get("addr"));
+//				beaconExtended.setPhone((String)jsonObject.get("phone"));
+//				beaconExtended.setGeoLat((Double)jsonObject.get("geoLat"));
+//				beaconExtended.setGeoLong((Double)jsonObject.get("geoLong"));
+//				beaconExtended.setCopyComment((String)jsonObject.get("copyComment"));
+				/*기존코드주석처리 끝. by정준호.*/
 				
+				
+				/*새로 추가된 코드 by 정준호.*/
+				String imgCommonURL = serverURL + "resources/img/";
+				beaconExtended.setImgSmall1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)(((JSONObject) jsonObject.get("restaurant")).get("imgSmall1"))).openConnection().getInputStream()));
+				beaconExtended.setImgBig1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)(((JSONObject) jsonObject.get("restaurant")).get("imgBig1"))).openConnection().getInputStream()));
+				beaconExtended.setImgBig2(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)(((JSONObject) jsonObject.get("restaurant")).get("imgBig2"))).openConnection().getInputStream()));
+				beaconExtended.setImgBig3(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)(((JSONObject) jsonObject.get("restaurant")).get("imgBig3"))).openConnection().getInputStream()));
+				beaconExtended.setImgMenu(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)(((JSONObject) jsonObject.get("restaurant")).get("imgMenu"))).openConnection().getInputStream()));
+				beaconExtended.setName((String)(((JSONObject) jsonObject.get("restaurant")).get("name")));
+				beaconExtended.setAddr((String)(((JSONObject) jsonObject.get("restaurant")).get("addr")));
+				beaconExtended.setPhone((String)(((JSONObject) jsonObject.get("restaurant")).get("phone")));
+				beaconExtended.setGeoLat((Double)(((JSONObject) jsonObject.get("restaurant")).get("geoLat")));
+				beaconExtended.setGeoLong((Double)(((JSONObject) jsonObject.get("restaurant")).get("geoLong")));
+				beaconExtended.setCopyComment((String)(((JSONObject) jsonObject.get("restaurant")).get("copyComment")));
+				/*새로 추가된 코드 끝. by 정준호.*/
+				
+		
 				Log.e(getName().toString(), "!!!!! " + beaconExtended.toString());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+
 		
 		public BeaconExtended getBeaconExtended(){
 			return this.beaconExtended;
