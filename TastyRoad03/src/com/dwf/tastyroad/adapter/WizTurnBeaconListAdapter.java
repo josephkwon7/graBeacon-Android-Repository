@@ -66,6 +66,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	public final String serverURL = "http://tastyroad.cafe24.com/";
 	/*새로 추가된 코드 끝. by 정준호.*/
 	
+	private int mNew;
 	
 	///Constructor
 	public WizTurnBeaconListAdapter(Context context, int textViewResourceId,
@@ -92,12 +93,13 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	
 	//beacon add Item
 	public void addItem(WizTurnBeacons item){
-		beaconExtended_items.add(
+		beaconExtended_items.add(0,
 				new BeaconExtended(item.getProximityUUID(), item.getName(), 
 						item.getMacAddress(), item.getMajor(), item.getMinor(), 
 						item.getMeasuredPower(), (int) item.getRssi(), 
 						item.getProximity())
 				);
+		mNew = item.getMajor();
 	}
 	
 	//beacon get Item
@@ -162,7 +164,15 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		
 		((ImageView)v.findViewById(R.id.imageView1)).setImageBitmap(beaconExtended_items.get(position).getImgSmall1());
 		
-		
+		// Major를 비교하여 최신의 item에 NEW태그 활성화
+		ImageView tag_new = ((ImageView) v.findViewById(R.id.tag_new));
+		for (int i = 0; i < beaconExtended_items.size(); i++) {
+			if (beaconExtended_items.get(position).getMajor() == mNew) {
+				tag_new.setVisibility(View.VISIBLE);
+			}else{
+				tag_new.setVisibility(View.INVISIBLE);
+			}
+		}
 		
 		return v;
 		
