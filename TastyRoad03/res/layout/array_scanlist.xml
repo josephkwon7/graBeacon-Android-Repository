@@ -4,6 +4,7 @@
     android:layout_height="match_parent" >
 
     <RelativeLayout
+        android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_alignParentLeft="true" >
@@ -17,5 +18,14 @@
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
         android:scaleType="fitStart" />
+    
+    <ImageView
+        android:id="@+id/tag_new"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/relativeLayout1"
+        android:scaleType="fitCenter"
+        android:src="@drawable/tag_new" />
 
 </RelativeLayout>
