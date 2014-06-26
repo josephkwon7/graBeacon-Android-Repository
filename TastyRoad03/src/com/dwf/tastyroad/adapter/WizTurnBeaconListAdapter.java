@@ -133,7 +133,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		String req1 = beaconExtended_items.get(position).getProximityUUID()+"/";
 		String req2 = beaconExtended_items.get(position).getMajor()+"/";
 		String req3 = beaconExtended_items.get(position).getMinor()+".json";
-		reqURL = serverURL + req1 + req2 + req3;
+		reqURL = serverURL+ "json/" + req1 + req2 + req3;
 		/*새로 추가된 코드 끝. by 정준호.*/
 		
 		
@@ -244,7 +244,9 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 			try {
 				Object obj = parser.parse(rawJSON);
 				JSONObject jsonObject = (JSONObject) obj;
-
+				Log.e("!!!","jsonObject.get(restaurant) : "+((JSONObject) jsonObject.get("restaurant")));
+				
+				
 				/*기존코드주석처리. by정준호.*/
 //				String imgCommonURL = serverURL + "resources/img/";
 //				beaconExtended.setImgSmall1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)jsonObject.get("imgSmall1")).openConnection().getInputStream()));
