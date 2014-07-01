@@ -7,8 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.example.wizturnbeacon.R;
 import com.wizturn.sdk.WizTurnManager;
@@ -18,11 +21,19 @@ public class MainActivity extends Activity implements OnClickListener{
 	public WizTurnManager _wizturnMgr;
 	public final int REQUEST_ENABLE_BT = 0000;
 	
+	public int mMode;
+	public final int AREA = 2;
+	public final int MAIN = 3;
+	
+	private ImageButton mBtn_back;
+	WebView mWebView;
+	ProgressBar progress;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
  		setContentView(R.layout.activity_main);
- 		
+ 		mMode = MAIN;
  		
  		// 블루투스 확인 및 활성화
  		_wizturnMgr = WizTurnManager.sharedInstance(this);
@@ -32,7 +43,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 		}
  		
- 		// button 생성
+ 		// 버튼 생성
  		findViewById(R.id.main_start).setOnClickListener(this);
  		findViewById(R.id.main_area).setOnClickListener(this);
 	}
@@ -41,21 +52,63 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()) {
 			
-			// 맛집탁색시작 button
+			// 맛집탐색시작 버튼
 			case R.id.main_start:
 				Intent intentStart = new Intent(MainActivity.this , WizTurnBeaconList.class);
 				startActivity(intentStart);
 				break;
 			
-			// 탐색가능지역 button	
+			// 탐색가능지역 버튼	
 			case R.id.main_area:
 				setContentView(R.layout.area);
-				WebView mWebView = (WebView) findViewById(R.id.webview);
-				mWebView.getSettings().setJavaScriptEnabled(true); 
-			    mWebView.loadUrl("http://tastyroad.cafe24.com/googlemap/unitedItemMapView");
-			    mWebView.setWebViewClient(new WebViewClientClass()); 
+				mMode = AREA;
+
+				findViewById(R.id.btn_back).setOnClickListener(this);
+
+				progress = (ProgressBar) this.findViewById(R.id.progress);
+				mWebView = (WebView) findViewById(R.id.webview);
+
+				mWebView.getSettings().setJavaScriptEnabled(true);
+
+				mWebView.loadUrl("http://tastyroad.cafe24.com/googlemap/unitedItemMapView");
+
+				mWebView.setWebViewClient(new WebViewClientClass());
+				mWebView.setWebChromeClient(new WebChromeClient() {
+
+					@Override
+					public void onProgressChanged(WebView view, int newProgress) {
+						progress.setProgress(newProgress);
+						if (newProgress == 100) {
+							progress.setVisibility(View.GONE);
+						} else {
+							progress.setVisibility(View.VISIBLE);
+						}
+						super.onProgressChanged(view, newProgress);
+					}
+				});
+				break;
+
+			// 웹뷰 메뉴바 Back 버튼
+			case R.id.btn_back:
+				finish();
+				Intent intentMain = new Intent(this, MainActivity.class);
+				startActivity(intentMain);
+				break; 
 		}
 		
+	}
+	
+	// 디바이스 Back 버튼
+	@Override
+	public void onBackPressed() {
+		if (mMode == AREA) {
+			Intent intentMain = new Intent(this, MainActivity.class);
+			startActivity(intentMain);
+		} else if (mMode == MAIN) {
+			finish();
+			moveTaskToBack(true);
+			android.os.Process.killProcess(android.os.Process.myPid());
+		}
 	}
 	
 	// 웹뷰 클래스
