@@ -63,7 +63,8 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 	private String reqURL;
 	private int count;
 	//public final String serverURL = "http://192.168.200.63:8080/";
-	public final String serverURL = "http://tastyroad.cafe24.com/";
+	public final String TomcatServerURL = "http://tastyroad.cafe24.com/";
+	public final String ImageServerURL ="http://imageserver.iisweb.kr/";
 	/*새로 추가된 코드 끝. by 정준호.*/
 	
 	private int mNew;
@@ -133,7 +134,7 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 		String req1 = beaconExtended_items.get(position).getProximityUUID()+"/";
 		String req2 = beaconExtended_items.get(position).getMajor()+"/";
 		String req3 = beaconExtended_items.get(position).getMinor()+".json";
-		reqURL = serverURL+ "json/" + req1 + req2 + req3;
+		reqURL = TomcatServerURL+ "json/" + req1 + req2 + req3;
 		/*새로 추가된 코드 끝. by 정준호.*/
 		
 		
@@ -264,7 +265,8 @@ public class WizTurnBeaconListAdapter extends ArrayAdapter{
 				
 				
 				/*새로 추가된 코드 by 정준호.*/
-				String imgCommonURL = serverURL + "resources/img/";
+				//String imgCommonURL = TomcatServerURL + "resources/img/";
+				String imgCommonURL = ImageServerURL + "teamdwf/";
 				beaconExtended.setImgSmall1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)(((JSONObject) jsonObject.get("restaurant")).get("imgSmall1"))).openConnection().getInputStream()));
 				beaconExtended.setImgBig1(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)(((JSONObject) jsonObject.get("restaurant")).get("imgBig1"))).openConnection().getInputStream()));
 				beaconExtended.setImgBig2(BitmapFactory.decodeStream(new URL(imgCommonURL + (String)(((JSONObject) jsonObject.get("restaurant")).get("imgBig2"))).openConnection().getInputStream()));
