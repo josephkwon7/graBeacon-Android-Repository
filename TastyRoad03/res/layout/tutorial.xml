@@ -69,7 +69,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="40dp"
             android:gravity="center"
-            android:text="이곳에 최신의 맛집정보가 나타납니다."
+            android:text="새로 찾은 맛집"
+            android:textSize="20sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>
@@ -90,13 +91,28 @@
             android:src="@drawable/finger_click1" />
 
         <TextView
+            android:id="@+id/textView06"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView04"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@+id/imageView04"
+            android:gravity="center"
+            android:text="터치"
+            android:textSize="20sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
             android:id="@+id/textView05"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
+            android:layout_alignBaseline="@+id/textView06"
+            android:layout_alignBottom="@+id/textView06"
+            android:layout_alignLeft="@+id/imageView04"
+            android:layout_marginLeft="70dp"
             android:gravity="center"
-            android:text="각 맛집정보를 터치하면 해당 맛집의 상세정보를 볼수 있습니다."
+            android:text="상세 정보 확인"
+            android:textSize="20sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>
@@ -124,13 +140,25 @@
             android:src="@drawable/finger_scroll" />
 
         <TextView
-            android:id="@+id/textView06"
+            android:id="@+id/textView07"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/imageView1"
-            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/btn_cancel"
+            android:layout_toLeftOf="@+id/imageView1"
             android:gravity="center"
-            android:text="맛집정보들은 거리순 자동정렬 됩니다. 스크롤로 확인하세요."
+            android:text="스크롤"
+            android:textSize="20sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView08"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView1"
+            android:layout_toRightOf="@+id/imageView1"
+            android:gravity="center"
+            android:text="거\n리\n순\n표\n시"
+            android:textSize="20sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>
